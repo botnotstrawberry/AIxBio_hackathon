@@ -171,6 +171,13 @@ label {
   font-weight: 700;
 }
 
+label small {
+  color: #63746b;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
 input,
 textarea {
   width: 100%;
@@ -337,6 +344,8 @@ textarea {
 .cluster-card p,
 .matrix-row p,
 .risk-card p,
+.gate-card p,
+.export-summary p,
 .unsupported-card p {
   color: #405047;
   line-height: 1.48;
@@ -344,12 +353,14 @@ textarea {
 
 .cluster-section,
 .matrix-section,
-.risk-section {
+.risk-section,
+.gate-section {
   display: grid;
 }
 
 .cluster-grid,
-.risk-grid {
+.risk-grid,
+.gate-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 12px;
@@ -361,13 +372,33 @@ textarea {
 }
 
 .cluster-card,
-.risk-card {
+.risk-card,
+.gate-card {
   border: 1px solid #e4e8e3;
   border-radius: 8px;
   background: #fbfcfa;
   padding: 14px;
   display: grid;
   gap: 10px;
+}
+
+.gate-card strong {
+  font-size: 1.02rem;
+}
+
+.export-summary {
+  border: 1px solid #d8ded7;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.export-summary svg {
+  color: #267d68;
+  margin-top: 2px;
 }
 
 .validation-matrix {
@@ -451,9 +482,29 @@ textarea {
 }
 
 .source-card p,
-.source-card dd {
+.source-card dd,
+.provenance-details,
+.source-details {
   color: #405047;
   line-height: 1.45;
+}
+
+.provenance-details,
+.source-details {
+  margin-top: 2px;
+}
+
+.provenance-details summary,
+.source-details summary {
+  color: #1f6d5b;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.provenance-details .reference-row,
+.source-details dl {
+  margin-top: 8px;
 }
 
 dl {

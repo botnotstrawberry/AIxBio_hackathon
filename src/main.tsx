@@ -94,8 +94,8 @@ function App() {
           <h1>Target validation planning packet</h1>
         </div>
         <div className="status-strip" aria-label="Run status">
-          <span>CLDN18.2 example</span>
-          <span>Curated evidence snapshot</span>
+          <span>CLDN18.2 planning case</span>
+          <span>Curated source snapshot</span>
           <strong>{packetStatusLabel(packet)}</strong>
         </div>
       </header>
@@ -113,10 +113,12 @@ function App() {
           <label>
             <span>Modality</span>
             <input value={modality} onChange={(event) => setModality(event.target.value)} />
+            <small>Displayed in the submitted hypothesis; the curated CLDN18.2 source set stays fixed.</small>
           </label>
           <label>
             <span>Planning note</span>
             <textarea value={prompt} onChange={(event) => setPrompt(event.target.value)} />
+            <small>Safety-scanned for scope. It does not re-rank or rewrite the fixed source snapshot.</small>
           </label>
 
           <div className="guardrail-preview">
@@ -187,8 +189,8 @@ function WorkflowView({ packet }: { packet: Packet }) {
     <div className="workflow-view">
       <div className="packet-heading">
         <div>
-          <div className="eyebrow">Planner workflow</div>
-          <h2>From target hypothesis to validation packet</h2>
+          <div className="eyebrow">First-read plan</div>
+          <h2>Target rationale, evidence, validation logic, risks, gates, export</h2>
         </div>
         <span className="count-pill">{packet.workflowSteps.length} steps</span>
       </div>
@@ -208,6 +210,8 @@ function WorkflowView({ packet }: { packet: Packet }) {
       <EvidenceClusters packet={packet} />
       <ValidationLogicMatrix packet={packet} />
       <TopRisks packet={packet} />
+      <DecisionGates packet={packet} />
+      <ExportSummary />
     </div>
   );
 }
@@ -227,7 +231,7 @@ function EvidenceClusters({ packet }: { packet: Packet }) {
           <article className="cluster-card" key={cluster.id}>
             <h4>{cluster.title}</h4>
             <p>{cluster.summary}</p>
-            <ReferenceRow
+            <ProvenanceDetails
               refs={cluster.sourceIds.map((id: string) => ({ id, role: "source" }))}
               gaps={cluster.gapLabels}
             />
@@ -258,13 +262,16 @@ function ValidationLogicMatrix({ packet }: { packet: Packet }) {
           <div className="matrix-row" key={row.id}>
             <div>
               <strong>{row.decisionPoint}</strong>
-              <ReferenceRow
+              <p>{row.evidenceSummary}</p>
+            </div>
+            <p>{row.planningLogic}</p>
+            <div>
+              <p>{row.gate}</p>
+              <ProvenanceDetails
                 refs={row.evidenceIds.map((id: string) => ({ id, role: "evidence" }))}
                 gaps={row.gapLabels}
               />
             </div>
-            <p>{row.planningLogic}</p>
-            <p>{row.gate}</p>
           </div>
         ))}
       </div>
@@ -289,9 +296,43 @@ function TopRisks({ packet }: { packet: Packet }) {
             <p>{risk.whyItMatters}</p>
             <strong>Next action</strong>
             <p>{risk.nextAction}</p>
-            <ReferenceRow refs={risk.evidenceRefs} gaps={risk.gapLabels} />
+            <ProvenanceDetails refs={risk.evidenceRefs} gaps={risk.gapLabels} />
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function DecisionGates({ packet }: { packet: Packet }) {
+  return (
+    <section className="gate-section" aria-label="Decision gates">
+      <div className="section-title compact-title">
+        <ShieldCheck size={20} aria-hidden="true" />
+        <div>
+          <h3>Decision gates</h3>
+          <p>Plain-language go, hold, and no-go outcomes for an expert review meeting.</p>
+        </div>
+      </div>
+      <div className="gate-grid">
+        {packet.decisionGates.map((gate: any) => (
+          <article className="gate-card" key={gate.id}>
+            <strong>{gate.label}</strong>
+            <p>{gate.summary}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ExportSummary() {
+  return (
+    <section className="export-summary" aria-label="Export summary">
+      <FileText size={20} aria-hidden="true" />
+      <div>
+        <h3>Export</h3>
+        <p>Markdown and JSON exports keep the readable plan first, then place source records and gap labels in an appendix.</p>
       </div>
     </section>
   );
@@ -369,7 +410,7 @@ function PacketView({ packet }: { packet: Packet }) {
                 {section.recommendations.map((recommendation: any) => (
                   <div className="recommendation" key={recommendation.id}>
                     <p>{recommendation.text}</p>
-                    <ReferenceRow refs={recommendation.evidenceRefs} gaps={recommendation.gapLabels} />
+                    <ProvenanceDetails refs={recommendation.evidenceRefs} gaps={recommendation.gapLabels} />
                     {recommendation.caveats.length > 0 && (
                       <div className="caveat-row">
                         {recommendation.caveats.map((caveat: string) => (
@@ -401,7 +442,7 @@ function EvidenceView({ packet }: { packet: Packet }) {
       <div className="packet-heading">
         <div>
           <div className="eyebrow">Evidence ledger</div>
-          <h2>Source provenance and usage labels</h2>
+          <h2>Evidence summary with expandable source records</h2>
         </div>
         <span className="count-pill">{packet.sourceLedger.sources.length} sources</span>
       </div>
@@ -410,20 +451,27 @@ function EvidenceView({ packet }: { packet: Packet }) {
         {packet.sourceLedger.sources.map((source: any) => (
           <article className="source-card" key={source.id}>
             <div className="source-card-head">
-              <strong>{source.id}</strong>
+              <strong>Source record</strong>
               <span>{source.usageLabel}</span>
             </div>
             <p>{source.citeFor}</p>
-            <dl>
-              <div>
-                <dt>Locator</dt>
-                <dd>{source.locator}</dd>
-              </div>
-              <div>
-                <dt>Do not cite for</dt>
-                <dd>{source.doNotCiteFor}</dd>
-              </div>
-            </dl>
+            <details className="source-details">
+              <summary>Show raw provenance</summary>
+              <dl>
+                <div>
+                  <dt>Source ID</dt>
+                  <dd>{source.id}</dd>
+                </div>
+                <div>
+                  <dt>Locator</dt>
+                  <dd>{source.locator}</dd>
+                </div>
+                <div>
+                  <dt>Do not cite for</dt>
+                  <dd>{source.doNotCiteFor}</dd>
+                </div>
+              </dl>
+            </details>
           </article>
         ))}
       </div>
@@ -545,6 +593,22 @@ function ReferenceRow({
         </span>
       ))}
     </div>
+  );
+}
+
+function ProvenanceDetails({
+  refs,
+  gaps
+}: {
+  refs: Array<{ id: string; role: string }>;
+  gaps: string[];
+}) {
+  if ((!refs || refs.length === 0) && (!gaps || gaps.length === 0)) return null;
+  return (
+    <details className="provenance-details">
+      <summary>Show source IDs and gap labels</summary>
+      <ReferenceRow refs={refs || []} gaps={gaps || []} />
+    </details>
   );
 }
 

@@ -33,13 +33,15 @@ describe("TargetBench Gate 4 fixture", () => {
     const packet = generateTargetBenchPacket(DEFAULT_INPUT);
     const markdown = exportPacketAsMarkdown(packet);
     expect(packet.workflowSteps.length).toBeGreaterThanOrEqual(6);
-    expect(packet.evidenceClusters.length).toBeGreaterThanOrEqual(5);
-    expect(packet.validationLogicMatrix.length).toBeGreaterThanOrEqual(5);
+    expect(packet.evidenceClusters.length).toBeGreaterThanOrEqual(4);
+    expect(packet.validationLogicMatrix.length).toBeGreaterThanOrEqual(4);
     expect(packet.topRisks.length).toBeGreaterThanOrEqual(4);
+    expect(packet.decisionGates.length).toBe(3);
     expect(markdown).toContain("## Workflow summary");
     expect(markdown).toContain("## Evidence clusters");
     expect(markdown).toContain("## Validation logic matrix");
     expect(markdown).toContain("## Top risks and gaps");
+    expect(markdown).toContain("## Decision gates");
   });
 
   it("keeps exported packet copy free of internal demo/evaluator phrases", () => {
@@ -56,11 +58,32 @@ describe("TargetBench Gate 4 fixture", () => {
       /\bcurated fixture\b/i,
       /\blive retrieval disabled\b/i,
       /\bRender every recommendation\b/i,
-      /\balternate\/future\b/i
+      /\balternate\/future\b/i,
+      /\bproduct narrative\b/i,
+      /\bevaluator\b/i,
+      /\bRAG\b/i,
+      /\bretrieval-risk\b/i,
+      /\bsource-adapter\b/i,
+      /\bOptional API\b/i,
+      /\bPubMed\/NCBI\b/i,
+      /\bB7-H3\b/i
     ];
     for (const pattern of bannedPatterns) {
       expect(markdown).not.toMatch(pattern);
     }
+  });
+
+  it("keeps raw provenance out of the first-read Markdown narrative", () => {
+    const packet = generateTargetBenchPacket(DEFAULT_INPUT);
+    const markdown = exportPacketAsMarkdown(packet);
+    const firstRead = markdown.split("## Appendix: provenance and boundaries")[0];
+    expect(firstRead).not.toMatch(/\b(SRC|CLAIM|DQ|GAP)-[A-Z0-9]+/);
+    expect(firstRead).toContain("Target rationale");
+    expect(firstRead).toContain("Evidence summary");
+    expect(firstRead).toContain("Validation plan");
+    expect(firstRead).toContain("Top risks");
+    expect(firstRead).toContain("Decision gates");
+    expect(firstRead).toContain("Export");
   });
 
   it("returns a useful unsupported-target packet instead of pretending to generate", () => {

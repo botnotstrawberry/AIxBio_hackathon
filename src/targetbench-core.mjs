@@ -133,27 +133,19 @@ const sourceLedger = Object.freeze({
     },
     {
       id: "SRC-012",
-      usageLabel: "Provenance design context",
-      citeFor: "Scientific workflow retrieval and provenance-oriented product requirements.",
+      usageLabel: "Evidence-tracking context",
+      citeFor: "Why the packet separates source records from conclusions and keeps citation boundaries visible.",
       doNotCiteFor: "Do not cite as evidence that TargetBench recommendations are biologically correct.",
       locator: "PMID:41206112; PMCID:PMC12596265; DOI:10.1093/bib/bbaf571; https://europepmc.org/article/MED/41206112",
       linkedIds: ["DQ-004", "DQ-005"]
     },
     {
       id: "SRC-014",
-      usageLabel: "RAG risk and gap-label motivation",
-      citeFor: "RAG hallucination risk and multi-evidence refinement motivation.",
+      usageLabel: "Evidence-synthesis limitation context",
+      citeFor: "Why uncertain or incomplete evidence should be labeled instead of converted into overconfident conclusions.",
       doNotCiteFor: "Do not cite as proving TargetBench is hallucination-free.",
       locator: "PMID:41132171; PMCID:PMC12540348; DOI:10.3389/fpubh.2025.1635381; https://europepmc.org/article/MED/41132171",
       linkedIds: ["DQ-004", "DQ-005"]
-    },
-    {
-      id: "SRC-015",
-      usageLabel: "Optional API feasibility only",
-      citeFor: "Implementation feasibility for PubMed/NCBI source-adapter and provenance identifiers.",
-      doNotCiteFor: "Do not cite as biomedical evidence about target validation.",
-      locator: "NCBI Bookshelf E-utilities documentation: https://www.ncbi.nlm.nih.gov/books/NBK25501/",
-      linkedIds: ["DQ-005"]
     },
     {
       id: "SRC-016",
@@ -209,33 +201,33 @@ const gapLabels = Object.freeze([
 const workflowSteps = Object.freeze([
   {
     id: "workflow-input",
-    label: "Target hypothesis captured",
-    summary: "The planner starts from the submitted target, disease context, and modality instead of a free-form answer."
+    label: "Target rationale",
+    summary: "CLDN18.2 in gastric/GEJ cancer has enough public target and translational context to support a focused planning case."
   },
   {
     id: "workflow-evidence",
-    label: "Evidence organized",
-    summary: "The CLDN18.2 evidence snapshot is grouped into rationale, expression/off-tumor, assay, clinical-context, and provenance clusters."
+    label: "Evidence summary",
+    summary: "The curated source snapshot is grouped into rationale, expression/off-tumor, assay/model, and clinical-context evidence."
   },
   {
     id: "workflow-rationale",
-    label: "Rationale explained",
-    summary: "The packet separates why this target is worth planning from what remains unproven."
+    label: "Validation plan",
+    summary: "The packet translates evidence into model, assay, control, readout, and safety-review planning modules."
   },
   {
     id: "workflow-validation",
-    label: "Validation logic proposed",
-    summary: "Recommendations are translated into decision checks for expression, specificity, model choice, controls, readouts, and hold/no-go criteria."
+    label: "Top risks",
+    summary: "The first read foregrounds off-tumor uncertainty, expression thresholds, model specificity, and misuse of clinical context."
   },
   {
     id: "workflow-risks",
-    label: "Risks and gaps highlighted",
-    summary: "Missing thresholds, off-tumor uncertainty, model specificity, and evidence provenance are made visible before export."
+    label: "Decision gates",
+    summary: "Go, hold, and no-go logic is stated in plain language for an expert review meeting."
   },
   {
     id: "workflow-export",
-    label: "Packet exported",
-    summary: "Markdown and JSON exports preserve source IDs, caveats, and gap labels for expert review."
+    label: "Export",
+    summary: "Markdown and JSON exports preserve the readable plan, with raw provenance available in the appendix."
   }
 ]);
 
@@ -267,13 +259,6 @@ const evidenceClusters = Object.freeze([
     summary: "Clinical and registry records help explain why CLDN18.2 is a mature planning example, but they remain background only for bench validation and cannot prove safety or efficacy.",
     sourceIds: ["SRC-001", "SRC-002", "SRC-011", "SRC-016"],
     gapLabels: ["GAP-SAFETY-TRANSLATION"]
-  },
-  {
-    id: "cluster-provenance",
-    title: "Provenance and evidence limits",
-    summary: "Product and retrieval-risk sources justify visible provenance, citation boundaries, and gap labels rather than unstated confidence.",
-    sourceIds: ["SRC-012", "SRC-014", "SRC-015"],
-    gapLabels: ["GAP-LIVE-RETRIEVAL"]
   }
 ]);
 
@@ -281,6 +266,7 @@ const validationLogicMatrix = Object.freeze([
   {
     id: "VAL-001",
     decisionPoint: "Can activity be interpreted as target-dependent?",
+    evidenceSummary: "Expression and comparator evidence must line up before potency signals are interpreted.",
     planningLogic: "Require target-expression confirmation plus antigen-negative or low-expression comparison before treating potency signals as target-linked.",
     evidenceIds: ["CLAIM-002", "CLAIM-003", "SRC-009"],
     gate: "Hold if antigen-negative controls respond similarly or expression evidence is missing.",
@@ -289,6 +275,7 @@ const validationLogicMatrix = Object.freeze([
   {
     id: "VAL-002",
     decisionPoint: "Is off-tumor risk visible before escalation?",
+    evidenceSummary: "Tumor-expression rationale must be paired with normal-tissue and off-tumor review.",
     planningLogic: "Pair tumor-expression rationale with normal-tissue/off-tumor review and explicit safety caveats.",
     evidenceIds: ["CLAIM-004", "DQ-004", "SRC-004"],
     gate: "Hold if off-tumor review is unresolved or treated as proven safe from clinical context.",
@@ -297,6 +284,7 @@ const validationLogicMatrix = Object.freeze([
   {
     id: "VAL-003",
     decisionPoint: "Are model systems credible enough for first-pass planning?",
+    evidenceSummary: "Model classes should include target-positive, target-negative, and off-tumor-relevant comparison categories.",
     planningLogic: "Use gastric/GEJ model classes with target-positive, target-negative, and off-tumor-relevant comparator categories.",
     evidenceIds: ["CLAIM-002", "CLAIM-003", "SRC-009"],
     gate: "Hold if the model panel is a single positive context with no specificity comparator.",
@@ -305,18 +293,11 @@ const validationLogicMatrix = Object.freeze([
   {
     id: "VAL-004",
     decisionPoint: "Do controls make the result interpretable?",
+    evidenceSummary: "Controls must separate antigen-dependent signal from background or nonspecific activity.",
     planningLogic: "Track target-positive, target-negative, non-targeted or mock-engineered, irrelevant-antigen, assay-background, and off-tumor comparison controls.",
     evidenceIds: ["CLAIM-003", "CLAIM-009", "SRC-009"],
     gate: "Hold if control identity or acceptance logic is missing from expert review.",
     gapLabels: ["GAP-CONTROL-PANEL"]
-  },
-  {
-    id: "VAL-005",
-    decisionPoint: "Can the exported packet be audited?",
-    planningLogic: "Attach source IDs, caveats, and gap labels to recommendations so users can see what is supported, contextual, or missing.",
-    evidenceIds: ["CLAIM-007", "CLAIM-008", "SRC-012", "SRC-014"],
-    gate: "Hold if recommendations are uncited or clinical context is used as bench proof.",
-    gapLabels: ["GAP-LIVE-RETRIEVAL"]
   }
 ]);
 
@@ -347,11 +328,29 @@ const topRisks = Object.freeze([
   },
   {
     id: "RISK-004",
-    title: "Curated evidence is not a systematic review",
-    whyItMatters: "The packet is reproducible and auditable, but it does not claim complete literature coverage.",
-    nextAction: "Show the curated snapshot clearly and reserve live refresh or systematic review for a later mode.",
-    evidenceRefs: refs(["CLAIM-008", "SRC-012", "SRC-014"]),
-    gapLabels: ["GAP-LIVE-RETRIEVAL"]
+    title: "Clinical context can be overread",
+    whyItMatters: "Clinical and registry records explain maturity, but they cannot prove bench validation, safety, or efficacy.",
+    nextAction: "Keep clinical sources as background and require assay-specific evidence for validation decisions.",
+    evidenceRefs: refs(["CLAIM-006", "SRC-002", "SRC-011", "SRC-016"]),
+    gapLabels: ["GAP-SAFETY-TRANSLATION"]
+  }
+]);
+
+const decisionGates = Object.freeze([
+  {
+    id: "DG-GO",
+    label: "Go",
+    summary: "Proceed to deeper validation planning only when expression evidence, specificity logic, controls, model context, and off-tumor review are coherent together."
+  },
+  {
+    id: "DG-HOLD",
+    label: "Hold",
+    summary: "Pause when the evidence is promising but missing expression thresholds, control definitions, model specificity, or normal-tissue review."
+  },
+  {
+    id: "DG-NO-GO",
+    label: "No-go",
+    summary: "Stop if activity appears nonspecific, clinical context is being treated as proof, or the next request requires patient advice, protocol parameters, or safety clearance."
   }
 ]);
 
@@ -491,9 +490,9 @@ function cldn182Packet(input) {
         ),
         recommendation(
           "RAT-002",
-          "Treat B7-H3 glioblastoma as a plausible target that needs its own curated source review before a reliable packet is generated.",
-          ["CLAIM-005", "DQ-002"],
-          { caveats: ["This is a build-feasibility distinction, not a biological ranking."] }
+          "Keep clinical maturity, target-expression rationale, and off-tumor review separate so the packet does not imply that one kind of evidence proves the others.",
+          ["CLAIM-001", "CLAIM-004", "CLAIM-006", "SRC-004", "SRC-006"],
+          { caveats: ["Clinical and registry records are background only for validation planning."] }
         )
       ]
     },
@@ -578,7 +577,7 @@ function cldn182Packet(input) {
         ),
         recommendation(
           "CTRL-002",
-          "Mark clinical/trial records as target-context controls for product narrative only; they cannot serve as assay controls or validation proof.",
+          "Mark clinical and registry records as target-context background only; they cannot serve as assay controls or validation proof.",
           ["CLAIM-006", "SRC-002", "SRC-011", "SRC-016"],
           { role: "context-only" }
         )
@@ -649,11 +648,11 @@ function cldn182Packet(input) {
     {
       key: "source_ids_citations",
       title: "Source IDs/citations",
-      summary: "Visible provenance that keeps recommendations auditable.",
+      summary: "Appendix record that links recommendations to the curated source snapshot.",
       recommendations: [
         recommendation(
           "SRCLEDGER-001",
-          "Keep each recommendation tied to supporting sources, claim notes, question notes, or explicit gap labels; clinical and registry records remain background only.",
+          "Keep source records and missing-evidence labels available for expert review without letting raw IDs dominate the first-read packet.",
           ["DQ-005", "CLAIM-006", "CLAIM-007", "CLAIM-008", "SRC-012", "SRC-014"],
           { gapLabels: ["GAP-LIVE-RETRIEVAL"] }
         )
@@ -713,12 +712,13 @@ function cldn182Packet(input) {
       mode: "disabled",
       status: "pre-reviewed source set",
       coreDependency: false,
-      evidenceRefs: refs(["CLAIM-008", "NULL-001", "NULL-002", "SRC-015"])
+      evidenceRefs: refs(["CLAIM-008", "NULL-001", "NULL-002"])
     },
     workflowSteps,
     evidenceClusters,
     validationLogicMatrix,
     topRisks,
+    decisionGates,
     sections,
     sourceLedger,
     gapLabels,
@@ -770,7 +770,8 @@ export function exportPacketAsMarkdown(packet) {
     "",
     `Generated: ${packet.generatedAt}`,
     `Submitted target: ${packet.input.target} in ${packet.input.disease} (${packet.input.modality})`,
-    `Evidence snapshot: ${packet.liveRetrieval.status}. No live literature or registry query was run for this export; the source set is curated for reproducibility.`,
+    `Evidence snapshot: ${packet.liveRetrieval.status}. The source set is curated for reproducibility and is not a systematic review.`,
+    `Input handling: modality and planning note are safety-scanned and displayed, but this curated CLDN18.2 source set does not change based on them.`,
     "",
     "## One-page summary",
     "",
@@ -791,22 +792,14 @@ export function exportPacketAsMarkdown(packet) {
   lines.push("## Evidence clusters", "");
   for (const cluster of packet.evidenceClusters) {
     lines.push(`- ${cluster.title}: ${cluster.summary}`);
-    lines.push(`  Sources: ${cluster.sourceIds.map((id) => `\`${id}\``).join(", ")}`);
-    if (cluster.gapLabels.length > 0) {
-      lines.push(`  Gaps: ${cluster.gapLabels.map((id) => `\`${id}\``).join(", ")}`);
-    }
   }
   lines.push("");
 
   lines.push("## Validation logic matrix", "");
-  lines.push("| Decision point | Planning logic | Evidence | Hold/no-go signal |");
+  lines.push("| Decision point | Evidence basis | Planning logic | Hold/no-go signal |");
   lines.push("|---|---|---|---|");
   for (const row of packet.validationLogicMatrix) {
-    const evidence = row.evidenceIds.map((id) => `\`${id}\``).join(", ");
-    const gaps = row.gapLabels.length > 0
-      ? ` Gaps: ${row.gapLabels.map((id) => `\`${id}\``).join(", ")}.`
-      : "";
-    lines.push(`| ${row.decisionPoint} | ${row.planningLogic} | ${evidence} | ${row.gate}${gaps} |`);
+    lines.push(`| ${row.decisionPoint} | ${row.evidenceSummary} | ${row.planningLogic} | ${row.gate} |`);
   }
   lines.push("");
 
@@ -814,8 +807,6 @@ export function exportPacketAsMarkdown(packet) {
   for (const risk of packet.topRisks) {
     lines.push(`- ${risk.title}: ${risk.whyItMatters}`);
     lines.push(`  Next action: ${risk.nextAction}`);
-    lines.push(`  Evidence: ${formatRefs(risk.evidenceRefs)}`);
-    lines.push(`  Gaps: ${risk.gapLabels.map((id) => `\`${id}\``).join(", ")}`);
   }
   lines.push("");
 
@@ -825,10 +816,33 @@ export function exportPacketAsMarkdown(packet) {
   }
   lines.push("");
 
-  for (const section of packet.sections) {
+  lines.push("## Decision gates", "");
+  for (const gate of packet.decisionGates) {
+    lines.push(`- ${gate.label}: ${gate.summary}`);
+  }
+  lines.push("");
+
+  const appendixSectionKeys = new Set(["source_ids_citations", "caveats", "gap_labels"]);
+  const mainSections = packet.sections.filter((section) => !appendixSectionKeys.has(section.key));
+  const appendixSections = packet.sections.filter((section) => appendixSectionKeys.has(section.key));
+
+  lines.push("## Detailed validation plan", "");
+  for (const section of mainSections) {
     lines.push(`## ${section.title}`, "", section.summary, "");
     for (const recommendation of section.recommendations) {
-      lines.push(`- ${recommendation.id}: ${recommendation.text}`);
+      lines.push(`- ${recommendation.text}`);
+      if (recommendation.caveats.length > 0) {
+        lines.push(`  Caveats: ${recommendation.caveats.join(" | ")}`);
+      }
+    }
+    lines.push("");
+  }
+
+  lines.push("## Appendix: provenance and boundaries", "");
+  for (const section of appendixSections) {
+    lines.push(`## ${section.title}`, "", section.summary, "");
+    for (const recommendation of section.recommendations) {
+      lines.push(`- ${recommendation.text}`);
       lines.push(`  Evidence: ${formatRefs(recommendation.evidenceRefs)}`);
       if (recommendation.gapLabels.length > 0) {
         lines.push(`  Gap labels: ${recommendation.gapLabels.map((item) => `\`${item}\``).join(", ")}`);

@@ -36,43 +36,39 @@
       {
         "id": "NULL-002",
         "role": "support"
-      },
-      {
-        "id": "SRC-015",
-        "role": "support"
       }
     ]
   },
   "workflowSteps": [
     {
       "id": "workflow-input",
-      "label": "Target hypothesis captured",
-      "summary": "The planner starts from the submitted target, disease context, and modality instead of a free-form answer."
+      "label": "Target rationale",
+      "summary": "CLDN18.2 in gastric/GEJ cancer has enough public target and translational context to support a focused planning case."
     },
     {
       "id": "workflow-evidence",
-      "label": "Evidence organized",
-      "summary": "The CLDN18.2 evidence snapshot is grouped into rationale, expression/off-tumor, assay, clinical-context, and provenance clusters."
+      "label": "Evidence summary",
+      "summary": "The curated source snapshot is grouped into rationale, expression/off-tumor, assay/model, and clinical-context evidence."
     },
     {
       "id": "workflow-rationale",
-      "label": "Rationale explained",
-      "summary": "The packet separates why this target is worth planning from what remains unproven."
+      "label": "Validation plan",
+      "summary": "The packet translates evidence into model, assay, control, readout, and safety-review planning modules."
     },
     {
       "id": "workflow-validation",
-      "label": "Validation logic proposed",
-      "summary": "Recommendations are translated into decision checks for expression, specificity, model choice, controls, readouts, and hold/no-go criteria."
+      "label": "Top risks",
+      "summary": "The first read foregrounds off-tumor uncertainty, expression thresholds, model specificity, and misuse of clinical context."
     },
     {
       "id": "workflow-risks",
-      "label": "Risks and gaps highlighted",
-      "summary": "Missing thresholds, off-tumor uncertainty, model specificity, and evidence provenance are made visible before export."
+      "label": "Decision gates",
+      "summary": "Go, hold, and no-go logic is stated in plain language for an expert review meeting."
     },
     {
       "id": "workflow-export",
-      "label": "Packet exported",
-      "summary": "Markdown and JSON exports preserve source IDs, caveats, and gap labels for expert review."
+      "label": "Export",
+      "summary": "Markdown and JSON exports preserve the readable plan, with raw provenance available in the appendix."
     }
   ],
   "evidenceClusters": [
@@ -127,25 +123,13 @@
       "gapLabels": [
         "GAP-SAFETY-TRANSLATION"
       ]
-    },
-    {
-      "id": "cluster-provenance",
-      "title": "Provenance and evidence limits",
-      "summary": "Product and retrieval-risk sources justify visible provenance, citation boundaries, and gap labels rather than unstated confidence.",
-      "sourceIds": [
-        "SRC-012",
-        "SRC-014",
-        "SRC-015"
-      ],
-      "gapLabels": [
-        "GAP-LIVE-RETRIEVAL"
-      ]
     }
   ],
   "validationLogicMatrix": [
     {
       "id": "VAL-001",
       "decisionPoint": "Can activity be interpreted as target-dependent?",
+      "evidenceSummary": "Expression and comparator evidence must line up before potency signals are interpreted.",
       "planningLogic": "Require target-expression confirmation plus antigen-negative or low-expression comparison before treating potency signals as target-linked.",
       "evidenceIds": [
         "CLAIM-002",
@@ -161,6 +145,7 @@
     {
       "id": "VAL-002",
       "decisionPoint": "Is off-tumor risk visible before escalation?",
+      "evidenceSummary": "Tumor-expression rationale must be paired with normal-tissue and off-tumor review.",
       "planningLogic": "Pair tumor-expression rationale with normal-tissue/off-tumor review and explicit safety caveats.",
       "evidenceIds": [
         "CLAIM-004",
@@ -175,6 +160,7 @@
     {
       "id": "VAL-003",
       "decisionPoint": "Are model systems credible enough for first-pass planning?",
+      "evidenceSummary": "Model classes should include target-positive, target-negative, and off-tumor-relevant comparison categories.",
       "planningLogic": "Use gastric/GEJ model classes with target-positive, target-negative, and off-tumor-relevant comparator categories.",
       "evidenceIds": [
         "CLAIM-002",
@@ -189,6 +175,7 @@
     {
       "id": "VAL-004",
       "decisionPoint": "Do controls make the result interpretable?",
+      "evidenceSummary": "Controls must separate antigen-dependent signal from background or nonspecific activity.",
       "planningLogic": "Track target-positive, target-negative, non-targeted or mock-engineered, irrelevant-antigen, assay-background, and off-tumor comparison controls.",
       "evidenceIds": [
         "CLAIM-003",
@@ -198,21 +185,6 @@
       "gate": "Hold if control identity or acceptance logic is missing from expert review.",
       "gapLabels": [
         "GAP-CONTROL-PANEL"
-      ]
-    },
-    {
-      "id": "VAL-005",
-      "decisionPoint": "Can the exported packet be audited?",
-      "planningLogic": "Attach source IDs, caveats, and gap labels to recommendations so users can see what is supported, contextual, or missing.",
-      "evidenceIds": [
-        "CLAIM-007",
-        "CLAIM-008",
-        "SRC-012",
-        "SRC-014"
-      ],
-      "gate": "Hold if recommendations are uncited or clinical context is used as bench proof.",
-      "gapLabels": [
-        "GAP-LIVE-RETRIEVAL"
       ]
     }
   ],
@@ -281,26 +253,47 @@
     },
     {
       "id": "RISK-004",
-      "title": "Curated evidence is not a systematic review",
-      "whyItMatters": "The packet is reproducible and auditable, but it does not claim complete literature coverage.",
-      "nextAction": "Show the curated snapshot clearly and reserve live refresh or systematic review for a later mode.",
+      "title": "Clinical context can be overread",
+      "whyItMatters": "Clinical and registry records explain maturity, but they cannot prove bench validation, safety, or efficacy.",
+      "nextAction": "Keep clinical sources as background and require assay-specific evidence for validation decisions.",
       "evidenceRefs": [
         {
-          "id": "CLAIM-008",
+          "id": "CLAIM-006",
           "role": "support"
         },
         {
-          "id": "SRC-012",
-          "role": "support"
+          "id": "SRC-002",
+          "role": "context-only"
         },
         {
-          "id": "SRC-014",
-          "role": "support"
+          "id": "SRC-011",
+          "role": "context-only"
+        },
+        {
+          "id": "SRC-016",
+          "role": "context-only"
         }
       ],
       "gapLabels": [
-        "GAP-LIVE-RETRIEVAL"
+        "GAP-SAFETY-TRANSLATION"
       ]
+    }
+  ],
+  "decisionGates": [
+    {
+      "id": "DG-GO",
+      "label": "Go",
+      "summary": "Proceed to deeper validation planning only when expression evidence, specificity logic, controls, model context, and off-tumor review are coherent together."
+    },
+    {
+      "id": "DG-HOLD",
+      "label": "Hold",
+      "summary": "Pause when the evidence is promising but missing expression thresholds, control definitions, model specificity, or normal-tissue review."
+    },
+    {
+      "id": "DG-NO-GO",
+      "label": "No-go",
+      "summary": "Stop if activity appears nonspecific, clinical context is being treated as proof, or the next request requires patient advice, protocol parameters, or safety clearance."
     }
   ],
   "sections": [
@@ -342,19 +335,31 @@
         },
         {
           "id": "RAT-002",
-          "text": "Treat B7-H3 glioblastoma as a plausible target that needs its own curated source review before a reliable packet is generated.",
+          "text": "Keep clinical maturity, target-expression rationale, and off-tumor review separate so the packet does not imply that one kind of evidence proves the others.",
           "evidenceRefs": [
             {
-              "id": "CLAIM-005",
+              "id": "CLAIM-001",
               "role": "support"
             },
             {
-              "id": "DQ-002",
+              "id": "CLAIM-004",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-006",
+              "role": "support"
+            },
+            {
+              "id": "SRC-004",
+              "role": "support"
+            },
+            {
+              "id": "SRC-006",
               "role": "support"
             }
           ],
           "caveats": [
-            "This is a build-feasibility distinction, not a biological ranking."
+            "Clinical and registry records are background only for validation planning."
           ],
           "gapLabels": []
         }
@@ -552,7 +557,7 @@
         },
         {
           "id": "CTRL-002",
-          "text": "Mark clinical/trial records as target-context controls for product narrative only; they cannot serve as assay controls or validation proof.",
+          "text": "Mark clinical and registry records as target-context background only; they cannot serve as assay controls or validation proof.",
           "evidenceRefs": [
             {
               "id": "CLAIM-006",
@@ -746,11 +751,11 @@
     {
       "key": "source_ids_citations",
       "title": "Source IDs/citations",
-      "summary": "Visible provenance that keeps recommendations auditable.",
+      "summary": "Appendix record that links recommendations to the curated source snapshot.",
       "recommendations": [
         {
           "id": "SRCLEDGER-001",
-          "text": "Keep each recommendation tied to supporting sources, claim notes, question notes, or explicit gap labels; clinical and registry records remain background only.",
+          "text": "Keep source records and missing-evidence labels available for expert review without letting raw IDs dominate the first-read packet.",
           "evidenceRefs": [
             {
               "id": "DQ-005",
@@ -1016,8 +1021,8 @@
       },
       {
         "id": "SRC-012",
-        "usageLabel": "Provenance design context",
-        "citeFor": "Scientific workflow retrieval and provenance-oriented product requirements.",
+        "usageLabel": "Evidence-tracking context",
+        "citeFor": "Why the packet separates source records from conclusions and keeps citation boundaries visible.",
         "doNotCiteFor": "Do not cite as evidence that TargetBench recommendations are biologically correct.",
         "locator": "PMID:41206112; PMCID:PMC12596265; DOI:10.1093/bib/bbaf571; https://europepmc.org/article/MED/41206112",
         "linkedIds": [
@@ -1027,22 +1032,12 @@
       },
       {
         "id": "SRC-014",
-        "usageLabel": "RAG risk and gap-label motivation",
-        "citeFor": "RAG hallucination risk and multi-evidence refinement motivation.",
+        "usageLabel": "Evidence-synthesis limitation context",
+        "citeFor": "Why uncertain or incomplete evidence should be labeled instead of converted into overconfident conclusions.",
         "doNotCiteFor": "Do not cite as proving TargetBench is hallucination-free.",
         "locator": "PMID:41132171; PMCID:PMC12540348; DOI:10.3389/fpubh.2025.1635381; https://europepmc.org/article/MED/41132171",
         "linkedIds": [
           "DQ-004",
-          "DQ-005"
-        ]
-      },
-      {
-        "id": "SRC-015",
-        "usageLabel": "Optional API feasibility only",
-        "citeFor": "Implementation feasibility for PubMed/NCBI source-adapter and provenance identifiers.",
-        "doNotCiteFor": "Do not cite as biomedical evidence about target validation.",
-        "locator": "NCBI Bookshelf E-utilities documentation: https://www.ncbi.nlm.nih.gov/books/NBK25501/",
-        "linkedIds": [
           "DQ-005"
         ]
       },

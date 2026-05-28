@@ -12,6 +12,12 @@ import {
 const DEFAULT_BASE_URL = "https://api.tokenfactory.nebius.com/v1/";
 const DEFAULT_MODEL = "moonshotai/Kimi-K2.6";
 const DEFAULT_PORT = 8787;
+const ALLOWED_ORIGINS = new Set([
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5174",
+  "http://localhost:5173",
+  "http://localhost:5174"
+]);
 
 loadEnvFile(resolve(process.cwd(), ".env.local"));
 
@@ -27,7 +33,7 @@ const config = {
 };
 
 const server = http.createServer(async (request, response) => {
-  setCorsHeaders(response);
+  setCorsHeaders(request, response);
   if (request.method === "OPTIONS") {
     response.writeHead(204);
     response.end();
@@ -234,8 +240,11 @@ function loadEnvFile(path) {
   }
 }
 
-function setCorsHeaders(response) {
-  response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
+function setCorsHeaders(request, response) {
+  const origin = request.headers.origin;
+  const allowedOrigin = ALLOWED_ORIGINS.has(origin) ? origin : "http://127.0.0.1:5174";
+  response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+  response.setHeader("Vary", "Origin");
   response.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   response.setHeader("Access-Control-Allow-Headers", "content-type");
 }

@@ -1,0 +1,14 @@
+{
+  "gate": "gate4",
+  "title": "Gate 4: success and evaluation definition",
+  "artifact": "SUCCESS_AND_EVALUATION_CONTRACT.md",
+  "artifactPath": "/root/.openclaw/workspace/project-initiation/AIxBio_hackathon/SUCCESS_AND_EVALUATION_CONTRACT.md",
+  "artifactSha256": "db2fcb7d546b6ac900598959fd92fae7feb603057f7c3cb7074b78c85528a0e9",
+  "isTest": false,
+  "approver": "human",
+  "source": "User webchat approval 2026-05-28T03:05Z: Approved. Please move onto the next gate.",
+  "approvedAt": "2026-05-28T03:07:43Z",
+  "gate4_state": "proven",
+  "gate4_executable_check_ids": [],
+  "negative_fixture_proof_schema_version": "n/a"
+}

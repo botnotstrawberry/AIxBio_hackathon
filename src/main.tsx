@@ -113,7 +113,7 @@ function App() {
     setAiError("");
     setAiDraft(null);
     try {
-      const response = await window.fetch("http://127.0.0.1:8787/api/live-draft", {
+      const response = await window.fetch("/api/live-draft", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({

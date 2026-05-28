@@ -104,8 +104,26 @@ async function handleLiveDraft(request, response) {
     });
     return;
   }
-  const text = extractAiDraftText(upstreamResponse);
-  const verdict = validateAiDraftText(text, records);
+  let text = extractAiDraftText(upstreamResponse);
+  let verdict = validateAiDraftText(text, records);
+  if (!verdict.ok) {
+    const retryRequest = buildOpenAiCompatibleRequest({
+      model: config.model,
+      messages: buildCitationRetryMessages(messages, text, records),
+      maxTokens: config.maxOutputTokens
+    });
+    try {
+      upstreamResponse = await callNebius(retryRequest);
+      text = extractAiDraftText(upstreamResponse);
+      verdict = validateAiDraftText(text, records);
+    } catch (error) {
+      sendJson(response, 502, {
+        ok: false,
+        error: error?.message || "Nebius request failed."
+      });
+      return;
+    }
+  }
   if (!verdict.ok) {
     sendJson(response, 422, {
       ok: false,
@@ -126,6 +144,31 @@ async function handleLiveDraft(request, response) {
     },
     remainingRequests: Math.max(config.maxRequests - requestCount, 0)
   });
+}
+
+function buildCitationRetryMessages(messages, text, records) {
+  const sourceIds = records.map((record) => record.liveSourceId).filter(Boolean);
+  return [
+    ...messages,
+    {
+      role: "assistant",
+      content: text || "Draft omitted visible content."
+    },
+    {
+      role: "user",
+      content: [
+        {
+          type: "text",
+          text: [
+            "Rewrite the draft for display now.",
+            `Allowed source IDs: ${sourceIds.join(", ")}.`,
+            "Every substantive sentence must include one or more of those IDs exactly as bracket citations, for example [LIVE-EPMC-001].",
+            "Do not include protocol steps, exact wet-lab parameters, patient advice, safety/efficacy proof, regulatory guidance, or biosafety clearance."
+          ].join(" ")
+        }
+      ]
+    }
+  ];
 }
 
 async function callNebius(payload) {

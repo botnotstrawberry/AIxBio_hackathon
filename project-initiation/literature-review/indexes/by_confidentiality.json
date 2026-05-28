@@ -424,6 +424,34 @@
         "source_quality": "official_docs",
         "transfer_risk_level": "low",
         "transfer_risk_reason": "Used only for implementation/source-policy feasibility."
+      },
+      {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003; exact_title_lookup",
+        "cite_for": "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for the CLDN18.2 gastric/GEJ demo target.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as bench assay/protocol evidence, clinical advice, or proof that CAR-T validation is solved.",
+        "evidence_directness": "direct_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "current",
+        "freshness_status": "current_enough",
+        "id": "SRC-016",
+        "key_observations": "PubMed abstract/metadata record for a Lancet 2025 randomized open-label phase 2 CT041-ST-01 trial of satri-cel versus treatment of physician's choice in previously treated CLDN18.2-positive advanced gastric/GEJ cancer.",
+        "limitations": "Free PubMed abstract/metadata only; publisher full text was not used. Use as a clinical/translational maturity anchor, not as bench-method or protocol evidence.",
+        "linked_dq_ids": [
+          "DQ-002",
+          "DQ-005"
+        ],
+        "locator": "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
+        "provenance": "PubMed official page opened on 2026-05-28 after user-requested Gate 2 clarification pass.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before using trial-specific efficacy, safety, dose, eligibility, or clinical wording in the MVP.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2025",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Clinical randomized-trial maturity supports demo target choice, but does not transfer to bench assay design or patient recommendations."
       }
     ]
   },

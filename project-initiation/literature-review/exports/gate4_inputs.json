@@ -8,7 +8,7 @@
         "record": {
           "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
           "claim_kind": "decision",
-          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, including a 2025 randomized phase 2 satri-cel maturity anchor, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
           "confidence": "medium",
           "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
           "conflict_ids": [],
@@ -30,7 +30,8 @@
             "LOC-007",
             "LOC-008",
             "LOC-010",
-            "LOC-011"
+            "LOC-011",
+            "LOC-016"
           ],
           "materiality": "central",
           "null_ids": [],
@@ -47,7 +48,8 @@
             "SRC-007",
             "SRC-008",
             "SRC-010",
-            "SRC-011"
+            "SRC-011",
+            "SRC-016"
           ],
           "source_quality": "peer_reviewed",
           "status": "supported",
@@ -222,7 +224,7 @@
         "record": {
           "caveat": "Trial status is time-sensitive and must be displayed as context-only.",
           "claim_kind": "inference",
-          "claim_text": "ClinicalTrials.gov records can be used in TargetBench as translational-status context and source provenance, but not as efficacy or safety proof.",
+          "claim_text": "ClinicalTrials.gov records and PubMed clinical-trial records can be used in TargetBench as translational-status context and source provenance, but not as efficacy, safety, or bench-protocol proof.",
           "confidence": "high",
           "confidence_reason": "Official registry records clearly support status context but not outcomes.",
           "conflict_ids": [],
@@ -236,9 +238,10 @@
           "gate4_use_status": "allowed_with_caveat",
           "id": "CLAIM-006",
           "locator_ids": [
+            "LOC-002",
             "LOC-010",
             "LOC-011",
-            "LOC-002"
+            "LOC-016"
           ],
           "materiality": "important",
           "null_ids": [],
@@ -246,9 +249,10 @@
           "record_kind": "claim",
           "risk_if_wrong": "medium",
           "source_ids": [
+            "SRC-002",
             "SRC-010",
             "SRC-011",
-            "SRC-002"
+            "SRC-016"
           ],
           "source_quality": "official_docs",
           "status": "supported",
@@ -444,14 +448,14 @@
         "id": "DQ-002",
         "kind": "dq",
         "record": {
-          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041/satri-cel clinical evidence, including a 2025 randomized phase 2 maturity anchor and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
           "claim_ids": [
             "CLAIM-001",
             "CLAIM-005",
             "CLAIM-006"
           ],
           "confidence": "medium",
-          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, especially after adding the 2025 randomized phase 2 satri-cel anchor, but this is not a systematic target-ranking exercise.",
           "conflict_ids": [],
           "contradiction_ids": [],
           "derivation_ids": [],
@@ -459,7 +463,8 @@
             "SRC-001",
             "SRC-002",
             "SRC-004",
-            "SRC-007"
+            "SRC-007",
+            "SRC-016"
           ],
           "evidence_directness_ceiling": "direct_empirical",
           "forbidden_overclaims": [
@@ -482,14 +487,16 @@
             "LOC-007",
             "LOC-008",
             "LOC-010",
-            "LOC-011"
+            "LOC-011",
+            "LOC-016"
           ],
           "materiality": "central",
           "null_ids": [],
           "read_next_source_ids": [
             "SRC-001",
             "SRC-004",
-            "SRC-011"
+            "SRC-011",
+            "SRC-016"
           ],
           "record_kind": "dq",
           "risk_if_wrong": "high",
@@ -503,7 +510,8 @@
             "SRC-007",
             "SRC-008",
             "SRC-010",
-            "SRC-011"
+            "SRC-011",
+            "SRC-016"
           ],
           "status": "supported",
           "technical_object_ids": [],
@@ -653,7 +661,7 @@
           ],
           "formula_ids": [],
           "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
-          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, clinical-trial-context-only labels, and forbidden-output checks.",
           "gate4_use_status": "allowed_with_caveat",
           "id": "DQ-005",
           "locator_ids": [

@@ -462,7 +462,7 @@
         {
           "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
           "claim_kind": "decision",
-          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, including a 2025 randomized phase 2 satri-cel maturity anchor, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
           "confidence": "medium",
           "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
           "conflict_ids": [],
@@ -484,7 +484,8 @@
             "LOC-007",
             "LOC-008",
             "LOC-010",
-            "LOC-011"
+            "LOC-011",
+            "LOC-016"
           ],
           "materiality": "central",
           "null_ids": [],
@@ -501,7 +502,8 @@
             "SRC-007",
             "SRC-008",
             "SRC-010",
-            "SRC-011"
+            "SRC-011",
+            "SRC-016"
           ],
           "source_quality": "peer_reviewed",
           "status": "supported",
@@ -548,7 +550,7 @@
         {
           "caveat": "Trial status is time-sensitive and must be displayed as context-only.",
           "claim_kind": "inference",
-          "claim_text": "ClinicalTrials.gov records can be used in TargetBench as translational-status context and source provenance, but not as efficacy or safety proof.",
+          "claim_text": "ClinicalTrials.gov records and PubMed clinical-trial records can be used in TargetBench as translational-status context and source provenance, but not as efficacy, safety, or bench-protocol proof.",
           "confidence": "high",
           "confidence_reason": "Official registry records clearly support status context but not outcomes.",
           "conflict_ids": [],
@@ -562,9 +564,10 @@
           "gate4_use_status": "allowed_with_caveat",
           "id": "CLAIM-006",
           "locator_ids": [
+            "LOC-002",
             "LOC-010",
             "LOC-011",
-            "LOC-002"
+            "LOC-016"
           ],
           "materiality": "important",
           "null_ids": [],
@@ -572,9 +575,10 @@
           "record_kind": "claim",
           "risk_if_wrong": "medium",
           "source_ids": [
+            "SRC-002",
             "SRC-010",
             "SRC-011",
-            "SRC-002"
+            "SRC-016"
           ],
           "source_quality": "official_docs",
           "status": "supported",
@@ -585,14 +589,14 @@
       "contradictions": [],
       "derivations": [],
       "dq": {
-        "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+        "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041/satri-cel clinical evidence, including a 2025 randomized phase 2 maturity anchor and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
         "claim_ids": [
           "CLAIM-001",
           "CLAIM-005",
           "CLAIM-006"
         ],
         "confidence": "medium",
-        "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+        "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, especially after adding the 2025 randomized phase 2 satri-cel anchor, but this is not a systematic target-ranking exercise.",
         "conflict_ids": [],
         "contradiction_ids": [],
         "derivation_ids": [],
@@ -600,7 +604,8 @@
           "SRC-001",
           "SRC-002",
           "SRC-004",
-          "SRC-007"
+          "SRC-007",
+          "SRC-016"
         ],
         "evidence_directness_ceiling": "direct_empirical",
         "forbidden_overclaims": [
@@ -623,14 +628,16 @@
           "LOC-007",
           "LOC-008",
           "LOC-010",
-          "LOC-011"
+          "LOC-011",
+          "LOC-016"
         ],
         "materiality": "central",
         "null_ids": [],
         "read_next_source_ids": [
           "SRC-001",
           "SRC-004",
-          "SRC-011"
+          "SRC-011",
+          "SRC-016"
         ],
         "record_kind": "dq",
         "risk_if_wrong": "high",
@@ -644,7 +651,8 @@
           "SRC-007",
           "SRC-008",
           "SRC-010",
-          "SRC-011"
+          "SRC-011",
+          "SRC-016"
         ],
         "status": "supported",
         "technical_object_ids": [],
@@ -807,6 +815,21 @@
           "record_kind": "locator",
           "source_id": "SRC-011",
           "support_snippet": "Official records included CLDN18.2 CAR-T and CT041 studies across phase 1, phase 1/2, and a phase 3 CLDN18.2-positive gastric-cancer study.",
+          "support_type": "direct_support"
+        },
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "id": "LOC-016",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-016",
+          "support_snippet": "PubMed record for the 2025 CT041-ST-01 randomized phase 2 satri-cel trial in CLDN18.2-positive advanced gastric/GEJ cancer.",
           "support_type": "direct_support"
         }
       ],
@@ -1092,6 +1115,34 @@
           "source_quality": "official_docs",
           "transfer_risk_level": "medium",
           "transfer_risk_reason": "Useful for context, not for definitive target validation."
+        },
+        {
+          "authorized_by_plan_item": "COMMIT-004; VSTEP-003; exact_title_lookup",
+          "cite_for": "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for the CLDN18.2 gastric/GEJ demo target.",
+          "confidentiality": "public",
+          "do_not_cite_for": "Do not cite as bench assay/protocol evidence, clinical advice, or proof that CAR-T validation is solved.",
+          "evidence_directness": "direct_empirical",
+          "external_upload_allowed": true,
+          "freshness_requirement": "current",
+          "freshness_status": "current_enough",
+          "id": "SRC-016",
+          "key_observations": "PubMed abstract/metadata record for a Lancet 2025 randomized open-label phase 2 CT041-ST-01 trial of satri-cel versus treatment of physician's choice in previously treated CLDN18.2-positive advanced gastric/GEJ cancer.",
+          "limitations": "Free PubMed abstract/metadata only; publisher full text was not used. Use as a clinical/translational maturity anchor, not as bench-method or protocol evidence.",
+          "linked_dq_ids": [
+            "DQ-002",
+            "DQ-005"
+          ],
+          "locator": "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
+          "provenance": "PubMed official page opened on 2026-05-28 after user-requested Gate 2 clarification pass.",
+          "quote_policy": "may_quote",
+          "record_kind": "source",
+          "reread_trigger": "Before using trial-specific efficacy, safety, dose, eligibility, or clinical wording in the MVP.",
+          "retrieval_status": "retrieved",
+          "retrieval_surface": "academic_search",
+          "source_date": "2025",
+          "source_quality": "peer_reviewed",
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Clinical randomized-trial maturity supports demo target choice, but does not transfer to bench assay design or patient recommendations."
         }
       ],
       "technical_objects": []
@@ -2052,7 +2103,7 @@
         {
           "caveat": "Trial status is time-sensitive and must be displayed as context-only.",
           "claim_kind": "inference",
-          "claim_text": "ClinicalTrials.gov records can be used in TargetBench as translational-status context and source provenance, but not as efficacy or safety proof.",
+          "claim_text": "ClinicalTrials.gov records and PubMed clinical-trial records can be used in TargetBench as translational-status context and source provenance, but not as efficacy, safety, or bench-protocol proof.",
           "confidence": "high",
           "confidence_reason": "Official registry records clearly support status context but not outcomes.",
           "conflict_ids": [],
@@ -2066,9 +2117,10 @@
           "gate4_use_status": "allowed_with_caveat",
           "id": "CLAIM-006",
           "locator_ids": [
+            "LOC-002",
             "LOC-010",
             "LOC-011",
-            "LOC-002"
+            "LOC-016"
           ],
           "materiality": "important",
           "null_ids": [],
@@ -2076,9 +2128,10 @@
           "record_kind": "claim",
           "risk_if_wrong": "medium",
           "source_ids": [
+            "SRC-002",
             "SRC-010",
             "SRC-011",
-            "SRC-002"
+            "SRC-016"
           ],
           "source_quality": "official_docs",
           "status": "supported",
@@ -2223,7 +2276,7 @@
         ],
         "formula_ids": [],
         "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
-        "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+        "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, clinical-trial-context-only labels, and forbidden-output checks.",
         "gate4_use_status": "allowed_with_caveat",
         "id": "DQ-005",
         "locator_ids": [
@@ -2400,6 +2453,21 @@
           "source_id": "SRC-013",
           "support_snippet": "Open-access survey on AI agents for biological research, useful for positioning TargetBench as assistive and review-gated.",
           "support_type": "indirect_support"
+        },
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "id": "LOC-016",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-016",
+          "support_snippet": "PubMed record for the 2025 CT041-ST-01 randomized phase 2 satri-cel trial in CLDN18.2-positive advanced gastric/GEJ cancer.",
+          "support_type": "direct_support"
         }
       ],
       "nulls": [
@@ -2599,6 +2667,34 @@
           "source_quality": "peer_reviewed",
           "transfer_risk_level": "medium",
           "transfer_risk_reason": "Agent survey claims need product-specific evaluation."
+        },
+        {
+          "authorized_by_plan_item": "COMMIT-004; VSTEP-003; exact_title_lookup",
+          "cite_for": "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for the CLDN18.2 gastric/GEJ demo target.",
+          "confidentiality": "public",
+          "do_not_cite_for": "Do not cite as bench assay/protocol evidence, clinical advice, or proof that CAR-T validation is solved.",
+          "evidence_directness": "direct_empirical",
+          "external_upload_allowed": true,
+          "freshness_requirement": "current",
+          "freshness_status": "current_enough",
+          "id": "SRC-016",
+          "key_observations": "PubMed abstract/metadata record for a Lancet 2025 randomized open-label phase 2 CT041-ST-01 trial of satri-cel versus treatment of physician's choice in previously treated CLDN18.2-positive advanced gastric/GEJ cancer.",
+          "limitations": "Free PubMed abstract/metadata only; publisher full text was not used. Use as a clinical/translational maturity anchor, not as bench-method or protocol evidence.",
+          "linked_dq_ids": [
+            "DQ-002",
+            "DQ-005"
+          ],
+          "locator": "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
+          "provenance": "PubMed official page opened on 2026-05-28 after user-requested Gate 2 clarification pass.",
+          "quote_policy": "may_quote",
+          "record_kind": "source",
+          "reread_trigger": "Before using trial-specific efficacy, safety, dose, eligibility, or clinical wording in the MVP.",
+          "retrieval_status": "retrieved",
+          "retrieval_surface": "academic_search",
+          "source_date": "2025",
+          "source_quality": "peer_reviewed",
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Clinical randomized-trial maturity supports demo target choice, but does not transfer to bench assay design or patient recommendations."
         }
       ],
       "technical_objects": [

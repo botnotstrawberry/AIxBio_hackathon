@@ -55,8 +55,9 @@ Project initiation artifacts live under `project-initiation/`.
 - `LITERATURE_REVIEW.md`: Gate 2 synthesis, currently ready for human approval.
 - `literature-review/`: machine-readable Gate 2 evidence pack.
 
-The Gate 2 literature review is input for building the prototype. It is not the
-MVP output and should not be packaged as the final demo artifact.
+The Gate 2 literature review is input for building the prototype. It does not
+precompute the CLDN18.2 validation packet, is not the MVP output, and should not
+be packaged as the final demo artifact.
 
 ## Gate 2 Summary
 
@@ -65,10 +66,16 @@ because the allowed free biomedical sources gave it stronger hackathon-demo
 support than B7-H3 glioblastoma:
 
 - CT041 / CLDN18.2 clinical and translational anchors were available.
+- A 2025 randomized phase 2 satri-cel / CT041-ST-01 PubMed record was added as
+  a maturity anchor for target choice only.
 - ClinicalTrials.gov had useful CLDN18.2 / CT041 trial context.
 - CLDN18.2 had an explicit on-target/off-tumor safety literature hook.
 - B7-H3 glioblastoma remains scientifically plausible but was less mature for a
   12-hour judgeable MVP.
+
+Clinical and trial records are context-only in the build plan. They are not
+bench-method evidence, patient-specific advice, or proof that CAR-T validation
+is solved.
 
 ## Source Policy
 

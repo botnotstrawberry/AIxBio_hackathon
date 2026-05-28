@@ -3,22 +3,22 @@
     {
       "kind": "dq",
       "path": "literature-review/records/dqs.jsonl",
-      "sha256": "sha256:4a8227604310db6e68e8e9bef9f3990e1cc24bf615fcc4b14700b9b3e9030710"
+      "sha256": "sha256:f819e1acb3035855cbabe235c37f7833538c0abcd045a9452468eb331d8f22d6"
     },
     {
       "kind": "claim",
       "path": "literature-review/records/claims.jsonl",
-      "sha256": "sha256:afedd968136cd450460fe9c6af14d3b42cd8bcc4e992fdf2bfe34a4d80cc2d00"
+      "sha256": "sha256:1b5b3ad96b9e9727e6c32c769b2656171d52d37b8e2b684bab34a90d59667552"
     },
     {
       "kind": "source",
       "path": "literature-review/records/sources.jsonl",
-      "sha256": "sha256:475f890ba5ab6747418b2f4493c1b4ad68b28b4cd1ed7b8cb5ca0f649291059c"
+      "sha256": "sha256:2aa84e85872e8d4eaa73e41694418619e6169c396a77bb59733482209c888244"
     },
     {
       "kind": "locator",
       "path": "literature-review/records/locators.jsonl",
-      "sha256": "sha256:9492039cd4ab18f3214bae861880e9e04d2592091c5ebc6d4c7a8333957e6fd5"
+      "sha256": "sha256:bc63d8cd54011ce039e8abdbce5466fca172acb726adf8c24659fe14bc78002b"
     },
     {
       "kind": "contradiction",
@@ -38,7 +38,7 @@
     {
       "kind": "event",
       "path": "literature-review/records/events.jsonl",
-      "sha256": "sha256:2ba1bd995f66ce6df6ea58d8650bab495c3284337854c4d8675001d4718247ef"
+      "sha256": "sha256:d1222cb21ce1fc3b0ef017d848f6938e0a1f0cf8eaf5b3dd59ae0355f6332b7e"
     },
     {
       "kind": "invalid_output",
@@ -68,7 +68,7 @@
     {
       "kind": "retrieval_log",
       "path": "literature-review/retrieval/retrieval_log.jsonl",
-      "sha256": "sha256:de6edba5b4bb94d9bdad5e37d4935bc2a8acba1206ec3d0965fb471a74d7c907"
+      "sha256": "sha256:0dcbf0ef59555eb7844d6fc183315442793ec719bf4afa2b5935741ac8bb5290"
     },
     {
       "kind": "miss",
@@ -78,7 +78,7 @@
     {
       "kind": "search_surface",
       "path": "literature-review/retrieval/search_surfaces.jsonl",
-      "sha256": "sha256:0d04d71569193e86fcece8ca7d5591257bc8ec421105d34263a5179dca06fb3f"
+      "sha256": "sha256:4cf0239edcb0b045887b5859c7112247985c9a82b5ac388a249249bce7e5e138"
     }
   ],
   "created_at": "2026-05-28T00:19:29Z",
@@ -98,7 +98,7 @@
       ],
       "kind": "by_dq",
       "path": "literature-review/indexes/by_dq.json",
-      "sha256": "sha256:62cc0c4d3d49684164d79d72f7716cc10ef3037120c745479b1c0d74b8c78150"
+      "sha256": "sha256:1057ab25d39e4ceb912f7355aa2ec8c94353babebb30310f5aa9206bb3f3c799"
     },
     {
       "derived_from": [
@@ -109,7 +109,7 @@
       ],
       "kind": "by_source",
       "path": "literature-review/indexes/by_source.json",
-      "sha256": "sha256:adf426e3671dfca0c88a0a549cac2943cf1a95e4988e9899ee3c16a8901c446a"
+      "sha256": "sha256:57eea9f147b2cfd346f9b6fade26b0df5d28fb3a783e52e4426fad8daea2cf1c"
     },
     {
       "derived_from": [
@@ -120,7 +120,7 @@
       ],
       "kind": "by_gate4_use_status",
       "path": "literature-review/indexes/by_gate4_use_status.json",
-      "sha256": "sha256:5042ffd46872792d22e349f41c1a2ec8a927e758c27336fc6ca5c99beeec4389"
+      "sha256": "sha256:30b9259362280c4c98428dc622090af7d7358e4e74d802d7588867d4c0280dd4"
     },
     {
       "derived_from": [
@@ -128,7 +128,7 @@
       ],
       "kind": "by_confidentiality",
       "path": "literature-review/indexes/by_confidentiality.json",
-      "sha256": "sha256:5dd7a64c42d5f358d446f09a86376551e2af1d188ddae75e791d1f51bcb230fe"
+      "sha256": "sha256:2a818d544be50c7ca440b43ed7b5b8a481d4715b26873d4cbd2c5af252023147"
     },
     {
       "derived_from": [
@@ -141,7 +141,7 @@
       ],
       "kind": "by_technical_object",
       "path": "literature-review/indexes/by_technical_object.json",
-      "sha256": "sha256:80f76642a1ec63f84120446fbe6b8ded926978e74197dc418372b7c0a4a690a4"
+      "sha256": "sha256:1a2284786047352358780c989b768f8236de61f2db5c940f79d021f9bc344a45"
     },
     {
       "derived_from": [
@@ -155,7 +155,7 @@
       ],
       "kind": "gate4_inputs",
       "path": "literature-review/exports/gate4_inputs.json",
-      "sha256": "sha256:2d12a64cf1f74bcbb9968a70c87fed49ab71dde7bbc541e302394d7854773ce3"
+      "sha256": "sha256:c50f6fb2bb88472de20c20387584da14b7dfcaa3f848f1f058dce8f774f53f23"
     },
     {
       "derived_from": [
@@ -190,7 +190,7 @@
     "max_bullets": 30,
     "max_words": 700,
     "path": "literature-review/FIRST_LOAD.md",
-    "sha256": "sha256:1a43a2270f9c0cda89df714612dbb4304f351ef5d790777db4e438cb665e2b50"
+    "sha256": "sha256:bf2da0050d59aa8cd330e18153f35a0a1e0f1d528f88cf0bf7313399d39328a0"
   },
   "generated_from_plan": {
     "path": "LITERATURE_REVIEW_PLAN.md",
@@ -199,7 +199,7 @@
   },
   "primary_markdown": {
     "path": "LITERATURE_REVIEW.md",
-    "sha256": "sha256:999c4ea59808cdb53cd88c32916f20bb659c95cf8b35ab34c375d6f6db5ca4cb"
+    "sha256": "sha256:b1ead38ae482bd0a5d0e0b87e17a9f434c352a166386f1a15aee08254ddd0cc3"
   },
   "private_source_policy": {
     "external_upload_allowed_default": false,

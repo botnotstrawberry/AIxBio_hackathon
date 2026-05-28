@@ -3,6 +3,8 @@
 ## Non-authorization warning
 This Gate 2 pack informs prototype design only. It is not a final validation packet, clinical advice, regulatory advice, biosafety clearance, or an executable wet-lab protocol.
 
+This literature review does not precompute the CLDN18.2 validation packet; it defines product scope, demo target, evidence constraints, and MVP acceptance inputs.
+
 ## Project and pack identity
 - AIxBio_hackathon / TargetBench: Cell Therapy Validation Planner. Use LITERATURE_REVIEW.md for narrative context and literature-review/MANIFEST.json for authoritative files.
 
@@ -12,6 +14,7 @@ This Gate 2 pack informs prototype design only. It is not a final validation pac
 
 ## Known / suspected / unknown / blocked
 - Known: DQ-002 selects CLDN18.2 gastric/GEJ cancer for the demo target; CLAIM-001 is the load-bearing decision.
+- Known: SRC-016 adds a 2025 randomized phase 2 satri-cel / CT041-ST-01 maturity anchor for DQ-002, but only as PubMed abstract/metadata context.
 - Known: DQ-001 and DQ-003 define a planning packet around TECH-001, not a protocol.
 - Known: DQ-004 requires source traceability, expert-review wording, and off-tumor safety caveats.
 - Blocked retrievals are NULL-001 and NULL-002; they did not change the supported DQ statuses.
@@ -25,11 +28,13 @@ This Gate 2 pack informs prototype design only. It is not a final validation pac
 
 ## Direct empirical evidence status
 - DQ-001 uses direct empirical sources SRC-001 and SRC-004 plus methodological SRC-009.
-- DQ-002 uses direct empirical sources SRC-001, SRC-002, SRC-004, and SRC-007.
+- DQ-002 uses direct empirical sources SRC-001, SRC-002, SRC-004, SRC-007, and SRC-016.
 - DQ-004 uses direct empirical SRC-004 for the CLDN18.2 safety caveat.
 
 ## Central contradictions and conflicts
 - no_unresolved_tensions: yes
+- no_blocking_unresolved_tensions: yes
+- No CONTRA/CONFLICT records are open. Non-blocking product tradeoffs remain and are covered by DQ-002, DQ-004, DQ-005, CLAIM-001, CLAIM-004, CLAIM-005, and CLAIM-008.
 
 ## Null searches and high-value misses
 - NULL-001 records PubMed E-utilities HTTP 429; Europe PMC fallback supplied the load-bearing PubMed-indexed sources.
@@ -48,7 +53,7 @@ All included sources are public and may be cited under the pack quote policy. No
 
 ## Gate 4 allowed / caveated / blocked inputs
 - Allowed with caveat: all DQs, all claims, and TECH-001.
-- Gate 4 must turn DQ-005 into measurable completeness, citation, gap-label, target-selection, and forbidden-output checks.
+- Gate 4 must turn DQ-005 into measurable completeness, citation, context-only trial-label, gap-label, target-selection, and forbidden-output checks.
 
 ## Read-next record IDs
-- Read next: DQ-001, DQ-002, DQ-003, DQ-004, DQ-005, CLAIM-001, CLAIM-003, CLAIM-007, TECH-001, NULL-001, NULL-002.
+- Read next: DQ-001, DQ-002, DQ-003, DQ-004, DQ-005, CLAIM-001, CLAIM-003, CLAIM-007, SRC-016, TECH-001, NULL-001, NULL-002.

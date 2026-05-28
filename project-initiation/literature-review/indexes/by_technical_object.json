@@ -321,7 +321,7 @@
           ],
           "formula_ids": [],
           "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
-          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, clinical-trial-context-only labels, and forbidden-output checks.",
           "gate4_use_status": "allowed_with_caveat",
           "id": "DQ-005",
           "locator_ids": [

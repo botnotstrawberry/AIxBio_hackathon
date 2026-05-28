@@ -7,6 +7,10 @@ Date: 2026-05-28
 Project: TargetBench  
 Builder: botnotstrawberry / OpenClaw
 
+Authorship note: The prose of this white paper was written entirely by
+botnotstrawberry/OpenClaw and was not edited by a human. It was generated from
+the TargetBench project artifacts, demo implementation, and presentation deck.
+
 ## Abstract
 
 TargetBench is a prototype system for turning a biomedical target hypothesis
@@ -265,4 +269,3 @@ source cards, labels gaps, and helps draft cautious validation planning notes.
 It does not claim to validate targets on its own. It helps scientists and
 biotech teams get from scattered evidence to a structured next-step plan faster,
 while keeping the evidence trail visible.
-

@@ -61,6 +61,11 @@ button.primary:hover {
   background: #1f6d5b;
 }
 
+button:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
 .app-shell {
   min-height: 100vh;
 }
@@ -163,6 +168,30 @@ h4 {
   gap: 16px;
 }
 
+.mode-toggle {
+  border: 1px solid #cbd4ce;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.mode-toggle button {
+  min-height: 36px;
+  border-color: transparent;
+  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.mode-toggle button.active {
+  background: #172126;
+  color: #ffffff;
+}
+
 label {
   display: grid;
   gap: 6px;
@@ -257,7 +286,8 @@ textarea {
 .workflow-view,
 .evidence-view,
 .export-view,
-.guardrail-view {
+.guardrail-view,
+.live-view {
   display: grid;
   gap: 18px;
 }
@@ -267,6 +297,13 @@ textarea {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
+}
+
+.subtle-copy {
+  margin-top: 8px;
+  max-width: 780px;
+  color: #405047;
+  line-height: 1.48;
 }
 
 .section-stack {
@@ -456,6 +493,90 @@ textarea {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 14px;
+}
+
+.provider-status-grid,
+.live-failure-grid,
+.live-source-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.provider-status,
+.live-status-card,
+.live-empty,
+.live-failure-card {
+  border: 1px solid #d8ded7;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.provider-status {
+  display: grid;
+  gap: 8px;
+}
+
+.provider-status span {
+  width: fit-content;
+  border: 1px solid #cbd4ce;
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: #33423b;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.provider-status.ok span {
+  background: #eef8f4;
+  border-color: #8bcab9;
+  color: #145545;
+}
+
+.provider-status.failed span,
+.live-status-card.warning {
+  background: #fff8e8;
+  border-color: #e5b64d;
+}
+
+.provider-status p,
+.live-status-card p,
+.live-empty p,
+.live-failure-card p {
+  color: #405047;
+  line-height: 1.45;
+}
+
+.live-status-card,
+.live-empty,
+.live-failure-card {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.live-empty button {
+  margin-top: 14px;
+}
+
+.live-source-section,
+.live-scaffold {
+  display: grid;
+}
+
+.live-source-grid,
+.live-scaffold-stack {
+  border: 1px solid #d8ded7;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.live-source-card h4 {
+  margin-top: 2px;
 }
 
 .source-card {

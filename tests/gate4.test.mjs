@@ -118,4 +118,24 @@ describe("TargetBench Gate 4 fixture", () => {
     const packet = generateTargetBenchPacket(DEFAULT_INPUT);
     expect(evaluateGate4(packet).status).toBe("pass");
   });
+
+  it("keeps the default curated packet independent from live fetch", () => {
+    const originalFetch = globalThis.fetch;
+    let fetchCalled = false;
+    globalThis.fetch = () => {
+      fetchCalled = true;
+      throw new Error("Default curated packet must not call live providers.");
+    };
+
+    try {
+      const firstPacket = generateTargetBenchPacket(DEFAULT_INPUT);
+      const secondPacket = generateTargetBenchPacket(DEFAULT_INPUT);
+      expect(firstPacket.kind).toBe("validation_packet");
+      expect(secondPacket).toEqual(firstPacket);
+      expect(exportPacketAsMarkdown(firstPacket)).toBe(exportPacketAsMarkdown(secondPacket));
+      expect(fetchCalled).toBe(false);
+    } finally {
+      globalThis.fetch = originalFetch;
+    }
+  });
 });

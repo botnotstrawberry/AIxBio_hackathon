@@ -192,6 +192,52 @@ default branch, or a release branch without the user's specific approval for
 that merge. A pushed branch, open PR, or passing local validation is not merge
 approval.
 
+## Live Draft Mode Beta
+
+This branch adds a sidecar `Live draft beta` mode. The first screen remains the
+curated CLDN18.2 packet. Live mode only runs after the user switches modes and
+clicks `Fetch live context`.
+
+Enabled providers:
+
+- Europe PMC REST search for article metadata and abstracts where available.
+- ClinicalTrials.gov API v2 for clinical/trial background only.
+
+Live beta behavior:
+
+- Normalizes records into `LIVE-EPMC-*` and `LIVE-CTG-*` source cards.
+- Shows provider statuses, partial failures, source cards, evidence clusters,
+  and a deterministic draft scaffold.
+- Uses `live_context_only` output for live context, including unsupported
+  targets.
+- Labels every live card, cluster, and scaffold section as live beta/context
+  only.
+- Shows ClinicalTrials.gov status as of retrieval time.
+- Keeps raw source IDs and locators expandable rather than dominant.
+- Leaves `npm run demo` and the curated CLDN18.2 artifacts network-free.
+
+Cuts for the 3-4 hour branch:
+
+- No AI or LLM integration.
+- No local AI server.
+- No browser-exposed LLM/API key.
+- No OpenAlex adapter.
+- No live Markdown export.
+- No claim that live retrieval is complete, curated, or scientifically
+  validated.
+
+Suggested manual smoke:
+
+1. `npm run dev`
+2. Open the Vite URL.
+3. Start on `Curated packet` and confirm the CLDN18.2 packet/export path still
+   works.
+4. Switch to `Live draft beta`.
+5. Enter `B7-H3`, `glioblastoma`, and `CAR-T`.
+6. Click `Fetch live context`.
+7. Confirm provider statuses, live source cards, clusters, and deterministic
+   scaffold appear, or that provider failures are shown as retrieval gaps.
+
 ## Overnight Autonomy Plan
 
 After Gate 5 is approved and `handoff-guard` passes, OpenClaw should continue

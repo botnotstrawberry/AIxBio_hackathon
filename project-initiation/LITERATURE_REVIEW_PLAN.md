@@ -2,7 +2,9 @@
 Gate 2 plan format version: 2
 
 ## Research questions, project hypotheses, and likely failure modes
-Research objective: determine whether TargetBench can produce a credible, source-grounded, life-science-native cell therapy target-validation packet within the hackathon window, and choose one demo disease-target pair with enough public evidence to make the MVP feel real.
+Research objective: determine whether TargetBench can produce a credible, source-grounded, life-science-native cell therapy target-validation packet within the hackathon window, and choose one demo disease-target pair with enough public evidence to build the prototype responsibly.
+
+Gate 2 scope boundary: this literature review is an input to prototype design and implementation decisions. It must not package, certify, or substitute for the MVP output. The review should decide what the prototype should build, what claims it may safely make, which demo target is viable, what source adapters are worth implementing, and which output sections need explicit caveats or gap labels.
 
 Project hypothesis: a narrow oncology cell therapy planner can be useful if it turns free biomedical evidence into a bench/program artifact: target rationale, model systems, assay modules, controls, readouts, safety checks, and go/no-go gates. It should not primarily be a search interface, investor memo, or complete wet-lab protocol.
 
@@ -83,6 +85,7 @@ Likely failure modes:
 - No private data, paid databases, publisher paywalls, Scopus, Web of Science, Embase, or proprietary datasets are authorized.
 - The review must favor peer-reviewed and official biomedical/science sources, using official APIs where available.
 - Gate 2 should select one demo target only if evidence quality and retrieval coverage are adequate.
+- Gate 2 evidence is for building the prototype and defining its guardrails. It is not the final validation packet, not demo content certification, and not a packaged output of the MVP.
 
 ## Direct empirical evidence sources or declared gap
 - direct_empirical_lane_count: 3
@@ -120,8 +123,8 @@ Likely failure modes:
 - Cell therapy / targeted immunotherapy translation context: evidence that the target has been considered for CAR-T, TCR, antibody, ADC, or related modalities.
 - Bench validation design: models, co-culture or cytotoxicity assay families, expression validation, controls, readouts, and failure signals.
 - Safety and uncertainty handling: on-target/off-tumor concerns, antigen heterogeneity, model limitations, and required expert review.
-- Evidence product constraints: citation provenance, gap labels, no patient-specific medical advice, and no complete protocol claims.
-- Demo feasibility: one target/indication with enough evidence to support a polished MVP example.
+- Prototype evidence constraints: citation provenance, gap labels, no patient-specific medical advice, and no complete protocol claims that the implementation must preserve.
+- Demo-build feasibility: one target/indication with enough public evidence to make a later MVP demo credible after implementation.
 
 ## Domain-specific subcategories
 - Solid tumor cell therapy target selection.
@@ -285,7 +288,7 @@ Evidence priority:
 - Seed target candidate A: B7-H3 in glioblastoma / solid tumor cell therapy; included because it may align precision oncology, solid tumor cell therapy, and enough public trial/literature context for a concrete validation plan.
 - Seed target candidate B: CLDN18.2 in gastric cancer / solid tumor cell therapy; included because it may offer strong targeted-therapy and translational context for a compact MVP demo.
 - Seed target fallback: EGFRvIII in glioblastoma; included only as a fallback if both primary candidates are too sparse or too broad under the time limit.
-- Seed output artifact: a TargetBench validation packet with hypothesis, model systems, assays, controls, readouts, risk gaps, and go/no-go gates; included because this is the life-science-native product surface judges should see.
+- Seed prototype requirement: the later MVP should generate a TargetBench validation packet with hypothesis, model systems, assays, controls, readouts, risk gaps, and go/no-go gates; included here only to guide what the literature review must inform.
 - Seed source policy: official/free biomedical APIs listed by the user; included because source compliance is a hard constraint.
 
 ## Concrete first-pass source commitments
@@ -477,13 +480,14 @@ Evidence priority:
 - Can the output distinguish observations from inferences and decisions?
 - Does the packet provide model systems, assay modules, controls, readouts, safety/off-tumor considerations, and go/no-go gates in a form a translational scientist would recognize?
 - Does the UI make source provenance secondary but inspectable, so the product is not a glorified search page?
+These are Gate 4/build evaluation questions seeded by the literature review. Gate 2 should produce evidence-backed requirements and constraints for these checks, not the MVP packet itself.
 
 ## Candidate evaluation evidence and benchmark analogs
-- Example validation packet for one selected target/indication, exported as Markdown and JSON.
-- Source ledger with at least 8 included biomedical sources across PubMed/PMC/Europe PMC/Semantic Scholar/OpenAlex/Crossref/ClinicalTrials.gov as available.
-- At least one positive evidence example, one uncertainty/gap example, and one disconfirming or cautionary evidence example in the demo packet.
-- A demo script that checks output completeness: hypothesis, evidence summary, model systems, assay modules, controls, readouts, safety checks, failure modes, decision gates, and citations.
-- A small deterministic fixture/cache for the demo target so the MVP can run reliably during judging without pretending cached evidence is complete.
+- Later build artifact target: an example validation packet for one selected target/indication, exported as Markdown and JSON after implementation.
+- Gate 2 evidence requirement: identify at least 8 candidate biomedical sources across PubMed/PMC/Europe PMC/Semantic Scholar/OpenAlex/Crossref/ClinicalTrials.gov as available, so the later build can map recommendations to provenance.
+- Gate 2 evidence requirement: identify at least one positive evidence pattern, one uncertainty/gap pattern, and one disconfirming or cautionary pattern that the later MVP must surface.
+- Later build check: a demo script should check output completeness across hypothesis, evidence summary, model systems, assay modules, controls, readouts, safety checks, failure modes, decision gates, and citations.
+- Later build fixture target: a small deterministic fixture/cache for the demo target so the MVP can run reliably during judging without pretending cached evidence is complete.
 
 ## Hard budget cap
 - Gate 2 plan artifact: one bounded draft, no paper retrieval until human approval.
@@ -494,8 +498,8 @@ Evidence priority:
 - Preprint cap: no more than 3 preprints total, only if they fill a specific gap and are labeled.
 
 ## Stop conditions
-- Stop Gate 2 retrieval when DQ-001 through DQ-005 have enough evidence to support Gate 3 audit and Gate 4 MVP criteria.
-- Stop if allowed sources cannot support a life-science-native validation packet; report the gap rather than broadening into VC search or generic literature search.
+- Stop Gate 2 retrieval when DQ-001 through DQ-005 have enough evidence to support Gate 3 audit and Gate 4 prototype criteria.
+- Stop if allowed sources cannot support requirements for a life-science-native validation packet; report the gap rather than broadening into VC search or generic literature search.
 - Stop if source retrieval would require paid databases, paywalled full text, private data, or forbidden sources.
 - Stop if API failures prevent provenance-safe retrieval after one official-site fallback attempt per source family.
 - Stop if the evidence indicates the MVP scope must shrink below TargetBench's promised output; carry that into Gate 4 instead of overclaiming.
@@ -503,4 +507,4 @@ Evidence priority:
 ## Retrieval logging requirements
 Record each retrieval attempt with: query; surface; date; access method; result count or qualitative coverage; status opened/skipped/null/missed/blocked; inclusion/exclusion rationale; blocker if any; branch trigger if any.
 
-Additional logging fields for this project: DQ ID; lane ID; source ID once included; PMID/PMCID/DOI/NCT/OpenAlex/Semantic Scholar identifiers when available; source type; peer-reviewed/preprint/trial/API-doc label; open-access status; evidence directness; output section supported; quote/paraphrase policy; and paywall/source-policy decision.
+Additional logging fields for this project: DQ ID; lane ID; source ID once included; PMID/PMCID/DOI/NCT/OpenAlex/Semantic Scholar identifiers when available; source type; peer-reviewed/preprint/trial/API-doc label; open-access status; evidence directness; prototype section informed; quote/paraphrase policy; and paywall/source-policy decision.

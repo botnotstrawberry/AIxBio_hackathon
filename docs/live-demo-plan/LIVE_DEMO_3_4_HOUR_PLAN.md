@@ -324,7 +324,7 @@ The local AI sidecar uses:
 - local endpoint: `POST /api/live-draft`
 - bound to `127.0.0.1`
 - reads `NEBIUS_API_KEY` from server process env or ignored `.env.local`
-- `NEBIUS_BASE_URL=https://api.tokenfactory.us-central1.nebius.com/v1/`
+- `NEBIUS_BASE_URL=https://api.tokenfactory.nebius.com/v1/`
 - `NEBIUS_MODEL=moonshotai/Kimi-K2.6`
 - browser calls local endpoint only
 - UI reports AI unavailable when the local endpoint or key is unavailable

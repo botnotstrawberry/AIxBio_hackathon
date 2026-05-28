@@ -9,7 +9,7 @@ import {
   validateAiDraftText
 } from "../src/live-ai-core.mjs";
 
-const DEFAULT_BASE_URL = "https://api.tokenfactory.us-central1.nebius.com/v1/";
+const DEFAULT_BASE_URL = "https://api.tokenfactory.nebius.com/v1/";
 const DEFAULT_MODEL = "moonshotai/Kimi-K2.6";
 const DEFAULT_PORT = 8787;
 

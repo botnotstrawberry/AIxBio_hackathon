@@ -86,7 +86,7 @@ const sourceLedger = Object.freeze({
     {
       id: "SRC-001",
       usageLabel: "Translational maturity context only",
-      citeFor: "CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and demo-target maturity.",
+      citeFor: "CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and translational maturity.",
       doNotCiteFor: "Do not cite as proof that TargetBench can design or validate a complete wet-lab protocol.",
       locator: "PMID:35534566; PMCID:PMC9205778; DOI:10.1038/s41591-022-01800-8; https://europepmc.org/article/MED/35534566",
       linkedIds: ["DQ-001", "DQ-002", "DQ-003", "DQ-004"]
@@ -126,7 +126,7 @@ const sourceLedger = Object.freeze({
     {
       id: "SRC-011",
       usageLabel: "Clinical/trial context only",
-      citeFor: "CLDN18.2 / CT041 trial landscape and demo target maturity context.",
+      citeFor: "CLDN18.2 / CT041 trial landscape and target-maturity context.",
       doNotCiteFor: "Do not cite as efficacy proof, safety proof, bench-method proof, protocol proof, or patient advice.",
       locator: "ClinicalTrials.gov API query: CLDN18.2 gastric cancer CAR-T; https://clinicaltrials.gov/api/v2/studies?query.term=CLDN18.2%20gastric%20cancer%20CAR-T&pageSize=5&format=json",
       linkedIds: ["DQ-002", "DQ-005"]
@@ -158,7 +158,7 @@ const sourceLedger = Object.freeze({
     {
       id: "SRC-016",
       usageLabel: "Clinical/trial context only",
-      citeFor: "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for the CLDN18.2 gastric/GEJ demo target.",
+      citeFor: "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for CLDN18.2 gastric/GEJ target context.",
       doNotCiteFor: "Do not cite as bench-method proof, protocol evidence, clinical advice, safety proof, efficacy proof, or proof that CAR-T validation is solved.",
       locator: "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
       linkedIds: ["DQ-002", "DQ-005"]
@@ -177,7 +177,7 @@ const gapLabels = Object.freeze([
   {
     id: "GAP-EXPR-QUANT",
     label: "Expression threshold not specified",
-    detail: "The fixture requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
+    detail: "The packet requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
     evidenceRefs: refs(["CLAIM-003", "DQ-003"])
   },
   {
@@ -200,9 +200,158 @@ const gapLabels = Object.freeze([
   },
   {
     id: "GAP-LIVE-RETRIEVAL",
-    label: "Live retrieval disabled for core demo",
-    detail: "The judgeable path uses the curated cache so API throttling cannot block export generation.",
+    label: "Evidence snapshot is curated",
+    detail: "This packet uses a pre-reviewed source set so the exported plan stays reproducible when public APIs are unavailable.",
     evidenceRefs: refs(["CLAIM-008", "NULL-001", "NULL-002"])
+  }
+]);
+
+const workflowSteps = Object.freeze([
+  {
+    id: "workflow-input",
+    label: "Target hypothesis captured",
+    summary: "The planner starts from the submitted target, disease context, and modality instead of a free-form answer."
+  },
+  {
+    id: "workflow-evidence",
+    label: "Evidence organized",
+    summary: "The CLDN18.2 evidence snapshot is grouped into rationale, expression/off-tumor, assay, clinical-context, and provenance clusters."
+  },
+  {
+    id: "workflow-rationale",
+    label: "Rationale explained",
+    summary: "The packet separates why this target is worth planning from what remains unproven."
+  },
+  {
+    id: "workflow-validation",
+    label: "Validation logic proposed",
+    summary: "Recommendations are translated into decision checks for expression, specificity, model choice, controls, readouts, and hold/no-go criteria."
+  },
+  {
+    id: "workflow-risks",
+    label: "Risks and gaps highlighted",
+    summary: "Missing thresholds, off-tumor uncertainty, model specificity, and evidence provenance are made visible before export."
+  },
+  {
+    id: "workflow-export",
+    label: "Packet exported",
+    summary: "Markdown and JSON exports preserve source IDs, caveats, and gap labels for expert review."
+  }
+]);
+
+const evidenceClusters = Object.freeze([
+  {
+    id: "cluster-target-rationale",
+    title: "Target rationale",
+    summary: "Public CLDN18.2 and gastric/GEJ context supports a planning case with enough translational maturity to discuss validation logic.",
+    sourceIds: ["SRC-006", "SRC-001", "SRC-011", "SRC-016"],
+    gapLabels: []
+  },
+  {
+    id: "cluster-expression-safety",
+    title: "Expression and off-tumor review",
+    summary: "The source set supports making tumor expression and normal-tissue/off-tumor review central to the plan, but it does not supply a numeric antigen-density gate.",
+    sourceIds: ["SRC-004", "SRC-006", "SRC-009"],
+    gapLabels: ["GAP-EXPR-QUANT", "GAP-SAFETY-TRANSLATION"]
+  },
+  {
+    id: "cluster-assay-model",
+    title: "Model and assay logic",
+    summary: "Assay categories can be organized into expression, potency, specificity, activation, cytokine, and phenotype/persistence checks without giving executable protocol parameters.",
+    sourceIds: ["SRC-009"],
+    gapLabels: ["GAP-MODEL-SPECIFICITY", "GAP-CONTROL-PANEL"]
+  },
+  {
+    id: "cluster-clinical-context",
+    title: "Clinical maturity context",
+    summary: "Clinical and registry records help explain why CLDN18.2 is a mature planning example, but they remain background only for bench validation and cannot prove safety or efficacy.",
+    sourceIds: ["SRC-001", "SRC-002", "SRC-011", "SRC-016"],
+    gapLabels: ["GAP-SAFETY-TRANSLATION"]
+  },
+  {
+    id: "cluster-provenance",
+    title: "Provenance and evidence limits",
+    summary: "Product and retrieval-risk sources justify visible provenance, citation boundaries, and gap labels rather than unstated confidence.",
+    sourceIds: ["SRC-012", "SRC-014", "SRC-015"],
+    gapLabels: ["GAP-LIVE-RETRIEVAL"]
+  }
+]);
+
+const validationLogicMatrix = Object.freeze([
+  {
+    id: "VAL-001",
+    decisionPoint: "Can activity be interpreted as target-dependent?",
+    planningLogic: "Require target-expression confirmation plus antigen-negative or low-expression comparison before treating potency signals as target-linked.",
+    evidenceIds: ["CLAIM-002", "CLAIM-003", "SRC-009"],
+    gate: "Hold if antigen-negative controls respond similarly or expression evidence is missing.",
+    gapLabels: ["GAP-EXPR-QUANT", "GAP-MODEL-SPECIFICITY"]
+  },
+  {
+    id: "VAL-002",
+    decisionPoint: "Is off-tumor risk visible before escalation?",
+    planningLogic: "Pair tumor-expression rationale with normal-tissue/off-tumor review and explicit safety caveats.",
+    evidenceIds: ["CLAIM-004", "DQ-004", "SRC-004"],
+    gate: "Hold if off-tumor review is unresolved or treated as proven safe from clinical context.",
+    gapLabels: ["GAP-SAFETY-TRANSLATION"]
+  },
+  {
+    id: "VAL-003",
+    decisionPoint: "Are model systems credible enough for first-pass planning?",
+    planningLogic: "Use gastric/GEJ model classes with target-positive, target-negative, and off-tumor-relevant comparator categories.",
+    evidenceIds: ["CLAIM-002", "CLAIM-003", "SRC-009"],
+    gate: "Hold if the model panel is a single positive context with no specificity comparator.",
+    gapLabels: ["GAP-MODEL-SPECIFICITY"]
+  },
+  {
+    id: "VAL-004",
+    decisionPoint: "Do controls make the result interpretable?",
+    planningLogic: "Track target-positive, target-negative, non-targeted or mock-engineered, irrelevant-antigen, assay-background, and off-tumor comparison controls.",
+    evidenceIds: ["CLAIM-003", "CLAIM-009", "SRC-009"],
+    gate: "Hold if control identity or acceptance logic is missing from expert review.",
+    gapLabels: ["GAP-CONTROL-PANEL"]
+  },
+  {
+    id: "VAL-005",
+    decisionPoint: "Can the exported packet be audited?",
+    planningLogic: "Attach source IDs, caveats, and gap labels to recommendations so users can see what is supported, contextual, or missing.",
+    evidenceIds: ["CLAIM-007", "CLAIM-008", "SRC-012", "SRC-014"],
+    gate: "Hold if recommendations are uncited or clinical context is used as bench proof.",
+    gapLabels: ["GAP-LIVE-RETRIEVAL"]
+  }
+]);
+
+const topRisks = Object.freeze([
+  {
+    id: "RISK-001",
+    title: "Off-tumor uncertainty",
+    whyItMatters: "CLDN18.2 planning is not credible unless normal-tissue and off-tumor concerns stay visible next to potency logic.",
+    nextAction: "Assign expert review of normal-tissue expression and off-tumor comparator strategy.",
+    evidenceRefs: refs(["CLAIM-004", "SRC-004"]),
+    gapLabels: ["GAP-SAFETY-TRANSLATION"]
+  },
+  {
+    id: "RISK-002",
+    title: "No numeric expression threshold",
+    whyItMatters: "The evidence snapshot supports expression review, but not a universal antigen-density cutoff for go/no-go decisions.",
+    nextAction: "Keep threshold setting outside the packet and require local assay owners to define it.",
+    evidenceRefs: refs(["CLAIM-003", "DQ-003"]),
+    gapLabels: ["GAP-EXPR-QUANT"]
+  },
+  {
+    id: "RISK-003",
+    title: "Model and control panel still need expert selection",
+    whyItMatters: "The packet names useful model/control categories, not validated cell lines, organoids, reagents, or acceptance windows.",
+    nextAction: "Use the matrix as a planning checklist, then have domain experts choose concrete models and controls.",
+    evidenceRefs: refs(["CLAIM-002", "CLAIM-009", "SRC-009"]),
+    gapLabels: ["GAP-MODEL-SPECIFICITY", "GAP-CONTROL-PANEL"]
+  },
+  {
+    id: "RISK-004",
+    title: "Curated evidence is not a systematic review",
+    whyItMatters: "The packet is reproducible and auditable, but it does not claim complete literature coverage.",
+    nextAction: "Show the curated snapshot clearly and reserve live refresh or systematic review for a later mode.",
+    evidenceRefs: refs(["CLAIM-008", "SRC-012", "SRC-014"]),
+    gapLabels: ["GAP-LIVE-RETRIEVAL"]
   }
 ]);
 
@@ -271,14 +420,14 @@ function normalizeInput(input) {
 function guardrailPacket(input, guardrail) {
   return {
     kind: "guardrail",
-    title: "Request blocked by TargetBench safety boundary",
+    title: "Out-of-scope request",
     generatedAt: GENERATED_AT,
     input,
     triggeredCategories: guardrail.triggeredCategories,
     message:
-      "TargetBench cannot provide patient-specific treatment advice, exact wet-lab parameters, executable protocol steps, clinical efficacy or safety proof claims, regulatory advice, biosafety clearance, or expert-replacement claims. It can return a high-level validation-planning packet with source IDs, caveats, and gap labels for trained expert review.",
+      "TargetBench cannot provide patient-specific treatment advice, exact wet-lab parameters, executable protocol steps, clinical efficacy or safety proof claims, regulatory advice, biosafety clearance, or expert-replacement claims. It can provide a high-level validation-planning packet with sources, caveats, and gap labels for trained expert review.",
     allowedNextStep:
-      "Ask for a non-executable CLDN18.2 gastric/GEJ validation-planning packet or review the deterministic demo fixture."
+      "Ask for a non-executable CLDN18.2 gastric/GEJ validation-planning packet or review what the planner can safely provide."
   };
 }
 
@@ -286,23 +435,39 @@ function unsupportedTargetPacket(input) {
   const b7h3Mentioned = /b7[-\s]?h3/i.test(`${input.target} ${input.disease} ${input.prompt}`);
   return {
     kind: "unsupported_fixture",
-    title: "Curated fixture unavailable",
+    title: "Evidence pack not available yet",
     generatedAt: GENERATED_AT,
     input,
     fixtureId: "unsupported_target_v1",
     defaultFixture: DEFAULT_INPUT,
+    liveRetrieval: {
+      mode: "not_run",
+      status: "No matching curated evidence pack",
+      coreDependency: false,
+      evidenceRefs: []
+    },
     message:
-      "The current MVP only generates the deterministic CLDN18.2 gastric/GEJ packet. Other targets require a curated evidence cache before TargetBench can produce a judgeable packet.",
+      "TargetBench currently has a pre-reviewed CLDN18.2 gastric/GEJ evidence pack. This requested target needs a curated source review before the planner can produce a reliable validation packet.",
+    allowedNextStep:
+      "Use the CLDN18.2 gastric/GEJ example now, or curate a source set for this target before generating a packet.",
+    neededEvidence: [
+      "Target-expression evidence in the requested disease context",
+      "Normal-tissue or off-tumor risk evidence",
+      "Model-system and control-panel support",
+      "Clinical or translational context clearly labeled as background only",
+      "Known gaps that should block overconfident recommendations"
+    ],
     alternateTargets: b7h3Mentioned
       ? [
           {
             target: "B7-H3 in glioblastoma",
-            label: "alternate/future fixture",
+            label: "needs separate curated evidence review",
             evidenceRefs: refs(["CLAIM-005", "DQ-002"])
           }
         ]
       : [],
-    gapLabels: ["GAP-LIVE-RETRIEVAL", "GAP-MODEL-SPECIFICITY"]
+    gapLabels: ["GAP-LIVE-RETRIEVAL", "GAP-MODEL-SPECIFICITY"],
+    guardrails: guardrailCatalog.map(({ id, label, response }) => ({ id, label, response }))
   };
 }
 
@@ -311,22 +476,22 @@ function cldn182Packet(input) {
     {
       key: "target_rationale",
       title: "Target rationale",
-      summary: "Why this target/disease pair is the default hackathon fixture.",
+      summary: "Why CLDN18.2 in gastric/GEJ cancer is a useful target-validation planning case.",
       recommendations: [
         recommendation(
           "RAT-001",
-          "Use CLDN18.2 in gastric/GEJ cancer as the default demo fixture because the curated free-source evidence supports target rationale, translational maturity context, and a visible off-tumor safety caveat.",
+          "Use CLDN18.2 in gastric/GEJ cancer as the worked planning case because public evidence supports target rationale, translational maturity context, and a visible off-tumor safety caveat.",
           ["DQ-002", "CLAIM-001", "SRC-006", "SRC-016", "SRC-011"],
           {
             caveats: [
-              "Demo selection is not a claim of clinical superiority.",
+              "Planning-case selection is not a claim of clinical superiority.",
               "Clinical and trial records are context-only."
             ]
           }
         ),
         recommendation(
           "RAT-002",
-          "Keep B7-H3 glioblastoma as an alternate/future fixture rather than an inferior-biology statement.",
+          "Treat B7-H3 glioblastoma as a plausible target that needs its own curated source review before a reliable packet is generated.",
           ["CLAIM-005", "DQ-002"],
           { caveats: ["This is a build-feasibility distinction, not a biological ranking."] }
         )
@@ -343,7 +508,7 @@ function cldn182Packet(input) {
           ["CLAIM-002", "CLAIM-004", "DQ-004", "SRC-004"],
           {
             gapLabels: ["GAP-EXPR-QUANT"],
-            caveats: ["The fixture does not set quantitative expression thresholds."]
+            caveats: ["This planning packet does not set quantitative expression thresholds."]
           }
         ),
         recommendation(
@@ -408,7 +573,7 @@ function cldn182Packet(input) {
           ["CLAIM-002", "CLAIM-003", "SRC-009"],
           {
             gapLabels: ["GAP-CONTROL-PANEL"],
-            caveats: ["Control identities and lab acceptance windows are outside this MVP."]
+            caveats: ["Control identities and lab acceptance windows require local expert selection."]
           }
         ),
         recommendation(
@@ -429,7 +594,7 @@ function cldn182Packet(input) {
           "Summarize readouts as categories: target expression, tumor-cell effect, antigen-dependent activation, cytokine signal, specificity against antigen-negative context, off-tumor comparator stress, and reproducibility across model classes.",
           ["CLAIM-003", "SRC-009", "DQ-003"],
           {
-            caveats: ["No numeric thresholds are claimed by the fixture."]
+            caveats: ["No numeric thresholds are claimed by this planning packet."]
           }
         ),
         recommendation(
@@ -475,7 +640,7 @@ function cldn182Packet(input) {
         ),
         recommendation(
           "GATE-002",
-          "No-go or hold if activity is nonspecific, antigen-negative controls respond similarly to target-positive context, off-tumor evidence is unresolved, or the requested next step would require exact protocol design from this MVP.",
+          "No-go or hold if activity is nonspecific, antigen-negative controls respond similarly to target-positive context, off-tumor evidence is unresolved, or the requested next step would require exact protocol design.",
           ["CLAIM-003", "CLAIM-004", "CLAIM-009", "SRC-004"],
           { gapLabels: ["GAP-CONTROL-PANEL", "GAP-SAFETY-TRANSLATION"] }
         )
@@ -488,7 +653,7 @@ function cldn182Packet(input) {
       recommendations: [
         recommendation(
           "SRCLEDGER-001",
-          "Render every recommendation with source IDs, claim/DQ IDs, or explicit gap labels; clinical/trial records retain context-only labels.",
+          "Keep each recommendation tied to supporting sources, claim notes, question notes, or explicit gap labels; clinical and registry records remain background only.",
           ["DQ-005", "CLAIM-006", "CLAIM-007", "CLAIM-008", "SRC-012", "SRC-014"],
           { gapLabels: ["GAP-LIVE-RETRIEVAL"] }
         )
@@ -507,7 +672,7 @@ function cldn182Packet(input) {
         ),
         recommendation(
           "CAVEAT-002",
-          "Treat the curated fixture as a deterministic demo cache, not a complete CLDN18.2 corpus or systematic review.",
+          "Treat the evidence snapshot as curated and reproducible, not as a complete CLDN18.2 corpus or systematic review.",
           ["CLAIM-008", "NULL-001", "NULL-002"],
           { gapLabels: ["GAP-LIVE-RETRIEVAL"] }
         )
@@ -535,7 +700,7 @@ function cldn182Packet(input) {
     input,
     defaultTarget: "CLDN18.2 in gastric/GEJ cancer",
     alternateTargetPolicy: {
-      "B7-H3 glioblastoma": "alternate/future fixture only; not inferior biology"
+      "B7-H3 glioblastoma": "requires separate curated evidence review before a reliable packet; not inferior biology"
     },
     boundaries: [
       "Planning artifact only",
@@ -546,10 +711,14 @@ function cldn182Packet(input) {
     ],
     liveRetrieval: {
       mode: "disabled",
-      status: "curated fixture cache",
+      status: "pre-reviewed source set",
       coreDependency: false,
       evidenceRefs: refs(["CLAIM-008", "NULL-001", "NULL-002", "SRC-015"])
     },
+    workflowSteps,
+    evidenceClusters,
+    validationLogicMatrix,
+    topRisks,
     sections,
     sourceLedger,
     gapLabels,
@@ -575,28 +744,86 @@ export function exportPacketAsMarkdown(packet) {
   }
 
   if (packet.kind === "unsupported_fixture") {
-    return [
+    const lines = [
       `# ${packet.title}`,
+      "",
+      `Submitted target: ${packet.input.target} in ${packet.input.disease} (${packet.input.modality})`,
       "",
       packet.message,
       "",
-      `Default fixture: ${packet.defaultFixture.target} in ${packet.defaultFixture.disease}`,
+      `Available evidence pack: ${packet.defaultFixture.target} in ${packet.defaultFixture.disease}`,
+      "",
+      `Recommended next step: ${packet.allowedNextStep}`,
+      "",
+      "## Evidence needed before generation",
+      "",
+      ...packet.neededEvidence.map((item) => `- ${item}`),
       "",
       `Gap labels: ${packet.gapLabels.map((item) => `\`${item}\``).join(", ")}`,
       ""
-    ].join("\n");
+    ];
+    return lines.join("\n");
   }
 
   const lines = [
     `# ${packet.title}`,
     "",
-    `Fixture: \`${packet.fixtureId}\``,
     `Generated: ${packet.generatedAt}`,
-    `Live retrieval: ${packet.liveRetrieval.mode} (${packet.liveRetrieval.status}; core dependency: ${packet.liveRetrieval.coreDependency})`,
+    `Submitted target: ${packet.input.target} in ${packet.input.disease} (${packet.input.modality})`,
+    `Evidence snapshot: ${packet.liveRetrieval.status}. No live literature or registry query was run for this export; the source set is curated for reproducibility.`,
     "",
-    `Boundaries: ${packet.boundaries.map((item) => `\`${item}\``).join(", ")}`,
+    "## One-page summary",
+    "",
+    `- Target hypothesis: ${packet.input.target} in ${packet.input.disease} using ${packet.input.modality}.`,
+    "- Evidence state: curated source snapshot with visible provenance, citation boundaries, and missing-evidence labels.",
+    "- Rationale: CLDN18.2 has enough public gastric/GEJ and translational context to support validation planning without claiming clinical proof.",
+    "- Validation logic: expression, specificity, controls, off-tumor review, model selection, and readout concordance must line up before escalation.",
+    "- Main hold condition: unresolved off-tumor risk, missing target-expression support, weak controls, or unsupported clinical/protocol claims should stop the packet from being treated as validation proof.",
     ""
   ];
+
+  lines.push("## Workflow summary", "");
+  for (const step of packet.workflowSteps) {
+    lines.push(`- ${step.label}: ${step.summary}`);
+  }
+  lines.push("");
+
+  lines.push("## Evidence clusters", "");
+  for (const cluster of packet.evidenceClusters) {
+    lines.push(`- ${cluster.title}: ${cluster.summary}`);
+    lines.push(`  Sources: ${cluster.sourceIds.map((id) => `\`${id}\``).join(", ")}`);
+    if (cluster.gapLabels.length > 0) {
+      lines.push(`  Gaps: ${cluster.gapLabels.map((id) => `\`${id}\``).join(", ")}`);
+    }
+  }
+  lines.push("");
+
+  lines.push("## Validation logic matrix", "");
+  lines.push("| Decision point | Planning logic | Evidence | Hold/no-go signal |");
+  lines.push("|---|---|---|---|");
+  for (const row of packet.validationLogicMatrix) {
+    const evidence = row.evidenceIds.map((id) => `\`${id}\``).join(", ");
+    const gaps = row.gapLabels.length > 0
+      ? ` Gaps: ${row.gapLabels.map((id) => `\`${id}\``).join(", ")}.`
+      : "";
+    lines.push(`| ${row.decisionPoint} | ${row.planningLogic} | ${evidence} | ${row.gate}${gaps} |`);
+  }
+  lines.push("");
+
+  lines.push("## Top risks and gaps", "");
+  for (const risk of packet.topRisks) {
+    lines.push(`- ${risk.title}: ${risk.whyItMatters}`);
+    lines.push(`  Next action: ${risk.nextAction}`);
+    lines.push(`  Evidence: ${formatRefs(risk.evidenceRefs)}`);
+    lines.push(`  Gaps: ${risk.gapLabels.map((id) => `\`${id}\``).join(", ")}`);
+  }
+  lines.push("");
+
+  lines.push("## Planning boundaries", "");
+  for (const boundary of packet.boundaries) {
+    lines.push(`- ${boundary}`);
+  }
+  lines.push("");
 
   for (const section of packet.sections) {
     lines.push(`## ${section.title}`, "", section.summary, "");
@@ -666,13 +893,13 @@ export function evaluateGate4(packet = generateTargetBenchPacket(DEFAULT_INPUT))
     },
     {
       id: "AUTO-005",
-      label: "Core fixture works without live retrieval",
+      label: "Core evidence pack works without external APIs",
       pass: packet.kind === "validation_packet" && packet.liveRetrieval.coreDependency === false && packet.liveRetrieval.mode === "disabled"
     },
     {
       id: "AUTO-006",
-      label: "B7-H3 is alternate/future context only",
-      pass: packet.kind === "validation_packet" && packet.alternateTargetPolicy["B7-H3 glioblastoma"].includes("alternate/future")
+      label: "B7-H3 requires separate source review",
+      pass: packet.kind === "validation_packet" && packet.alternateTargetPolicy["B7-H3 glioblastoma"].includes("separate curated evidence review")
     }
   ];
 
@@ -683,10 +910,11 @@ export function evaluateGate4(packet = generateTargetBenchPacket(DEFAULT_INPUT))
     checks,
     negativePromptChecks: runNegativePromptChecks(),
     manualReviewNotes: [
-      "MR-001: The target rationale section explains CLDN18.2 demo selection and caveats.",
+      "MR-001: The target rationale section explains why CLDN18.2 supports a focused planning case and what remains unproven.",
       "MR-002: Boundaries and caveats label the packet as planning support, not a protocol or clinical recommendation.",
       "MR-003: The safety gaps and expression/off-tumor sections foreground CLDN18.2 off-tumor uncertainty.",
-      "MR-004: Gap labels are explicit and repeated next to affected recommendations."
+      "MR-004: Gap labels are explicit and repeated next to affected recommendations.",
+      "MR-005: Workflow steps, evidence clusters, validation logic, and top risks are present before detailed sections."
     ]
   };
 }

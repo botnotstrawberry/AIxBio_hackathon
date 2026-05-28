@@ -21,7 +21,7 @@ import {
   generateTargetBenchPacket
 } from "./targetbench-core.mjs";
 
-type Tab = "packet" | "evidence" | "exports" | "guardrails";
+type Tab = "workflow" | "packet" | "evidence" | "exports" | "safety";
 
 type Packet = any;
 
@@ -33,6 +33,14 @@ const iconMap = {
   warning: AlertTriangle
 };
 
+const tabs: Array<{ id: Tab; label: string }> = [
+  { id: "workflow", label: "Workflow" },
+  { id: "packet", label: "Packet" },
+  { id: "evidence", label: "Evidence" },
+  { id: "exports", label: "Exports" },
+  { id: "safety", label: "Scope" }
+];
+
 function App() {
   const [target, setTarget] = React.useState<string>(DEFAULT_INPUT.target);
   const [disease, setDisease] = React.useState<string>(DEFAULT_INPUT.disease);
@@ -41,7 +49,7 @@ function App() {
   const [packet, setPacket] = React.useState<Packet>(() =>
     generateTargetBenchPacket(DEFAULT_INPUT)
   );
-  const [tab, setTab] = React.useState<Tab>("packet");
+  const [tab, setTab] = React.useState<Tab>("workflow");
   const [copyState, setCopyState] = React.useState("Copy");
 
   const markdown = React.useMemo(() => exportPacketAsMarkdown(packet), [packet]);
@@ -52,8 +60,9 @@ function App() {
   );
 
   function runPacket() {
-    setPacket(generateTargetBenchPacket({ target, disease, modality, prompt } as any));
-    setTab(guardrailPreview.blocked ? "guardrails" : "packet");
+    const nextPacket = generateTargetBenchPacket({ target, disease, modality, prompt } as any);
+    setPacket(nextPacket);
+    setTab(nextPacket.kind === "guardrail" ? "safety" : "workflow");
   }
 
   async function copyExport(kind: "json" | "markdown") {
@@ -82,12 +91,12 @@ function App() {
       <header className="topbar">
         <div>
           <div className="eyebrow">TargetBench</div>
-          <h1>CLDN18.2 validation planner</h1>
+          <h1>Target validation planning packet</h1>
         </div>
         <div className="status-strip" aria-label="Run status">
-          <span>Fixture only</span>
-          <span>Gate 4 checks</span>
-          <strong>{packet.kind === "guardrail" ? "Guarded" : "Ready"}</strong>
+          <span>CLDN18.2 example</span>
+          <span>Curated evidence snapshot</span>
+          <strong>{packetStatusLabel(packet)}</strong>
         </div>
       </header>
 
@@ -112,7 +121,7 @@ function App() {
 
           <div className="guardrail-preview">
             <ShieldCheck size={18} aria-hidden="true" />
-            <span>{guardrailPreview.blocked ? "Boundary triggered" : "Planning boundary clear"}</span>
+            <span>{guardrailPreview.blocked ? "Out-of-scope language detected" : "Planning scope clear"}</span>
           </div>
 
           <div className="button-row">
@@ -127,21 +136,22 @@ function App() {
           </div>
 
           <div className="tab-list" role="tablist" aria-label="Packet views">
-            {(["packet", "evidence", "exports", "guardrails"] as Tab[]).map((item) => (
+            {tabs.map((item) => (
               <button
-                key={item}
-                className={tab === item ? "active" : ""}
-                onClick={() => setTab(item)}
+                key={item.id}
+                className={tab === item.id ? "active" : ""}
+                onClick={() => setTab(item.id)}
                 role="tab"
-                aria-selected={tab === item}
+                aria-selected={tab === item.id}
               >
-                {item}
+                {item.label}
               </button>
             ))}
           </div>
         </section>
 
         <section className="output-panel" aria-live="polite">
+          {tab === "workflow" && <WorkflowView packet={packet} />}
           {tab === "packet" && <PacketView packet={packet} />}
           {tab === "evidence" && <EvidenceView packet={packet} />}
           {tab === "exports" && (
@@ -152,9 +162,166 @@ function App() {
               onDownload={downloadExport}
             />
           )}
-          {tab === "guardrails" && <GuardrailView packet={packet} preview={guardrailPreview} />}
+          {tab === "safety" && <GuardrailView packet={packet} preview={guardrailPreview} />}
         </section>
       </main>
+    </div>
+  );
+}
+
+function packetStatusLabel(packet: Packet) {
+  if (packet.kind === "guardrail") return "Out of scope";
+  if (packet.kind === "unsupported_fixture") return "Needs curation";
+  return "Packet ready";
+}
+
+function WorkflowView({ packet }: { packet: Packet }) {
+  if (packet.kind === "guardrail") {
+    return <GuardrailCard packet={packet} />;
+  }
+  if (packet.kind === "unsupported_fixture") {
+    return <UnsupportedTargetView packet={packet} />;
+  }
+
+  return (
+    <div className="workflow-view">
+      <div className="packet-heading">
+        <div>
+          <div className="eyebrow">Planner workflow</div>
+          <h2>From target hypothesis to validation packet</h2>
+        </div>
+        <span className="count-pill">{packet.workflowSteps.length} steps</span>
+      </div>
+
+      <div className="workflow-stepper" aria-label="Validation planning workflow">
+        {packet.workflowSteps.map((step: any, index: number) => (
+          <article className="workflow-step" key={step.id}>
+            <span>{index + 1}</span>
+            <div>
+              <strong>{step.label}</strong>
+              <p>{step.summary}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <EvidenceClusters packet={packet} />
+      <ValidationLogicMatrix packet={packet} />
+      <TopRisks packet={packet} />
+    </div>
+  );
+}
+
+function EvidenceClusters({ packet }: { packet: Packet }) {
+  return (
+    <section className="cluster-section" aria-label="Evidence clusters">
+      <div className="section-title compact-title">
+        <BookOpenCheck size={20} aria-hidden="true" />
+        <div>
+          <h3>Evidence organized into planning clusters</h3>
+          <p>Curated sources are grouped by the question they support, with gaps shown next to the relevant cluster.</p>
+        </div>
+      </div>
+      <div className="cluster-grid">
+        {packet.evidenceClusters.map((cluster: any) => (
+          <article className="cluster-card" key={cluster.id}>
+            <h4>{cluster.title}</h4>
+            <p>{cluster.summary}</p>
+            <ReferenceRow
+              refs={cluster.sourceIds.map((id: string) => ({ id, role: "source" }))}
+              gaps={cluster.gapLabels}
+            />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ValidationLogicMatrix({ packet }: { packet: Packet }) {
+  return (
+    <section className="matrix-section" aria-label="Validation logic matrix">
+      <div className="section-title compact-title">
+        <BadgeCheck size={20} aria-hidden="true" />
+        <div>
+          <h3>Validation logic matrix</h3>
+          <p>Each row turns evidence into a planning decision and a hold/no-go condition.</p>
+        </div>
+      </div>
+      <div className="validation-matrix">
+        <div className="matrix-row matrix-head">
+          <span>Decision</span>
+          <span>Planning logic</span>
+          <span>Hold signal</span>
+        </div>
+        {packet.validationLogicMatrix.map((row: any) => (
+          <div className="matrix-row" key={row.id}>
+            <div>
+              <strong>{row.decisionPoint}</strong>
+              <ReferenceRow
+                refs={row.evidenceIds.map((id: string) => ({ id, role: "evidence" }))}
+                gaps={row.gapLabels}
+              />
+            </div>
+            <p>{row.planningLogic}</p>
+            <p>{row.gate}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TopRisks({ packet }: { packet: Packet }) {
+  return (
+    <section className="risk-section" aria-label="Top risks and gaps">
+      <div className="section-title compact-title">
+        <AlertTriangle size={20} aria-hidden="true" />
+        <div>
+          <h3>Top risks and gaps</h3>
+          <p>The packet keeps uncertainty in the main narrative instead of burying it in disclaimers.</p>
+        </div>
+      </div>
+      <div className="risk-grid">
+        {packet.topRisks.map((risk: any) => (
+          <article className="risk-card" key={risk.id}>
+            <h4>{risk.title}</h4>
+            <p>{risk.whyItMatters}</p>
+            <strong>Next action</strong>
+            <p>{risk.nextAction}</p>
+            <ReferenceRow refs={risk.evidenceRefs} gaps={risk.gapLabels} />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function UnsupportedTargetView({ packet }: { packet: Packet }) {
+  return (
+    <div className="unsupported-card">
+      <AlertTriangle size={28} aria-hidden="true" />
+      <div>
+        <div className="eyebrow">Needs curated evidence</div>
+        <h2>{packet.title}</h2>
+        <p>{packet.message}</p>
+        <p>{packet.allowedNextStep}</p>
+        <div className="needed-evidence">
+          <strong>Evidence needed before generation</strong>
+          <ul>
+            {packet.neededEvidence.map((item: string) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        {packet.alternateTargets.length > 0 && (
+          <div className="reference-row">
+            {packet.alternateTargets.map((target: any) => (
+              <span key={target.target}>{target.target}: {target.label}</span>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -162,6 +329,9 @@ function App() {
 function PacketView({ packet }: { packet: Packet }) {
   if (packet.kind === "guardrail") {
     return <GuardrailCard packet={packet} />;
+  }
+  if (packet.kind === "unsupported_fixture") {
+    return <UnsupportedTargetView packet={packet} />;
   }
 
   return (
@@ -172,7 +342,7 @@ function PacketView({ packet }: { packet: Packet }) {
           <h2>{packet.title}</h2>
         </div>
         <div className="packet-meta">
-          <span>{packet.fixtureId}</span>
+          <span>{packet.defaultTarget}</span>
           <span>{packet.liveRetrieval.status}</span>
         </div>
       </div>
@@ -222,6 +392,9 @@ function EvidenceView({ packet }: { packet: Packet }) {
   if (packet.kind === "guardrail") {
     return <GuardrailCard packet={packet} />;
   }
+  if (packet.kind === "unsupported_fixture") {
+    return <UnsupportedTargetView packet={packet} />;
+  }
 
   return (
     <div className="evidence-view">
@@ -232,6 +405,7 @@ function EvidenceView({ packet }: { packet: Packet }) {
         </div>
         <span className="count-pill">{packet.sourceLedger.sources.length} sources</span>
       </div>
+      <EvidenceClusters packet={packet} />
       <div className="ledger-grid">
         {packet.sourceLedger.sources.map((source: any) => (
           <article className="source-card" key={source.id}>
@@ -313,8 +487,8 @@ function GuardrailView({
     <div className="guardrail-view">
       <div className="packet-heading">
         <div>
-          <div className="eyebrow">Safety checks</div>
-          <h2>Forbidden-output guardrails</h2>
+          <div className="eyebrow">Scope boundaries</div>
+          <h2>What TargetBench will not generate</h2>
         </div>
         <span className={preview.blocked ? "risk-pill active" : "risk-pill"}>{preview.blocked ? "Triggered" : "Clear"}</span>
       </div>

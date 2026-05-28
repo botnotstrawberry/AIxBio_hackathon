@@ -1,19 +1,88 @@
 # CLDN18.2 in gastric/GEJ cancer validation-planning packet
 
-Fixture: `cldn18_2_gastric_gej_v1`
 Generated: 2026-05-28T03:45:00Z
-Live retrieval: disabled (curated fixture cache; core dependency: false)
+Submitted target: CLDN18.2 in gastric/GEJ cancer (CAR-T / engineered cell therapy)
+Evidence snapshot: pre-reviewed source set. No live literature or registry query was run for this export; the source set is curated for reproducibility.
 
-Boundaries: `Planning artifact only`, `No patient-specific medical advice`, `No exact wet-lab parameters`, `No clinical efficacy or safety proof`, `Expert review required`
+## One-page summary
+
+- Target hypothesis: CLDN18.2 in gastric/GEJ cancer using CAR-T / engineered cell therapy.
+- Evidence state: curated source snapshot with visible provenance, citation boundaries, and missing-evidence labels.
+- Rationale: CLDN18.2 has enough public gastric/GEJ and translational context to support validation planning without claiming clinical proof.
+- Validation logic: expression, specificity, controls, off-tumor review, model selection, and readout concordance must line up before escalation.
+- Main hold condition: unresolved off-tumor risk, missing target-expression support, weak controls, or unsupported clinical/protocol claims should stop the packet from being treated as validation proof.
+
+## Workflow summary
+
+- Target hypothesis captured: The planner starts from the submitted target, disease context, and modality instead of a free-form answer.
+- Evidence organized: The CLDN18.2 evidence snapshot is grouped into rationale, expression/off-tumor, assay, clinical-context, and provenance clusters.
+- Rationale explained: The packet separates why this target is worth planning from what remains unproven.
+- Validation logic proposed: Recommendations are translated into decision checks for expression, specificity, model choice, controls, readouts, and hold/no-go criteria.
+- Risks and gaps highlighted: Missing thresholds, off-tumor uncertainty, model specificity, and evidence provenance are made visible before export.
+- Packet exported: Markdown and JSON exports preserve source IDs, caveats, and gap labels for expert review.
+
+## Evidence clusters
+
+- Target rationale: Public CLDN18.2 and gastric/GEJ context supports a planning case with enough translational maturity to discuss validation logic.
+  Sources: `SRC-006`, `SRC-001`, `SRC-011`, `SRC-016`
+- Expression and off-tumor review: The source set supports making tumor expression and normal-tissue/off-tumor review central to the plan, but it does not supply a numeric antigen-density gate.
+  Sources: `SRC-004`, `SRC-006`, `SRC-009`
+  Gaps: `GAP-EXPR-QUANT`, `GAP-SAFETY-TRANSLATION`
+- Model and assay logic: Assay categories can be organized into expression, potency, specificity, activation, cytokine, and phenotype/persistence checks without giving executable protocol parameters.
+  Sources: `SRC-009`
+  Gaps: `GAP-MODEL-SPECIFICITY`, `GAP-CONTROL-PANEL`
+- Clinical maturity context: Clinical and registry records help explain why CLDN18.2 is a mature planning example, but they remain background only for bench validation and cannot prove safety or efficacy.
+  Sources: `SRC-001`, `SRC-002`, `SRC-011`, `SRC-016`
+  Gaps: `GAP-SAFETY-TRANSLATION`
+- Provenance and evidence limits: Product and retrieval-risk sources justify visible provenance, citation boundaries, and gap labels rather than unstated confidence.
+  Sources: `SRC-012`, `SRC-014`, `SRC-015`
+  Gaps: `GAP-LIVE-RETRIEVAL`
+
+## Validation logic matrix
+
+| Decision point | Planning logic | Evidence | Hold/no-go signal |
+|---|---|---|---|
+| Can activity be interpreted as target-dependent? | Require target-expression confirmation plus antigen-negative or low-expression comparison before treating potency signals as target-linked. | `CLAIM-002`, `CLAIM-003`, `SRC-009` | Hold if antigen-negative controls respond similarly or expression evidence is missing. Gaps: `GAP-EXPR-QUANT`, `GAP-MODEL-SPECIFICITY`. |
+| Is off-tumor risk visible before escalation? | Pair tumor-expression rationale with normal-tissue/off-tumor review and explicit safety caveats. | `CLAIM-004`, `DQ-004`, `SRC-004` | Hold if off-tumor review is unresolved or treated as proven safe from clinical context. Gaps: `GAP-SAFETY-TRANSLATION`. |
+| Are model systems credible enough for first-pass planning? | Use gastric/GEJ model classes with target-positive, target-negative, and off-tumor-relevant comparator categories. | `CLAIM-002`, `CLAIM-003`, `SRC-009` | Hold if the model panel is a single positive context with no specificity comparator. Gaps: `GAP-MODEL-SPECIFICITY`. |
+| Do controls make the result interpretable? | Track target-positive, target-negative, non-targeted or mock-engineered, irrelevant-antigen, assay-background, and off-tumor comparison controls. | `CLAIM-003`, `CLAIM-009`, `SRC-009` | Hold if control identity or acceptance logic is missing from expert review. Gaps: `GAP-CONTROL-PANEL`. |
+| Can the exported packet be audited? | Attach source IDs, caveats, and gap labels to recommendations so users can see what is supported, contextual, or missing. | `CLAIM-007`, `CLAIM-008`, `SRC-012`, `SRC-014` | Hold if recommendations are uncited or clinical context is used as bench proof. Gaps: `GAP-LIVE-RETRIEVAL`. |
+
+## Top risks and gaps
+
+- Off-tumor uncertainty: CLDN18.2 planning is not credible unless normal-tissue and off-tumor concerns stay visible next to potency logic.
+  Next action: Assign expert review of normal-tissue expression and off-tumor comparator strategy.
+  Evidence: `CLAIM-004` (support), `SRC-004` (support)
+  Gaps: `GAP-SAFETY-TRANSLATION`
+- No numeric expression threshold: The evidence snapshot supports expression review, but not a universal antigen-density cutoff for go/no-go decisions.
+  Next action: Keep threshold setting outside the packet and require local assay owners to define it.
+  Evidence: `CLAIM-003` (support), `DQ-003` (support)
+  Gaps: `GAP-EXPR-QUANT`
+- Model and control panel still need expert selection: The packet names useful model/control categories, not validated cell lines, organoids, reagents, or acceptance windows.
+  Next action: Use the matrix as a planning checklist, then have domain experts choose concrete models and controls.
+  Evidence: `CLAIM-002` (support), `CLAIM-009` (support), `SRC-009` (support)
+  Gaps: `GAP-MODEL-SPECIFICITY`, `GAP-CONTROL-PANEL`
+- Curated evidence is not a systematic review: The packet is reproducible and auditable, but it does not claim complete literature coverage.
+  Next action: Show the curated snapshot clearly and reserve live refresh or systematic review for a later mode.
+  Evidence: `CLAIM-008` (support), `SRC-012` (support), `SRC-014` (support)
+  Gaps: `GAP-LIVE-RETRIEVAL`
+
+## Planning boundaries
+
+- Planning artifact only
+- No patient-specific medical advice
+- No exact wet-lab parameters
+- No clinical efficacy or safety proof
+- Expert review required
 
 ## Target rationale
 
-Why this target/disease pair is the default hackathon fixture.
+Why CLDN18.2 in gastric/GEJ cancer is a useful target-validation planning case.
 
-- RAT-001: Use CLDN18.2 in gastric/GEJ cancer as the default demo fixture because the curated free-source evidence supports target rationale, translational maturity context, and a visible off-tumor safety caveat.
+- RAT-001: Use CLDN18.2 in gastric/GEJ cancer as the worked planning case because public evidence supports target rationale, translational maturity context, and a visible off-tumor safety caveat.
   Evidence: `DQ-002` (support), `CLAIM-001` (support), `SRC-006` (support), `SRC-016` (context-only), `SRC-011` (context-only)
-  Caveats: Demo selection is not a claim of clinical superiority. | Clinical and trial records are context-only.
-- RAT-002: Keep B7-H3 glioblastoma as an alternate/future fixture rather than an inferior-biology statement.
+  Caveats: Planning-case selection is not a claim of clinical superiority. | Clinical and trial records are context-only.
+- RAT-002: Treat B7-H3 glioblastoma as a plausible target that needs its own curated source review before a reliable packet is generated.
   Evidence: `CLAIM-005` (support), `DQ-002` (support)
   Caveats: This is a build-feasibility distinction, not a biological ranking.
 
@@ -24,7 +93,7 @@ Evidence checks that should precede any potency interpretation.
 - EXP-001: Separate tumor-expression confirmation from normal-tissue/off-tumor risk review before interpreting any engineered-cell activity.
   Evidence: `CLAIM-002` (support), `CLAIM-004` (support), `DQ-004` (support), `SRC-004` (support)
   Gap labels: `GAP-EXPR-QUANT`
-  Caveats: The fixture does not set quantitative expression thresholds.
+  Caveats: This planning packet does not set quantitative expression thresholds.
 - EXP-002: Track antigen-positive, antigen-low or borderline, and antigen-negative evidence categories so response patterns can be interpreted as target-dependent rather than nonspecific.
   Evidence: `CLAIM-003` (support), `SRC-009` (support)
   Gap labels: `GAP-MODEL-SPECIFICITY`
@@ -59,7 +128,7 @@ Control categories that keep the planning packet interpretable.
 - CTRL-001: Include control categories for antigen-positive target context, antigen-negative context, non-targeted or mock-engineered cell context, irrelevant-antigen context, assay background, and off-tumor-relevant comparison.
   Evidence: `CLAIM-002` (support), `CLAIM-003` (support), `SRC-009` (support)
   Gap labels: `GAP-CONTROL-PANEL`
-  Caveats: Control identities and lab acceptance windows are outside this MVP.
+  Caveats: Control identities and lab acceptance windows require local expert selection.
 - CTRL-002: Mark clinical/trial records as target-context controls for product narrative only; they cannot serve as assay controls or validation proof.
   Evidence: `CLAIM-006` (context-only), `SRC-002` (context-only), `SRC-011` (context-only), `SRC-016` (context-only)
 
@@ -69,7 +138,7 @@ Qualitative readout categories for expert review.
 
 - READ-001: Summarize readouts as categories: target expression, tumor-cell effect, antigen-dependent activation, cytokine signal, specificity against antigen-negative context, off-tumor comparator stress, and reproducibility across model classes.
   Evidence: `CLAIM-003` (support), `SRC-009` (support), `DQ-003` (support)
-  Caveats: No numeric thresholds are claimed by the fixture.
+  Caveats: No numeric thresholds are claimed by this planning packet.
 - READ-002: Flag discordant readouts as review items rather than forcing a pass/fail answer from incomplete evidence.
   Evidence: `CLAIM-007` (support), `SRC-014` (support)
   Gap labels: `GAP-EXPR-QUANT`, `GAP-SAFETY-TRANSLATION`
@@ -92,7 +161,7 @@ Qualitative decision gates for a review meeting.
 - GATE-001: Go only to deeper validation planning if target expression is coherent, activity appears antigen-dependent, controls are interpretable, off-tumor concerns have an explicit review plan, and gaps are assigned to owners.
   Evidence: `DQ-001` (support), `DQ-003` (support), `DQ-004` (support), `CLAIM-002` (support), `CLAIM-009` (support)
   Caveats: No gate is a regulatory, biosafety, or clinical clearance.
-- GATE-002: No-go or hold if activity is nonspecific, antigen-negative controls respond similarly to target-positive context, off-tumor evidence is unresolved, or the requested next step would require exact protocol design from this MVP.
+- GATE-002: No-go or hold if activity is nonspecific, antigen-negative controls respond similarly to target-positive context, off-tumor evidence is unresolved, or the requested next step would require exact protocol design.
   Evidence: `CLAIM-003` (support), `CLAIM-004` (support), `CLAIM-009` (support), `SRC-004` (support)
   Gap labels: `GAP-CONTROL-PANEL`, `GAP-SAFETY-TRANSLATION`
 
@@ -100,7 +169,7 @@ Qualitative decision gates for a review meeting.
 
 Visible provenance that keeps recommendations auditable.
 
-- SRCLEDGER-001: Render every recommendation with source IDs, claim/DQ IDs, or explicit gap labels; clinical/trial records retain context-only labels.
+- SRCLEDGER-001: Keep each recommendation tied to supporting sources, claim notes, question notes, or explicit gap labels; clinical and registry records remain background only.
   Evidence: `DQ-005` (support), `CLAIM-006` (support), `CLAIM-007` (support), `CLAIM-008` (support), `SRC-012` (support), `SRC-014` (support)
   Gap labels: `GAP-LIVE-RETRIEVAL`
 
@@ -111,7 +180,7 @@ Required boundaries for the planning artifact.
 - CAVEAT-001: Treat the packet as an expert-review input for translational scientists, not clinical advice, regulatory advice, biosafety clearance, patient guidance, or a complete executable protocol.
   Evidence: `DQ-003` (support), `DQ-004` (support), `CLAIM-009` (support)
   Caveats: No patient-specific use. No expert replacement.
-- CAVEAT-002: Treat the curated fixture as a deterministic demo cache, not a complete CLDN18.2 corpus or systematic review.
+- CAVEAT-002: Treat the evidence snapshot as curated and reproducible, not as a complete CLDN18.2 corpus or systematic review.
   Evidence: `CLAIM-008` (support), `NULL-001` (support), `NULL-002` (support)
   Gap labels: `GAP-LIVE-RETRIEVAL`
 
@@ -119,7 +188,7 @@ Required boundaries for the planning artifact.
 
 Explicit missing-evidence labels that avoid invented specificity.
 
-- GAP-EXPR-QUANT: Expression threshold not specified: The fixture requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.
+- GAP-EXPR-QUANT: Expression threshold not specified: The packet requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.
   Evidence: `CLAIM-003` (support), `DQ-003` (support)
   Gap labels: `GAP-EXPR-QUANT`
 - GAP-MODEL-SPECIFICITY: Exact model panel requires local expert selection: The packet names model-system classes, not validated cell-line or organoid panels.
@@ -131,14 +200,14 @@ Explicit missing-evidence labels that avoid invented specificity.
 - GAP-SAFETY-TRANSLATION: Bench safety cannot be inferred from clinical context: Clinical and registry records are context-only and cannot resolve off-tumor safety for a validation program.
   Evidence: `CLAIM-004` (support), `CLAIM-006` (support), `SRC-004` (support)
   Gap labels: `GAP-SAFETY-TRANSLATION`
-- GAP-LIVE-RETRIEVAL: Live retrieval disabled for core demo: The judgeable path uses the curated cache so API throttling cannot block export generation.
+- GAP-LIVE-RETRIEVAL: Evidence snapshot is curated: This packet uses a pre-reviewed source set so the exported plan stays reproducible when public APIs are unavailable.
   Evidence: `CLAIM-008` (support), `NULL-001` (support), `NULL-002` (support)
   Gap labels: `GAP-LIVE-RETRIEVAL`
 
 ## Source ledger details
 
 - SRC-001 (Translational maturity context only)
-  Cite for: CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and demo-target maturity.
+  Cite for: CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and translational maturity.
   Do not cite for: Do not cite as proof that TargetBench can design or validate a complete wet-lab protocol.
   Locator: PMID:35534566; PMCID:PMC9205778; DOI:10.1038/s41591-022-01800-8; https://europepmc.org/article/MED/35534566
 - SRC-002 (Clinical/trial context only)
@@ -158,7 +227,7 @@ Explicit missing-evidence labels that avoid invented specificity.
   Do not cite for: Do not cite as an executable TargetBench protocol.
   Locator: PMID:41953034; PMCID:PMC13053282; DOI:10.3389/fimmu.2026.1770222; https://europepmc.org/article/MED/41953034
 - SRC-011 (Clinical/trial context only)
-  Cite for: CLDN18.2 / CT041 trial landscape and demo target maturity context.
+  Cite for: CLDN18.2 / CT041 trial landscape and target-maturity context.
   Do not cite for: Do not cite as efficacy proof, safety proof, bench-method proof, protocol proof, or patient advice.
   Locator: ClinicalTrials.gov API query: CLDN18.2 gastric cancer CAR-T; https://clinicaltrials.gov/api/v2/studies?query.term=CLDN18.2%20gastric%20cancer%20CAR-T&pageSize=5&format=json
 - SRC-012 (Provenance design context)
@@ -174,6 +243,6 @@ Explicit missing-evidence labels that avoid invented specificity.
   Do not cite for: Do not cite as biomedical evidence about target validation.
   Locator: NCBI Bookshelf E-utilities documentation: https://www.ncbi.nlm.nih.gov/books/NBK25501/
 - SRC-016 (Clinical/trial context only)
-  Cite for: 2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for the CLDN18.2 gastric/GEJ demo target.
+  Cite for: 2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for CLDN18.2 gastric/GEJ target context.
   Do not cite for: Do not cite as bench-method proof, protocol evidence, clinical advice, safety proof, efficacy proof, or proof that CAR-T validation is solved.
   Locator: PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/

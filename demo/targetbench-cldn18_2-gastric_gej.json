@@ -11,7 +11,7 @@
   },
   "defaultTarget": "CLDN18.2 in gastric/GEJ cancer",
   "alternateTargetPolicy": {
-    "B7-H3 glioblastoma": "alternate/future fixture only; not inferior biology"
+    "B7-H3 glioblastoma": "requires separate curated evidence review before a reliable packet; not inferior biology"
   },
   "boundaries": [
     "Planning artifact only",
@@ -22,7 +22,7 @@
   ],
   "liveRetrieval": {
     "mode": "disabled",
-    "status": "curated fixture cache",
+    "status": "pre-reviewed source set",
     "coreDependency": false,
     "evidenceRefs": [
       {
@@ -43,15 +43,275 @@
       }
     ]
   },
+  "workflowSteps": [
+    {
+      "id": "workflow-input",
+      "label": "Target hypothesis captured",
+      "summary": "The planner starts from the submitted target, disease context, and modality instead of a free-form answer."
+    },
+    {
+      "id": "workflow-evidence",
+      "label": "Evidence organized",
+      "summary": "The CLDN18.2 evidence snapshot is grouped into rationale, expression/off-tumor, assay, clinical-context, and provenance clusters."
+    },
+    {
+      "id": "workflow-rationale",
+      "label": "Rationale explained",
+      "summary": "The packet separates why this target is worth planning from what remains unproven."
+    },
+    {
+      "id": "workflow-validation",
+      "label": "Validation logic proposed",
+      "summary": "Recommendations are translated into decision checks for expression, specificity, model choice, controls, readouts, and hold/no-go criteria."
+    },
+    {
+      "id": "workflow-risks",
+      "label": "Risks and gaps highlighted",
+      "summary": "Missing thresholds, off-tumor uncertainty, model specificity, and evidence provenance are made visible before export."
+    },
+    {
+      "id": "workflow-export",
+      "label": "Packet exported",
+      "summary": "Markdown and JSON exports preserve source IDs, caveats, and gap labels for expert review."
+    }
+  ],
+  "evidenceClusters": [
+    {
+      "id": "cluster-target-rationale",
+      "title": "Target rationale",
+      "summary": "Public CLDN18.2 and gastric/GEJ context supports a planning case with enough translational maturity to discuss validation logic.",
+      "sourceIds": [
+        "SRC-006",
+        "SRC-001",
+        "SRC-011",
+        "SRC-016"
+      ],
+      "gapLabels": []
+    },
+    {
+      "id": "cluster-expression-safety",
+      "title": "Expression and off-tumor review",
+      "summary": "The source set supports making tumor expression and normal-tissue/off-tumor review central to the plan, but it does not supply a numeric antigen-density gate.",
+      "sourceIds": [
+        "SRC-004",
+        "SRC-006",
+        "SRC-009"
+      ],
+      "gapLabels": [
+        "GAP-EXPR-QUANT",
+        "GAP-SAFETY-TRANSLATION"
+      ]
+    },
+    {
+      "id": "cluster-assay-model",
+      "title": "Model and assay logic",
+      "summary": "Assay categories can be organized into expression, potency, specificity, activation, cytokine, and phenotype/persistence checks without giving executable protocol parameters.",
+      "sourceIds": [
+        "SRC-009"
+      ],
+      "gapLabels": [
+        "GAP-MODEL-SPECIFICITY",
+        "GAP-CONTROL-PANEL"
+      ]
+    },
+    {
+      "id": "cluster-clinical-context",
+      "title": "Clinical maturity context",
+      "summary": "Clinical and registry records help explain why CLDN18.2 is a mature planning example, but they remain background only for bench validation and cannot prove safety or efficacy.",
+      "sourceIds": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-011",
+        "SRC-016"
+      ],
+      "gapLabels": [
+        "GAP-SAFETY-TRANSLATION"
+      ]
+    },
+    {
+      "id": "cluster-provenance",
+      "title": "Provenance and evidence limits",
+      "summary": "Product and retrieval-risk sources justify visible provenance, citation boundaries, and gap labels rather than unstated confidence.",
+      "sourceIds": [
+        "SRC-012",
+        "SRC-014",
+        "SRC-015"
+      ],
+      "gapLabels": [
+        "GAP-LIVE-RETRIEVAL"
+      ]
+    }
+  ],
+  "validationLogicMatrix": [
+    {
+      "id": "VAL-001",
+      "decisionPoint": "Can activity be interpreted as target-dependent?",
+      "planningLogic": "Require target-expression confirmation plus antigen-negative or low-expression comparison before treating potency signals as target-linked.",
+      "evidenceIds": [
+        "CLAIM-002",
+        "CLAIM-003",
+        "SRC-009"
+      ],
+      "gate": "Hold if antigen-negative controls respond similarly or expression evidence is missing.",
+      "gapLabels": [
+        "GAP-EXPR-QUANT",
+        "GAP-MODEL-SPECIFICITY"
+      ]
+    },
+    {
+      "id": "VAL-002",
+      "decisionPoint": "Is off-tumor risk visible before escalation?",
+      "planningLogic": "Pair tumor-expression rationale with normal-tissue/off-tumor review and explicit safety caveats.",
+      "evidenceIds": [
+        "CLAIM-004",
+        "DQ-004",
+        "SRC-004"
+      ],
+      "gate": "Hold if off-tumor review is unresolved or treated as proven safe from clinical context.",
+      "gapLabels": [
+        "GAP-SAFETY-TRANSLATION"
+      ]
+    },
+    {
+      "id": "VAL-003",
+      "decisionPoint": "Are model systems credible enough for first-pass planning?",
+      "planningLogic": "Use gastric/GEJ model classes with target-positive, target-negative, and off-tumor-relevant comparator categories.",
+      "evidenceIds": [
+        "CLAIM-002",
+        "CLAIM-003",
+        "SRC-009"
+      ],
+      "gate": "Hold if the model panel is a single positive context with no specificity comparator.",
+      "gapLabels": [
+        "GAP-MODEL-SPECIFICITY"
+      ]
+    },
+    {
+      "id": "VAL-004",
+      "decisionPoint": "Do controls make the result interpretable?",
+      "planningLogic": "Track target-positive, target-negative, non-targeted or mock-engineered, irrelevant-antigen, assay-background, and off-tumor comparison controls.",
+      "evidenceIds": [
+        "CLAIM-003",
+        "CLAIM-009",
+        "SRC-009"
+      ],
+      "gate": "Hold if control identity or acceptance logic is missing from expert review.",
+      "gapLabels": [
+        "GAP-CONTROL-PANEL"
+      ]
+    },
+    {
+      "id": "VAL-005",
+      "decisionPoint": "Can the exported packet be audited?",
+      "planningLogic": "Attach source IDs, caveats, and gap labels to recommendations so users can see what is supported, contextual, or missing.",
+      "evidenceIds": [
+        "CLAIM-007",
+        "CLAIM-008",
+        "SRC-012",
+        "SRC-014"
+      ],
+      "gate": "Hold if recommendations are uncited or clinical context is used as bench proof.",
+      "gapLabels": [
+        "GAP-LIVE-RETRIEVAL"
+      ]
+    }
+  ],
+  "topRisks": [
+    {
+      "id": "RISK-001",
+      "title": "Off-tumor uncertainty",
+      "whyItMatters": "CLDN18.2 planning is not credible unless normal-tissue and off-tumor concerns stay visible next to potency logic.",
+      "nextAction": "Assign expert review of normal-tissue expression and off-tumor comparator strategy.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-004",
+          "role": "support"
+        },
+        {
+          "id": "SRC-004",
+          "role": "support"
+        }
+      ],
+      "gapLabels": [
+        "GAP-SAFETY-TRANSLATION"
+      ]
+    },
+    {
+      "id": "RISK-002",
+      "title": "No numeric expression threshold",
+      "whyItMatters": "The evidence snapshot supports expression review, but not a universal antigen-density cutoff for go/no-go decisions.",
+      "nextAction": "Keep threshold setting outside the packet and require local assay owners to define it.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-003",
+          "role": "support"
+        },
+        {
+          "id": "DQ-003",
+          "role": "support"
+        }
+      ],
+      "gapLabels": [
+        "GAP-EXPR-QUANT"
+      ]
+    },
+    {
+      "id": "RISK-003",
+      "title": "Model and control panel still need expert selection",
+      "whyItMatters": "The packet names useful model/control categories, not validated cell lines, organoids, reagents, or acceptance windows.",
+      "nextAction": "Use the matrix as a planning checklist, then have domain experts choose concrete models and controls.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-002",
+          "role": "support"
+        },
+        {
+          "id": "CLAIM-009",
+          "role": "support"
+        },
+        {
+          "id": "SRC-009",
+          "role": "support"
+        }
+      ],
+      "gapLabels": [
+        "GAP-MODEL-SPECIFICITY",
+        "GAP-CONTROL-PANEL"
+      ]
+    },
+    {
+      "id": "RISK-004",
+      "title": "Curated evidence is not a systematic review",
+      "whyItMatters": "The packet is reproducible and auditable, but it does not claim complete literature coverage.",
+      "nextAction": "Show the curated snapshot clearly and reserve live refresh or systematic review for a later mode.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-008",
+          "role": "support"
+        },
+        {
+          "id": "SRC-012",
+          "role": "support"
+        },
+        {
+          "id": "SRC-014",
+          "role": "support"
+        }
+      ],
+      "gapLabels": [
+        "GAP-LIVE-RETRIEVAL"
+      ]
+    }
+  ],
   "sections": [
     {
       "key": "target_rationale",
       "title": "Target rationale",
-      "summary": "Why this target/disease pair is the default hackathon fixture.",
+      "summary": "Why CLDN18.2 in gastric/GEJ cancer is a useful target-validation planning case.",
       "recommendations": [
         {
           "id": "RAT-001",
-          "text": "Use CLDN18.2 in gastric/GEJ cancer as the default demo fixture because the curated free-source evidence supports target rationale, translational maturity context, and a visible off-tumor safety caveat.",
+          "text": "Use CLDN18.2 in gastric/GEJ cancer as the worked planning case because public evidence supports target rationale, translational maturity context, and a visible off-tumor safety caveat.",
           "evidenceRefs": [
             {
               "id": "DQ-002",
@@ -75,14 +335,14 @@
             }
           ],
           "caveats": [
-            "Demo selection is not a claim of clinical superiority.",
+            "Planning-case selection is not a claim of clinical superiority.",
             "Clinical and trial records are context-only."
           ],
           "gapLabels": []
         },
         {
           "id": "RAT-002",
-          "text": "Keep B7-H3 glioblastoma as an alternate/future fixture rather than an inferior-biology statement.",
+          "text": "Treat B7-H3 glioblastoma as a plausible target that needs its own curated source review before a reliable packet is generated.",
           "evidenceRefs": [
             {
               "id": "CLAIM-005",
@@ -127,7 +387,7 @@
             }
           ],
           "caveats": [
-            "The fixture does not set quantitative expression thresholds."
+            "This planning packet does not set quantitative expression thresholds."
           ],
           "gapLabels": [
             "GAP-EXPR-QUANT"
@@ -284,7 +544,7 @@
             }
           ],
           "caveats": [
-            "Control identities and lab acceptance windows are outside this MVP."
+            "Control identities and lab acceptance windows require local expert selection."
           ],
           "gapLabels": [
             "GAP-CONTROL-PANEL"
@@ -339,7 +599,7 @@
             }
           ],
           "caveats": [
-            "No numeric thresholds are claimed by the fixture."
+            "No numeric thresholds are claimed by this planning packet."
           ],
           "gapLabels": []
         },
@@ -456,7 +716,7 @@
         },
         {
           "id": "GATE-002",
-          "text": "No-go or hold if activity is nonspecific, antigen-negative controls respond similarly to target-positive context, off-tumor evidence is unresolved, or the requested next step would require exact protocol design from this MVP.",
+          "text": "No-go or hold if activity is nonspecific, antigen-negative controls respond similarly to target-positive context, off-tumor evidence is unresolved, or the requested next step would require exact protocol design.",
           "evidenceRefs": [
             {
               "id": "CLAIM-003",
@@ -490,7 +750,7 @@
       "recommendations": [
         {
           "id": "SRCLEDGER-001",
-          "text": "Render every recommendation with source IDs, claim/DQ IDs, or explicit gap labels; clinical/trial records retain context-only labels.",
+          "text": "Keep each recommendation tied to supporting sources, claim notes, question notes, or explicit gap labels; clinical and registry records remain background only.",
           "evidenceRefs": [
             {
               "id": "DQ-005",
@@ -553,7 +813,7 @@
         },
         {
           "id": "CAVEAT-002",
-          "text": "Treat the curated fixture as a deterministic demo cache, not a complete CLDN18.2 corpus or systematic review.",
+          "text": "Treat the evidence snapshot as curated and reproducible, not as a complete CLDN18.2 corpus or systematic review.",
           "evidenceRefs": [
             {
               "id": "CLAIM-008",
@@ -582,7 +842,7 @@
       "recommendations": [
         {
           "id": "GAP-EXPR-QUANT",
-          "text": "Expression threshold not specified: The fixture requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
+          "text": "Expression threshold not specified: The packet requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
           "evidenceRefs": [
             {
               "id": "CLAIM-003",
@@ -658,7 +918,7 @@
         },
         {
           "id": "GAP-LIVE-RETRIEVAL",
-          "text": "Live retrieval disabled for core demo: The judgeable path uses the curated cache so API throttling cannot block export generation.",
+          "text": "Evidence snapshot is curated: This packet uses a pre-reviewed source set so the exported plan stays reproducible when public APIs are unavailable.",
           "evidenceRefs": [
             {
               "id": "CLAIM-008",
@@ -686,7 +946,7 @@
       {
         "id": "SRC-001",
         "usageLabel": "Translational maturity context only",
-        "citeFor": "CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and demo-target maturity.",
+        "citeFor": "CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and translational maturity.",
         "doNotCiteFor": "Do not cite as proof that TargetBench can design or validate a complete wet-lab protocol.",
         "locator": "PMID:35534566; PMCID:PMC9205778; DOI:10.1038/s41591-022-01800-8; https://europepmc.org/article/MED/35534566",
         "linkedIds": [
@@ -746,7 +1006,7 @@
       {
         "id": "SRC-011",
         "usageLabel": "Clinical/trial context only",
-        "citeFor": "CLDN18.2 / CT041 trial landscape and demo target maturity context.",
+        "citeFor": "CLDN18.2 / CT041 trial landscape and target-maturity context.",
         "doNotCiteFor": "Do not cite as efficacy proof, safety proof, bench-method proof, protocol proof, or patient advice.",
         "locator": "ClinicalTrials.gov API query: CLDN18.2 gastric cancer CAR-T; https://clinicaltrials.gov/api/v2/studies?query.term=CLDN18.2%20gastric%20cancer%20CAR-T&pageSize=5&format=json",
         "linkedIds": [
@@ -789,7 +1049,7 @@
       {
         "id": "SRC-016",
         "usageLabel": "Clinical/trial context only",
-        "citeFor": "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for the CLDN18.2 gastric/GEJ demo target.",
+        "citeFor": "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for CLDN18.2 gastric/GEJ target context.",
         "doNotCiteFor": "Do not cite as bench-method proof, protocol evidence, clinical advice, safety proof, efficacy proof, or proof that CAR-T validation is solved.",
         "locator": "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
         "linkedIds": [
@@ -814,7 +1074,7 @@
     {
       "id": "GAP-EXPR-QUANT",
       "label": "Expression threshold not specified",
-      "detail": "The fixture requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
+      "detail": "The packet requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
       "evidenceRefs": [
         {
           "id": "CLAIM-003",
@@ -877,8 +1137,8 @@
     },
     {
       "id": "GAP-LIVE-RETRIEVAL",
-      "label": "Live retrieval disabled for core demo",
-      "detail": "The judgeable path uses the curated cache so API throttling cannot block export generation.",
+      "label": "Evidence snapshot is curated",
+      "detail": "This packet uses a pre-reviewed source set so the exported plan stays reproducible when public APIs are unavailable.",
       "evidenceRefs": [
         {
           "id": "CLAIM-008",

@@ -28,10 +28,10 @@ if (evaluation.status !== "pass") {
 
 function renderEvaluationMarkdown(evaluationResult) {
   const lines = [
-    "# TargetBench Gate 4 evaluation",
+    "# TargetBench validation readiness summary",
     "",
     `Status: \`${evaluationResult.status}\``,
-    `Fixture: \`${evaluationResult.fixtureId}\``,
+    `Packet ID: \`${evaluationResult.fixtureId}\``,
     `Generated: ${evaluationResult.generatedAt}`,
     "",
     "## Automated checks",

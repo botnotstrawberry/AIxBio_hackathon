@@ -14,9 +14,9 @@ It is intentionally curated and deterministic.
 
 The next 3-4 hour branch should not replace that work. It should add a
 separate `Live Draft Mode (beta)` that can fetch public biomedical context for
-a few target hypotheses, organize the retrieved records, and optionally produce
-a source-grounded draft note. The live mode should prove product direction, not
-scientific authority.
+a few target hypotheses, organize the retrieved records, and produce a
+source-referenced, unvalidated draft context panel. The live mode should prove
+product direction, not scientific authority.
 
 The safe demo story is:
 
@@ -71,7 +71,7 @@ Add a visible future branch path that demonstrates:
 3. System queries a small set of free public sources.
 4. System organizes returned records into evidence clusters.
 5. System shows caveats, gaps, provider failures, and source provenance.
-6. Optional local AI drafts a note that cites only retrieved source IDs.
+6. Deterministic scaffold summarizes the live context with visible gaps.
 7. Curated CLDN18.2 packet remains available and unchanged if anything fails.
 
 This is a demo of retrieval-assisted planning, not a general biomedical
@@ -86,16 +86,13 @@ In scope:
 
 - Mode control: `Curated packet` default, `Live draft beta` optional.
 - Public-source adapters for Europe PMC and ClinicalTrials.gov.
-- Optional OpenAlex adapter if the first two are stable.
 - Query builder from target, disease, and modality.
 - Hard timeouts and partial-failure handling.
 - Normalized live source records.
 - Evidence clusters and gap labels generated from retrieved metadata.
-- Template-based draft scaffold that works without AI.
-- Optional local-only AI drafting endpoint if an API key is already present in
-  the server environment.
+- Template-based draft scaffold.
 - Mocked tests for success, timeout, partial failure, unsupported target, and
-  no-key AI state.
+  static fallback preservation.
 
 Out of scope:
 
@@ -107,6 +104,10 @@ Out of scope:
 - Paid sources, private datasets, PHI, private lab records, or secrets.
 - Patient advice, exact wet-lab protocol parameters, regulatory advice,
   biosafety clearance, or claims of clinical/scientific validation.
+- AI integration in the 3-4 hour branch. Treat AI as a later branch after the
+  no-key live source path is working and tested.
+- OpenAlex in the 3-4 hour branch. Keep the first live implementation to Europe
+  PMC plus ClinicalTrials.gov.
 
 ## Public Source Plan
 
@@ -119,10 +120,11 @@ Recommended first two:
 - ClinicalTrials.gov API v2 for trial-status context only.
   Official docs: <https://clinicaltrials.gov/data-api/about-api>
 
-Optional if time remains:
+Explicitly cut from the 3-4 hour branch:
 
 - OpenAlex Works API for broader scholarly metadata.
   Official docs: <https://docs.openalex.org/api-entities/works>
+- AI drafting.
 
 Do not use PubMed E-utilities in the 3-4 hour branch unless Europe PMC and
 ClinicalTrials.gov are already working. The project already saw NCBI throttling
@@ -151,11 +153,6 @@ Recommended files:
   - evidence clustering
   - template-based draft scaffold
   - safety/gap labeling for live results
-- `scripts/live-ai-server.mjs`
-  - optional local server bound to `127.0.0.1`
-  - reads `OPENAI_API_KEY` or equivalent server-side env only
-  - exposes `POST /api/live-draft`
-  - never logs or returns secrets
 - `src/main.tsx`
   - mode control
   - live-search form state
@@ -163,7 +160,7 @@ Recommended files:
   - provider status row
   - live source cards
   - failure states
-  - optional AI draft panel
+  - deterministic scaffold panel
 - `src/styles.css`
   - beta-mode layout, source cards, provider status, and failure state
 - `tests/live-draft-core.test.mjs`
@@ -171,15 +168,19 @@ Recommended files:
 - `tests/gate4.test.mjs`
   - add invariants proving the default curated packet does not call live fetch
     and still exports the same static demo surface
-- `tests/live-ai-server.test.mjs` or equivalent small unit test if the server
-  is added
-- `.env.example`
-  - only if needed, placeholders only, no secrets
 - `README.md`
   - add a clearly separated future/live-beta section after implementation
 
-Do not add a `VITE_*` LLM key. Vite exposes `VITE_*` values to the browser
-bundle.
+Vite/frontend constraint:
+
+- Do not add a local AI server in this 3-4 hour branch.
+- Do not add a `VITE_*` LLM key. Vite exposes `VITE_*` values to the browser
+  bundle.
+- If a later branch adds a local server, it must include explicit start scripts,
+  localhost-only binding, CORS/proxy handling, and no-key disabled tests.
+- Live modules must accept injectable `fetch` functions and have no network side
+  effects on import so `npm test`, `npm run build`, and `npm run demo` remain
+  network-free.
 
 ## Live Record Data Shape
 
@@ -200,7 +201,7 @@ Normalize all providers into a small, source-ledger-like object:
     openAlexId: null
   },
   locator: "https://...",
-  usageLabel: "Target rationale context",
+  usageLabel: "Live beta context only",
   doNotCiteFor: "Do not cite as validation proof or protocol evidence.",
   caveats: ["Live retrieval is incomplete and uncurated."],
   gapLabels: ["GAP-LIVE-CURATION"]
@@ -210,6 +211,10 @@ Normalize all providers into a small, source-ledger-like object:
 Every live record needs a visible provenance label, but raw IDs should not
 dominate the first-read UI. Show title, provider, date/status, and use label
 first; put raw identifiers in expandable details.
+
+Every live source card, cluster, scaffold panel, and optional live export must
+carry a live-beta/context-only label. ClinicalTrials.gov cards must also show
+status as of retrieval time because registry records are time-sensitive.
 
 ## Query Strategy
 
@@ -224,7 +229,7 @@ Small limits:
 
 - Europe PMC: 5-8 records per query, deduped.
 - ClinicalTrials.gov: 5 records.
-- OpenAlex: 5 records if enabled.
+- OpenAlex: cut by default.
 
 Timeouts:
 
@@ -237,7 +242,8 @@ Failure behavior:
 - All providers fail: show `Live context unavailable` and keep curated packet
   usable.
 - Unsupported target: show live context only as draft context; do not claim a
-  validated packet exists.
+  validated packet exists. Use a distinct output state such as
+  `live_context_only`, not `validation_packet`.
 
 ## Evidence Organization
 
@@ -245,7 +251,7 @@ Live mode should organize records into first-read clusters:
 
 - Target rationale context
 - Expression and off-tumor signals to investigate
-- Model and assay planning context
+- Model and assay signals to review
 - Clinical/trial background only
 - Gaps and unsupported claims
 
@@ -258,7 +264,8 @@ Examples:
 - sparse or ambiguous records -> gaps/needs review
 
 The point is to show the transformation from target input to organized
-planning context, even when the retrieval is incomplete.
+planning context, even when the retrieval is incomplete. Cluster labels should
+be framed as signals to review, not recommendations.
 
 ## Draft Output Without AI
 
@@ -275,12 +282,15 @@ Required sections:
 7. Suggested next expert-review questions.
 
 This deterministic scaffold should be good enough to demo if AI is cut.
+It must not emit exact protocol steps, exact wet-lab parameters, patient advice,
+regulatory or biosafety guidance, safety proof, or efficacy proof.
 
-## Optional AI Draft Mode
+## AI Is A Later Branch
 
-Add AI only if server-side isolation is straightforward.
+AI is out of scope for the 3-4 hour branch. The no-key public-source path and
+deterministic scaffold must work first.
 
-Recommended implementation:
+A later AI branch may add a local-only draft endpoint if it also adds:
 
 - `scripts/live-ai-server.mjs`
 - local endpoint: `POST /api/live-draft`
@@ -288,6 +298,9 @@ Recommended implementation:
 - reads `OPENAI_API_KEY` from server process env
 - browser calls local endpoint only
 - UI disables AI controls when the local endpoint or key is unavailable
+- explicit package scripts or run instructions
+- CORS/proxy handling
+- no-key disabled tests
 
 AI input:
 
@@ -305,19 +318,26 @@ AI output:
 - no protocol steps, no exact parameters, no clinical advice, no regulatory or
   biosafety guidance
 
-Reject or rewrite AI output if it includes:
+Hard reject or deterministically rewrite AI output if it includes:
 
 - claims without `LIVE-*` citations
+- claims beyond retrieved fields
 - exact wet-lab parameters
 - step-by-step protocol language
 - patient treatment advice
 - claims that trial status proves safety or efficacy
 - claims that the system replaces expert review
+- prompt-injection text copied from retrieved titles, abstracts, or trial
+  descriptions
 
-No-key state:
+AI citation to a `LIVE-*` ID proves only that a record was retrieved, not that
+the model's claim is true. The validator must block claims beyond retrieved
+fields.
 
-> AI draft unavailable locally. Public-source context and deterministic draft
-> scaffold remain available.
+No-key state for a later branch:
+
+> AI draft unavailable locally. Public-source context and deterministic scaffold
+> remain available.
 
 ## 3-4 Hour Implementation Sequence
 
@@ -368,7 +388,7 @@ Implement:
 - `src/live-draft-core.mjs`
 - query builder
 - provider orchestration with `Promise.allSettled`
-- dedupe by PMID, DOI, NCT ID, OpenAlex ID, or URL
+- dedupe by PMID, DOI, NCT ID, or URL
 - deterministic cluster assignment
 - deterministic no-key draft scaffold
 
@@ -378,6 +398,7 @@ Acceptance:
 - all provider failures return a transparent unavailable state
 - clinical records are always context-only
 - unsupported targets do not produce a validated packet claim
+- live modules use injectable `fetch` and perform no network work on import
 
 ### 1:55-2:45 - UI Integration
 
@@ -398,19 +419,20 @@ Acceptance:
 - live beta has an explicit user action
 - raw IDs are expandable, not dominant
 - failure state is readable and non-alarming
+- every live source card and scaffold section says live beta/context only
 
-### 2:45-3:25 - Optional Local AI Draft
+### 2:45-3:25 - Safety And Unsupported-Target Hardening
 
-Add only if the no-key live path already works.
+Use this time for safety and fallback hardening, not AI.
 
 Implement:
 
-- `scripts/live-ai-server.mjs`
-- local-only AI endpoint
-- UI disabled/no-key state
-- output validator for citations and forbidden language
-
-Cut this entirely if it threatens the live-source scaffold or static MVP.
+- `live_context_only` output state for unsupported targets
+- trial status shown as of retrieval time
+- public-source incompleteness gap label
+- deterministic scaffold forbidden-language checks
+- prompt-injection guard comments/tests for retrieved titles/abstracts/trial
+  descriptions as untrusted text
 
 ### 3:25-3:55 - Tests And Demo Evidence
 
@@ -424,9 +446,11 @@ Add tests:
 - partial provider failure
 - all-provider failure
 - clinical/trial context-only labeling
+- trial phase/status/outcome language cannot become efficacy/safety/readiness
+  claims
 - unsupported target with live context but no validated packet
-- AI no-key disabled state
-- AI output validator if AI endpoint is added
+- live scaffold cannot emit protocol steps, exact parameters, patient advice,
+  regulatory/biosafety guidance, safety proof, or efficacy proof
 - current Gate 4 tests still pass
 
 Run:
@@ -446,20 +470,20 @@ Record:
 - which providers are enabled
 - which targets were tried
 - which providers failed or were cut
-- whether AI mode exists and how to start it
+- explicit note that AI/OpenAlex/live export were cut from the 3-4 hour branch
 - exact demo commands
 
 ## Cut Line
 
 Cut in this order:
 
-1. Optional AI endpoint.
-2. Optional AI UI.
-3. OpenAlex.
-4. Live Markdown export.
-5. Fancy ranking or scoring.
-6. Provider status polish.
-7. Multiple query variants.
+1. AI endpoint and AI UI. These are already out of scope for this branch.
+2. OpenAlex. It is cut by default.
+3. Live Markdown export.
+4. Fancy ranking or scoring.
+5. Provider status polish.
+6. Multiple query variants.
+7. Extra UI polish.
 
 Do not cut:
 
@@ -469,7 +493,7 @@ Do not cut:
 - clinical/trial context-only labeling
 - safety guardrails
 - tests for timeout/failure behavior
-- no-key AI disabled state if AI UI is visible
+- live scaffold forbidden-language tests
 
 ## Tests And Acceptance Criteria
 
@@ -488,10 +512,17 @@ The branch is acceptable only if:
   methods, or patient guidance.
 - Unsupported targets can show live context but must not claim a validated
   target packet.
-- Optional AI never runs in the browser with a bundled key.
-- Optional AI output must cite retrieved `LIVE-*` IDs or be rejected/caveated.
-- If AI is cut, the deterministic live scaffold still demonstrates the live
-  source organization workflow.
+- Live context for unsupported targets uses a distinct `live_context_only` state.
+- Every live source card, cluster, and scaffold/export section is labeled as
+  live beta/context only.
+- Trial records show status as of retrieval time and cannot support phase,
+  outcome, efficacy, safety, or readiness claims.
+- Deterministic live scaffold cannot emit protocol steps, exact parameters,
+  patient advice, regulatory/biosafety guidance, safety proof, or efficacy proof.
+- No AI code, OpenAlex adapter, local AI server, live export, or bundled key is
+  required for the 3-4 hour implementation.
+- The deterministic live scaffold demonstrates the live source organization
+  workflow without AI.
 
 ## Demo Script
 
@@ -505,9 +536,9 @@ The branch is acceptable only if:
 4. Open evidence clusters.
    - Show how raw records become rationale, safety, assay/model, clinical
      context, and gap buckets.
-5. Show draft scaffold or AI draft if available.
-   - Say: "This is draft context grounded in retrieved records, not a validated
-     packet."
+5. Show the deterministic draft scaffold.
+   - Say: "This is source-referenced, unvalidated draft context from retrieved
+     records, not a validated packet."
 6. Trigger or explain failure fallback.
    - Say: "If public APIs fail, the live beta shows that clearly and the curated
      packet still works."
@@ -526,7 +557,9 @@ Live mode must refuse, omit, or caveat:
 - biosafety or containment clearance
 - expert-replacement claims
 - claims that a live search is complete
-- claims that an AI draft is validated science
+- claims that a draft is validated science
+- prompt-injection instructions or claims from retrieved titles, abstracts, or
+  trial descriptions
 
 Preferred user-facing safety copy:
 
@@ -546,11 +579,8 @@ artifact so the implementation branch can reference it directly.
 
 ## Open Questions
 
-- Should AI be included in the first live demo, or should the branch ship public
-  source retrieval plus deterministic draft scaffolding only?
 - Which two or three targets should be rehearsed for judging?
 - Should live beta export be UI-only for the first branch, or should Markdown
-  export include a separate live-context appendix?
-- Should OpenAlex be included, or should the branch stay Europe PMC plus
-  ClinicalTrials.gov to reduce failure risk?
-- What local command should start the optional AI server if it is added?
+  export be revisited in a later branch?
+- After the no-key live beta works, should the next branch prioritize AI draft
+  support, OpenAlex, or export support?

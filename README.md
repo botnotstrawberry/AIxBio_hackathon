@@ -10,17 +10,18 @@ junction cancer.
 ## Current Status
 
 This repository currently contains the approved project-initiation package and
-the Gate 5 handoff draft. The MVP build has not started yet.
+the approved Gate 5 overnight autonomy handoff. The MVP build lane is approved
+to start within the handoff boundary.
 
 - Gate 1 project brief: approved.
 - Gate 2 literature-review plan: approved.
 - Gate 2 literature/evidence pack: approved.
 - Gate 3 literature audit: approved.
 - Gate 4 success and evaluation contract: approved.
-- Gate 5 harness handoff: drafted and ready for human approval.
+- Gate 5 harness handoff: approved.
 
-After Gate 5 is approved, the allowed build path is a narrow local MVP in this
-repo, not a broad research system or final scientific output corpus.
+The allowed build path is a narrow local MVP in this repo, not a broad research
+system or final scientific output corpus.
 
 ## Product Direction
 

@@ -1,0 +1,13 @@
+{
+  "gate": "gate5",
+  "title": "Gate 5: harness handoff",
+  "artifact": "HARNESS_HANDOFF.md",
+  "artifactPath": "/root/.openclaw/workspace/project-initiation/AIxBio_hackathon/HARNESS_HANDOFF.md",
+  "artifactSha256": "ab0746fa5b703130c70df96730bb5f4ee9b5a19e324bdeb06506bf0f19256ffe",
+  "isTest": false,
+  "approver": "human",
+  "source": "User webchat approval 2026-05-28T03:31Z: Ok I approve gate 5.",
+  "approvedAt": "2026-05-28T03:31:28Z",
+  "material_readiness_asserted": false,
+  "approved_checkpoint_ids": []
+}

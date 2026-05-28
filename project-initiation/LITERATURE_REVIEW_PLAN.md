@@ -138,13 +138,57 @@ Allowed biomedical/science sources only:
 1. PubMed / NCBI E-utilities.
 2. PubMed Central / PMC Open Access and NCBI OA lookup.
 3. Europe PMC, with open-access filter where useful.
-4. ClinicalTrials.gov API v2.
-5. Semantic Scholar Graph API for metadata, citation counts, and open-access PDF links.
-6. OpenAlex API under free usage if available.
-7. Crossref API for DOI metadata.
-8. Unpaywall after DOI only if an email is configured.
-9. bioRxiv, medRxiv, ChemRxiv, and DOAJ only for targeted gap checks or open-access metadata.
-10. NIH RePORTER only if grant/program context becomes necessary; it is not a substitute for biomedical evidence.
+4. bioRxiv API.
+5. medRxiv API.
+6. Semantic Scholar Graph API for metadata, citation counts, and open-access PDF links.
+7. OpenAlex API under free usage if available.
+8. Crossref API for DOI metadata.
+9. Unpaywall after DOI only if an email is configured.
+10. ClinicalTrials.gov API v2.
+11. NIH RePORTER API only if grant/program context becomes necessary; it is not a substitute for biomedical evidence.
+12. ChemRxiv public API.
+13. DOAJ API.
+
+Subagent source directory:
+- PubMed website: https://pubmed.ncbi.nlm.nih.gov/
+- PubMed search pattern: site:pubmed.ncbi.nlm.nih.gov <query>
+- PubMed API search: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=<query>&retmode=json&retmax=20
+- PubMed Central / PMC website: https://pmc.ncbi.nlm.nih.gov/
+- PMC search pattern: site:pmc.ncbi.nlm.nih.gov <query> "open access"
+- PMC API search: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=<query>+open+access%5Bfilter%5D&retmode=json&retmax=20
+- PMC OA full-text lookup by PMCID: https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id=<PMCID>
+- Europe PMC website: https://europepmc.org/
+- Europe PMC search pattern: site:europepmc.org <query>
+- Europe PMC API search: https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=<query>&format=json&pageSize=25
+- Europe PMC open-access API search: https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=<query>%20OPEN_ACCESS:y&format=json&pageSize=25
+- bioRxiv website: https://www.biorxiv.org/
+- bioRxiv search pattern: site:biorxiv.org/content <query>
+- bioRxiv API docs: https://api.biorxiv.org/
+- medRxiv website: https://www.medrxiv.org/
+- medRxiv search pattern: site:medrxiv.org/content <query>
+- medRxiv API docs: https://api.medrxiv.org/
+- Semantic Scholar website: https://www.semanticscholar.org/
+- Semantic Scholar search pattern: site:semanticscholar.org/paper <query>
+- Semantic Scholar API search: https://api.semanticscholar.org/graph/v1/paper/search?query=<query>&limit=20&fields=title,abstract,year,authors,url,externalIds,isOpenAccess,openAccessPdf,citationCount
+- OpenAlex website: https://openalex.org/
+- OpenAlex search pattern: site:openalex.org/works <query>
+- OpenAlex API search: https://api.openalex.org/works?search=<query>&per-page=25
+- Crossref website: https://www.crossref.org/
+- Crossref API search: https://api.crossref.org/works?query=<query>&rows=20
+- Unpaywall website: https://unpaywall.org/
+- Unpaywall DOI lookup after DOI only: https://api.unpaywall.org/v2/<doi>?email=<configured_email>
+- ClinicalTrials.gov website: https://clinicaltrials.gov/
+- ClinicalTrials.gov search pattern: site:clinicaltrials.gov/study <query>
+- ClinicalTrials.gov API: https://clinicaltrials.gov/api/v2/studies?query.term=<query>&pageSize=20
+- NIH RePORTER website: https://reporter.nih.gov/
+- NIH RePORTER search pattern: site:reporter.nih.gov <query>
+- NIH RePORTER API docs/root: https://api.reporter.nih.gov/
+- ChemRxiv website: https://chemrxiv.org/
+- ChemRxiv search pattern: site:chemrxiv.org/engage/chemrxiv/article-details <query>
+- ChemRxiv API docs: https://chemrxiv.org/engage/chemrxiv/public-api/documentation
+- DOAJ website: https://doaj.org/
+- DOAJ search pattern: site:doaj.org <query>
+- DOAJ API docs: https://doaj.org/api/v4/docs
 
 Exclusions:
 - No Scopus, Web of Science, Embase, publisher paywalls, private databases, or paid discovery systems.

@@ -562,17 +562,24 @@ textarea {
 }
 
 .live-source-section,
-.live-scaffold {
+.live-scaffold,
+.live-ai-panel {
   display: grid;
 }
 
 .live-source-grid,
-.live-scaffold-stack {
+.live-scaffold-stack,
+.live-ai-body {
   border: 1px solid #d8ded7;
   border-top: 0;
   border-radius: 0 0 8px 8px;
   background: #ffffff;
   padding: 14px;
+}
+
+.live-ai-body {
+  display: grid;
+  gap: 12px;
 }
 
 .live-source-card h4 {
@@ -586,6 +593,20 @@ textarea {
   padding: 14px;
   display: grid;
   gap: 10px;
+}
+
+.ai-draft-card {
+  border: 1px solid #d8ded7;
+  border-radius: 8px;
+  background: #fbfcfa;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.ai-draft-text {
+  max-height: 360px;
+  background: #ffffff;
 }
 
 .source-card-head {

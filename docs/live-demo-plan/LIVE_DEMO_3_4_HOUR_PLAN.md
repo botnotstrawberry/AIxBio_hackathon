@@ -9,7 +9,13 @@ Scope amendment, 2026-05-28: the user approved adding OpenAlex and PubMed to
 this same live-demo branch. PubMed must be low-volume, no-key, and
 failure-tolerant: throttling, HTTP 429s, timeouts, malformed responses, or empty
 responses must surface as provider failure/gap cards and must not break the
-curated packet or other live providers. AI remains out of scope.
+curated packet or other live providers.
+
+Scope amendment, 2026-05-28 15:17 UTC: the user approved a local-only AI draft
+sidecar using Nebius Token Factory and `moonshotai/Kimi-K2.6`. This does not
+authorize exposing keys in browser code, committing `.env.local`, routing
+through OpenClaw runtime config, or making AI required for the curated packet or
+deterministic live scaffold.
 
 ## Branch And Merge Lock
 
@@ -126,8 +132,7 @@ Out of scope:
 - Paid sources, private datasets, PHI, private lab records, or secrets.
 - Patient advice, exact wet-lab protocol parameters, regulatory advice,
   biosafety clearance, or claims of clinical/scientific validation.
-- AI integration in the 3-4 hour branch. Treat AI as a later branch after the
-  no-key live source path is working and tested.
+- Browser-exposed AI keys, OpenClaw runtime routing, or AI-required demo paths.
 
 ## Public Source Plan
 
@@ -148,7 +153,7 @@ Enabled providers:
 
 Explicitly cut from the 3-4 hour branch:
 
-- AI drafting.
+- Browser-exposed AI keys and OpenClaw runtime routing.
 
 ClinicalTrials.gov records must always be labeled:
 
@@ -193,11 +198,11 @@ Recommended files:
 
 Vite/frontend constraint:
 
-- Do not add a local AI server in this 3-4 hour branch.
 - Do not add a `VITE_*` LLM key. Vite exposes `VITE_*` values to the browser
   bundle.
-- If a later branch adds a local server, it must include explicit start scripts,
-  localhost-only binding, CORS/proxy handling, and no-key disabled tests.
+- The local AI sidecar must bind to `127.0.0.1`, read keys from server env or
+  ignored `.env.local`, and include explicit start scripts, CORS handling, and
+  no-key disabled tests.
 - Live modules must accept injectable `fetch` functions and have no network side
   effects on import so `npm test`, `npm run build`, and `npm run demo` remain
   network-free.
@@ -308,19 +313,21 @@ This deterministic scaffold should be good enough to demo if AI is cut.
 It must not emit exact protocol steps, exact wet-lab parameters, patient advice,
 regulatory or biosafety guidance, safety proof, or efficacy proof.
 
-## AI Is A Later Branch
+## Optional Local AI Draft Sidecar
 
-AI is out of scope for the 3-4 hour branch. The no-key public-source path and
-deterministic scaffold must work first.
+AI is optional for this branch. The no-key public-source path and deterministic
+scaffold must work first and must remain the fallback.
 
-A later AI branch may add a local-only draft endpoint if it also adds:
+The local AI sidecar uses:
 
 - `scripts/live-ai-server.mjs`
 - local endpoint: `POST /api/live-draft`
 - bound to `127.0.0.1`
-- reads `OPENAI_API_KEY` from server process env
+- reads `NEBIUS_API_KEY` from server process env or ignored `.env.local`
+- `NEBIUS_BASE_URL=https://api.tokenfactory.us-central1.nebius.com/v1/`
+- `NEBIUS_MODEL=moonshotai/Kimi-K2.6`
 - browser calls local endpoint only
-- UI disables AI controls when the local endpoint or key is unavailable
+- UI reports AI unavailable when the local endpoint or key is unavailable
 - explicit package scripts or run instructions
 - CORS/proxy handling
 - no-key disabled tests
@@ -357,7 +364,7 @@ AI citation to a `LIVE-*` ID proves only that a record was retrieved, not that
 the model's claim is true. The validator must block claims beyond retrieved
 fields.
 
-No-key state for a later branch:
+No-key state:
 
 > AI draft unavailable locally. Public-source context and deterministic scaffold
 > remain available.
@@ -550,8 +557,8 @@ The branch is acceptable only if:
 - PubMed throttling, HTTP 429s, timeouts, malformed responses, and empty results
   are represented as provider failures or zero-record results rather than thrown
   UI failures.
-- No AI code, local AI server, live export, or bundled key is required for the
-  3-4 hour implementation.
+- AI is optional: no bundled key, no browser-exposed key, and no AI dependency
+  for the curated packet, provider retrieval, or deterministic scaffold.
 - The deterministic live scaffold demonstrates the live source organization
   workflow without AI.
 

@@ -11,7 +11,8 @@ import {
   FlaskConical,
   Play,
   Search,
-  ShieldCheck
+  ShieldCheck,
+  Sparkles
 } from "lucide-react";
 import "./styles.css";
 import {
@@ -56,6 +57,9 @@ function App() {
   const [liveResult, setLiveResult] = React.useState<any>(null);
   const [liveLoading, setLiveLoading] = React.useState(false);
   const [liveError, setLiveError] = React.useState("");
+  const [aiDraft, setAiDraft] = React.useState<any>(null);
+  const [aiLoading, setAiLoading] = React.useState(false);
+  const [aiError, setAiError] = React.useState("");
   const [tab, setTab] = React.useState<Tab>("workflow");
   const [copyState, setCopyState] = React.useState("Copy");
 
@@ -83,6 +87,8 @@ function App() {
 
     setLiveLoading(true);
     setLiveError("");
+    setAiDraft(null);
+    setAiError("");
     try {
       const result = await runLiveDraftContext(
         { target, disease, modality, prompt },
@@ -94,6 +100,44 @@ function App() {
       setLiveError(error?.message || "Live context retrieval failed. The curated packet remains available.");
     } finally {
       setLiveLoading(false);
+    }
+  }
+
+  async function generateAiDraft() {
+    if (!liveResult || liveResult.records.length === 0) {
+      setAiError("AI draft requires live source records first.");
+      return;
+    }
+
+    setAiLoading(true);
+    setAiError("");
+    setAiDraft(null);
+    try {
+      const response = await window.fetch("http://127.0.0.1:8787/api/live-draft", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          input: liveResult.input,
+          records: liveResult.records,
+          clusters: liveResult.clusters,
+          topGaps: liveResult.topGaps
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        throw new Error(
+          payload.error ||
+            "AI draft unavailable locally. Start npm run live:ai after setting NEBIUS_API_KEY."
+        );
+      }
+      setAiDraft(payload.draft);
+    } catch (error: any) {
+      setAiError(
+        error?.message ||
+          "AI draft unavailable locally. Start npm run live:ai after setting NEBIUS_API_KEY."
+      );
+    } finally {
+      setAiLoading(false);
     }
   }
 
@@ -227,6 +271,10 @@ function App() {
               loading={liveLoading}
               error={liveError}
               onFetch={fetchLiveContext}
+              aiDraft={aiDraft}
+              aiLoading={aiLoading}
+              aiError={aiError}
+              onGenerateAiDraft={generateAiDraft}
             />
           ) : (
             <>
@@ -450,12 +498,20 @@ function LiveDraftView({
   result,
   loading,
   error,
-  onFetch
+  onFetch,
+  aiDraft,
+  aiLoading,
+  aiError,
+  onGenerateAiDraft
 }: {
   result: any;
   loading: boolean;
   error: string;
   onFetch: () => void;
+  aiDraft: any;
+  aiLoading: boolean;
+  aiError: string;
+  onGenerateAiDraft: () => void;
 }) {
   if (loading) {
     return (
@@ -523,6 +579,13 @@ function LiveDraftView({
       <LiveSourceCards records={result.records} />
       <LiveClusters clusters={result.clusters} />
       <LiveScaffold scaffold={result.scaffold} />
+      <LiveAiDraftPanel
+        result={result}
+        draft={aiDraft}
+        loading={aiLoading}
+        error={aiError}
+        onGenerate={onGenerateAiDraft}
+      />
     </div>
   );
 }
@@ -690,6 +753,71 @@ function LiveScaffold({ scaffold }: { scaffold: any }) {
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function LiveAiDraftPanel({
+  result,
+  draft,
+  loading,
+  error,
+  onGenerate
+}: {
+  result: any;
+  draft: any;
+  loading: boolean;
+  error: string;
+  onGenerate: () => void;
+}) {
+  const disabled = loading || result.records.length === 0;
+  return (
+    <section className="live-ai-panel" aria-label="AI draft beta">
+      <div className="section-title compact-title">
+        <Sparkles size={20} aria-hidden="true" />
+        <div>
+          <h3>AI draft beta</h3>
+          <p>
+            Optional local Kimi draft. It uses retrieved LIVE-* cards only and is rejected if local
+            citation and safety checks fail.
+          </p>
+        </div>
+      </div>
+      <div className="live-ai-body">
+        <div className="button-row compact">
+          <button className="primary" onClick={onGenerate} disabled={disabled}>
+            <Sparkles size={18} aria-hidden="true" />
+            {loading ? "Drafting" : "Generate AI draft"}
+          </button>
+        </div>
+        {error && (
+          <div className="live-status-card warning">
+            <AlertTriangle size={24} aria-hidden="true" />
+            <div>
+              <h2>AI draft unavailable</h2>
+              <p>{error}</p>
+            </div>
+          </div>
+        )}
+        {draft ? (
+          <article className="ai-draft-card">
+            <div className="source-card-head">
+              <strong>{draft.usageLabel}</strong>
+              <span>{draft.model}</span>
+            </div>
+            <pre className="ai-draft-text">{draft.text}</pre>
+            <ProvenanceDetails
+              refs={(draft.sourceIds || []).map((id: string) => ({ id, role: "live-context" }))}
+              gaps={["GAP-LIVE-CURATION"]}
+            />
+          </article>
+        ) : (
+          <p className="subtle-copy">
+            Start `npm run live:ai` locally after adding `NEBIUS_API_KEY` to `.env.local`. The
+            curated packet and deterministic live scaffold do not need AI.
+          </p>
+        )}
       </div>
     </section>
   );

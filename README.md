@@ -220,15 +220,29 @@ Live beta behavior:
 - Shows ClinicalTrials.gov status as of retrieval time.
 - Keeps raw source IDs and locators expandable rather than dominant.
 - Leaves `npm run demo` and the curated CLDN18.2 artifacts network-free.
+- Optionally calls a local-only AI sidecar after live retrieval. The browser
+  calls `127.0.0.1`; the Nebius key stays in `.env.local` and server process
+  env only.
 
 Cuts for the 3-4 hour branch:
 
-- No AI or LLM integration.
-- No local AI server.
 - No browser-exposed LLM/API key.
 - No live Markdown export.
 - No claim that live retrieval is complete, curated, or scientifically
   validated.
+
+Optional AI draft beta:
+
+1. Copy `.env.example` to `.env.local` and fill `NEBIUS_API_KEY`.
+2. Keep `NEBIUS_MODEL=moonshotai/Kimi-K2.6`.
+3. Run `npm run live:ai`.
+4. Run `npm run dev`.
+5. Fetch live context, then click `Generate AI draft`.
+
+The AI draft is rejected locally if it lacks `LIVE-*` citations or includes
+forbidden patient, protocol, exact-parameter, safety/efficacy, regulatory, or
+biosafety claims. If the sidecar is not running or no key is configured, the
+deterministic live scaffold remains available.
 
 Future source adds after this branch:
 
@@ -254,6 +268,8 @@ Suggested manual smoke:
 6. Click `Fetch live context`.
 7. Confirm provider statuses, live source cards, clusters, and deterministic
    scaffold appear, or that provider failures are shown as retrieval gaps.
+8. Optional: start `npm run live:ai` and click `Generate AI draft` to show a
+   short Kimi-generated source-cited planning note.
 
 ## Overnight Autonomy Plan
 

@@ -1,0 +1,11 @@
+{
+  "gate": "gate2-plan",
+  "title": "Gate 2 plan: research framing, source categories, seed evidence packet, and branching rules",
+  "artifact": "LITERATURE_REVIEW_PLAN.md",
+  "artifactPath": "/root/.openclaw/workspace/project-initiation/AIxBio_hackathon/LITERATURE_REVIEW_PLAN.md",
+  "artifactSha256": "b267cea9bac53a2ed3ffc6b6a027bdde364c2397018f2591284ee0feac65e4f8",
+  "isTest": false,
+  "approver": "human",
+  "source": "User approved Gate 2 literature review plan on 2026-05-28 and authorized moving to Gate 2 retrieval under the approved free biomedical/science source constraints.",
+  "approvedAt": "2026-05-28T01:32:07Z"
+}

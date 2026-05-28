@@ -9,9 +9,10 @@ junction cancer.
 
 ## Current Status
 
-This repository currently contains the approved project-initiation package and
-the approved Gate 5 overnight autonomy handoff. The MVP build lane is approved
-to start within the handoff boundary.
+This repository contains a runnable local TargetBench MVP plus the approved
+project-initiation package and Gate 5 handoff. The judgeable path is a
+deterministic CLDN18.2 gastric/GEJ fixture that works without live API
+retrieval.
 
 - Gate 1 project brief: approved.
 - Gate 2 literature-review plan: approved.
@@ -20,8 +21,45 @@ to start within the handoff boundary.
 - Gate 4 success and evaluation contract: approved.
 - Gate 5 harness handoff: approved.
 
-The allowed build path is a narrow local MVP in this repo, not a broad research
-system or final scientific output corpus.
+Implemented MVP pieces:
+
+- React/Vite local app with target, disease, modality, and planning-note inputs.
+- Deterministic CLDN18.2 gastric/GEJ packet generator.
+- Evidence ledger with source IDs, claim/DQ IDs, context-only trial labels, caveats, and gap labels.
+- Markdown and JSON export in the UI and generated demo artifacts.
+- Guardrails for patient-specific treatment advice, exact wet-lab parameters, executable protocols, clinical proof claims, regulatory advice, biosafety clearance, and expert-replacement claims.
+- Local Gate 4 evaluator and Vitest checks.
+
+The build remains a narrow local MVP in this repo, not a broad research system
+or final scientific output corpus.
+
+## Run Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite, usually `http://127.0.0.1:5173/`.
+
+Useful checks:
+
+```bash
+npm run lint
+npm test
+npm run build
+npm run demo
+```
+
+`npm run demo` writes the current deterministic packet and evaluation evidence
+under `demo/`.
+
+## Demo Artifacts
+
+- `demo/targetbench-cldn18_2-gastric_gej.md`: Markdown export.
+- `demo/targetbench-cldn18_2-gastric_gej.json`: JSON export.
+- `demo/gate4-evaluation.md`: human-readable Gate 4 check record.
+- `demo/gate4-evaluation.json`: machine-readable Gate 4 check record.
 
 ## Product Direction
 

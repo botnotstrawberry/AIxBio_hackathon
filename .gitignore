@@ -7,6 +7,7 @@ dist/
 build/
 .next/
 coverage/
+*.tsbuildinfo
 
 __pycache__/
 *.py[cod]
@@ -17,4 +18,3 @@ venv/
 *.log
 tmp/
 temp/
-

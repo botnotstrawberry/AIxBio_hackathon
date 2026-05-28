@@ -1,0 +1,943 @@
+{
+  "kind": "validation_packet",
+  "title": "CLDN18.2 in gastric/GEJ cancer validation-planning packet",
+  "generatedAt": "2026-05-28T03:45:00Z",
+  "fixtureId": "cldn18_2_gastric_gej_v1",
+  "input": {
+    "target": "CLDN18.2",
+    "disease": "gastric/GEJ cancer",
+    "modality": "CAR-T / engineered cell therapy",
+    "prompt": ""
+  },
+  "defaultTarget": "CLDN18.2 in gastric/GEJ cancer",
+  "alternateTargetPolicy": {
+    "B7-H3 glioblastoma": "alternate/future fixture only; not inferior biology"
+  },
+  "boundaries": [
+    "Planning artifact only",
+    "No patient-specific medical advice",
+    "No exact wet-lab parameters",
+    "No clinical efficacy or safety proof",
+    "Expert review required"
+  ],
+  "liveRetrieval": {
+    "mode": "disabled",
+    "status": "curated fixture cache",
+    "coreDependency": false,
+    "evidenceRefs": [
+      {
+        "id": "CLAIM-008",
+        "role": "support"
+      },
+      {
+        "id": "NULL-001",
+        "role": "support"
+      },
+      {
+        "id": "NULL-002",
+        "role": "support"
+      },
+      {
+        "id": "SRC-015",
+        "role": "support"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "key": "target_rationale",
+      "title": "Target rationale",
+      "summary": "Why this target/disease pair is the default hackathon fixture.",
+      "recommendations": [
+        {
+          "id": "RAT-001",
+          "text": "Use CLDN18.2 in gastric/GEJ cancer as the default demo fixture because the curated free-source evidence supports target rationale, translational maturity context, and a visible off-tumor safety caveat.",
+          "evidenceRefs": [
+            {
+              "id": "DQ-002",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-001",
+              "role": "support"
+            },
+            {
+              "id": "SRC-006",
+              "role": "support"
+            },
+            {
+              "id": "SRC-016",
+              "role": "context-only"
+            },
+            {
+              "id": "SRC-011",
+              "role": "context-only"
+            }
+          ],
+          "caveats": [
+            "Demo selection is not a claim of clinical superiority.",
+            "Clinical and trial records are context-only."
+          ],
+          "gapLabels": []
+        },
+        {
+          "id": "RAT-002",
+          "text": "Keep B7-H3 glioblastoma as an alternate/future fixture rather than an inferior-biology statement.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-005",
+              "role": "support"
+            },
+            {
+              "id": "DQ-002",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "This is a build-feasibility distinction, not a biological ranking."
+          ],
+          "gapLabels": []
+        }
+      ]
+    },
+    {
+      "key": "expression_off_tumor_screen",
+      "title": "Expression/off-tumor screen",
+      "summary": "Evidence checks that should precede any potency interpretation.",
+      "recommendations": [
+        {
+          "id": "EXP-001",
+          "text": "Separate tumor-expression confirmation from normal-tissue/off-tumor risk review before interpreting any engineered-cell activity.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-002",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-004",
+              "role": "support"
+            },
+            {
+              "id": "DQ-004",
+              "role": "support"
+            },
+            {
+              "id": "SRC-004",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "The fixture does not set quantitative expression thresholds."
+          ],
+          "gapLabels": [
+            "GAP-EXPR-QUANT"
+          ]
+        },
+        {
+          "id": "EXP-002",
+          "text": "Track antigen-positive, antigen-low or borderline, and antigen-negative evidence categories so response patterns can be interpreted as target-dependent rather than nonspecific.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "SRC-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-MODEL-SPECIFICITY"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "model_system_suggestions",
+      "title": "Model-system suggestions",
+      "summary": "Model classes to discuss in a translational validation meeting.",
+      "recommendations": [
+        {
+          "id": "MOD-001",
+          "text": "Prioritize gastric/GEJ tumor model classes with documented CLDN18.2 signal, an antigen-negative comparator, and an off-tumor-relevant comparator where feasible.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-002",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "SRC-004",
+              "role": "support"
+            },
+            {
+              "id": "SRC-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "Exact cell lines, organoids, and acceptance criteria require local expert selection."
+          ],
+          "gapLabels": [
+            "GAP-MODEL-SPECIFICITY"
+          ]
+        },
+        {
+          "id": "MOD-002",
+          "text": "Use model diversity as a planning requirement: two-dimensional tumor models can support initial signal checks, while spheroid or organoid-like systems should be labeled as follow-up complexity rather than required proof.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-002",
+              "role": "support"
+            },
+            {
+              "id": "SRC-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-MODEL-SPECIFICITY"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "assay_modules",
+      "title": "Assay modules",
+      "summary": "Non-executable assay families for the first-pass validation plan.",
+      "recommendations": [
+        {
+          "id": "ASSAY-001",
+          "text": "Plan modular evidence families: target-expression verification, antigen-dependent killing or potency, immune-cell activation, cytokine release, specificity/off-tumor comparison, and phenotype or persistence review.",
+          "evidenceRefs": [
+            {
+              "id": "DQ-003",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "SRC-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "This is a module map, not a protocol or SOP."
+          ],
+          "gapLabels": []
+        },
+        {
+          "id": "ASSAY-002",
+          "text": "Do not treat a single positive killing readout as sufficient; require concordance across expression, specificity, activation, and safety-oriented checks before escalation.",
+          "evidenceRefs": [
+            {
+              "id": "DQ-001",
+              "role": "support"
+            },
+            {
+              "id": "DQ-004",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-002",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-004",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-SAFETY-TRANSLATION"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "controls",
+      "title": "Controls",
+      "summary": "Control categories that keep the planning packet interpretable.",
+      "recommendations": [
+        {
+          "id": "CTRL-001",
+          "text": "Include control categories for antigen-positive target context, antigen-negative context, non-targeted or mock-engineered cell context, irrelevant-antigen context, assay background, and off-tumor-relevant comparison.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-002",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "SRC-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "Control identities and lab acceptance windows are outside this MVP."
+          ],
+          "gapLabels": [
+            "GAP-CONTROL-PANEL"
+          ]
+        },
+        {
+          "id": "CTRL-002",
+          "text": "Mark clinical/trial records as target-context controls for product narrative only; they cannot serve as assay controls or validation proof.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-006",
+              "role": "context-only"
+            },
+            {
+              "id": "SRC-002",
+              "role": "context-only"
+            },
+            {
+              "id": "SRC-011",
+              "role": "context-only"
+            },
+            {
+              "id": "SRC-016",
+              "role": "context-only"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": []
+        }
+      ]
+    },
+    {
+      "key": "readouts",
+      "title": "Readouts",
+      "summary": "Qualitative readout categories for expert review.",
+      "recommendations": [
+        {
+          "id": "READ-001",
+          "text": "Summarize readouts as categories: target expression, tumor-cell effect, antigen-dependent activation, cytokine signal, specificity against antigen-negative context, off-tumor comparator stress, and reproducibility across model classes.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "SRC-009",
+              "role": "support"
+            },
+            {
+              "id": "DQ-003",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "No numeric thresholds are claimed by the fixture."
+          ],
+          "gapLabels": []
+        },
+        {
+          "id": "READ-002",
+          "text": "Flag discordant readouts as review items rather than forcing a pass/fail answer from incomplete evidence.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-007",
+              "role": "support"
+            },
+            {
+              "id": "SRC-014",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-EXPR-QUANT",
+            "GAP-SAFETY-TRANSLATION"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "safety_gaps",
+      "title": "Safety gaps",
+      "summary": "Known safety boundaries and missing evidence labels.",
+      "recommendations": [
+        {
+          "id": "SAFE-001",
+          "text": "Foreground CLDN18.2 on-target/off-tumor uncertainty and normal-tissue expression review as central to the validation plan.",
+          "evidenceRefs": [
+            {
+              "id": "DQ-004",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-004",
+              "role": "support"
+            },
+            {
+              "id": "SRC-004",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "The packet does not conclude that CLDN18.2 targeting is safe or unsafe."
+          ],
+          "gapLabels": [
+            "GAP-SAFETY-TRANSLATION"
+          ]
+        },
+        {
+          "id": "SAFE-002",
+          "text": "Use clinical and registry records only to explain translational maturity; do not use them as safety proof, efficacy proof, or bench-method proof.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-006",
+              "role": "context-only"
+            },
+            {
+              "id": "SRC-002",
+              "role": "context-only"
+            },
+            {
+              "id": "SRC-011",
+              "role": "context-only"
+            },
+            {
+              "id": "SRC-016",
+              "role": "context-only"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": []
+        }
+      ]
+    },
+    {
+      "key": "go_no_go_gates",
+      "title": "Go/no-go gates",
+      "summary": "Qualitative decision gates for a review meeting.",
+      "recommendations": [
+        {
+          "id": "GATE-001",
+          "text": "Go only to deeper validation planning if target expression is coherent, activity appears antigen-dependent, controls are interpretable, off-tumor concerns have an explicit review plan, and gaps are assigned to owners.",
+          "evidenceRefs": [
+            {
+              "id": "DQ-001",
+              "role": "support"
+            },
+            {
+              "id": "DQ-003",
+              "role": "support"
+            },
+            {
+              "id": "DQ-004",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-002",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "No gate is a regulatory, biosafety, or clinical clearance."
+          ],
+          "gapLabels": []
+        },
+        {
+          "id": "GATE-002",
+          "text": "No-go or hold if activity is nonspecific, antigen-negative controls respond similarly to target-positive context, off-tumor evidence is unresolved, or the requested next step would require exact protocol design from this MVP.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-004",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-009",
+              "role": "support"
+            },
+            {
+              "id": "SRC-004",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-CONTROL-PANEL",
+            "GAP-SAFETY-TRANSLATION"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "source_ids_citations",
+      "title": "Source IDs/citations",
+      "summary": "Visible provenance that keeps recommendations auditable.",
+      "recommendations": [
+        {
+          "id": "SRCLEDGER-001",
+          "text": "Render every recommendation with source IDs, claim/DQ IDs, or explicit gap labels; clinical/trial records retain context-only labels.",
+          "evidenceRefs": [
+            {
+              "id": "DQ-005",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-006",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-007",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-008",
+              "role": "support"
+            },
+            {
+              "id": "SRC-012",
+              "role": "support"
+            },
+            {
+              "id": "SRC-014",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-LIVE-RETRIEVAL"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "caveats",
+      "title": "Caveats",
+      "summary": "Required boundaries for the planning artifact.",
+      "recommendations": [
+        {
+          "id": "CAVEAT-001",
+          "text": "Treat the packet as an expert-review input for translational scientists, not clinical advice, regulatory advice, biosafety clearance, patient guidance, or a complete executable protocol.",
+          "evidenceRefs": [
+            {
+              "id": "DQ-003",
+              "role": "support"
+            },
+            {
+              "id": "DQ-004",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [
+            "No patient-specific use. No expert replacement."
+          ],
+          "gapLabels": []
+        },
+        {
+          "id": "CAVEAT-002",
+          "text": "Treat the curated fixture as a deterministic demo cache, not a complete CLDN18.2 corpus or systematic review.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-008",
+              "role": "support"
+            },
+            {
+              "id": "NULL-001",
+              "role": "support"
+            },
+            {
+              "id": "NULL-002",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-LIVE-RETRIEVAL"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "gap_labels",
+      "title": "Gap labels",
+      "summary": "Explicit missing-evidence labels that avoid invented specificity.",
+      "recommendations": [
+        {
+          "id": "GAP-EXPR-QUANT",
+          "text": "Expression threshold not specified: The fixture requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "DQ-003",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-EXPR-QUANT"
+          ]
+        },
+        {
+          "id": "GAP-MODEL-SPECIFICITY",
+          "text": "Exact model panel requires local expert selection: The packet names model-system classes, not validated cell-line or organoid panels.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-002",
+              "role": "support"
+            },
+            {
+              "id": "SRC-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-MODEL-SPECIFICITY"
+          ]
+        },
+        {
+          "id": "GAP-CONTROL-PANEL",
+          "text": "Control panel must be finalized by the lab: Control categories are listed, but reagent identity, construct details, and acceptance windows remain out of scope.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-003",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-009",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-CONTROL-PANEL"
+          ]
+        },
+        {
+          "id": "GAP-SAFETY-TRANSLATION",
+          "text": "Bench safety cannot be inferred from clinical context: Clinical and registry records are context-only and cannot resolve off-tumor safety for a validation program.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-004",
+              "role": "support"
+            },
+            {
+              "id": "CLAIM-006",
+              "role": "support"
+            },
+            {
+              "id": "SRC-004",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-SAFETY-TRANSLATION"
+          ]
+        },
+        {
+          "id": "GAP-LIVE-RETRIEVAL",
+          "text": "Live retrieval disabled for core demo: The judgeable path uses the curated cache so API throttling cannot block export generation.",
+          "evidenceRefs": [
+            {
+              "id": "CLAIM-008",
+              "role": "support"
+            },
+            {
+              "id": "NULL-001",
+              "role": "support"
+            },
+            {
+              "id": "NULL-002",
+              "role": "support"
+            }
+          ],
+          "caveats": [],
+          "gapLabels": [
+            "GAP-LIVE-RETRIEVAL"
+          ]
+        }
+      ]
+    }
+  ],
+  "sourceLedger": {
+    "sources": [
+      {
+        "id": "SRC-001",
+        "usageLabel": "Translational maturity context only",
+        "citeFor": "CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and demo-target maturity.",
+        "doNotCiteFor": "Do not cite as proof that TargetBench can design or validate a complete wet-lab protocol.",
+        "locator": "PMID:35534566; PMCID:PMC9205778; DOI:10.1038/s41591-022-01800-8; https://europepmc.org/article/MED/35534566",
+        "linkedIds": [
+          "DQ-001",
+          "DQ-002",
+          "DQ-003",
+          "DQ-004"
+        ]
+      },
+      {
+        "id": "SRC-002",
+        "usageLabel": "Clinical/trial context only",
+        "citeFor": "Final-results metadata for CLDN18.2-specific CAR T cells in gastrointestinal cancers.",
+        "doNotCiteFor": "Do not cite as efficacy proof, safety proof, bench-method proof, protocol proof, or patient advice.",
+        "locator": "PMID:38830992; DOI:10.1038/s41591-024-03037-z; https://europepmc.org/article/MED/38830992",
+        "linkedIds": [
+          "DQ-002",
+          "DQ-004"
+        ]
+      },
+      {
+        "id": "SRC-004",
+        "usageLabel": "Safety caveat and off-tumor planning",
+        "citeFor": "CLDN18.2 on-target/off-tumor toxicity concern and need for safety/off-tumor gates.",
+        "doNotCiteFor": "Do not cite as showing that CLDN18.2 targeting is always unsafe or always safe.",
+        "locator": "PMID:41176582; PMCID:PMC12579598; DOI:10.1038/s41467-025-65148-6; https://europepmc.org/article/MED/41176582",
+        "linkedIds": [
+          "DQ-001",
+          "DQ-002",
+          "DQ-003",
+          "DQ-004"
+        ]
+      },
+      {
+        "id": "SRC-006",
+        "usageLabel": "Target rationale context",
+        "citeFor": "CLDN18.2 target rationale and gastric-cancer context.",
+        "doNotCiteFor": "Do not cite as a primary clinical efficacy trial or as direct assay protocol support.",
+        "locator": "PMID:40862764; PMCID:PMC12384651; DOI:10.3390/cells14161285; https://europepmc.org/article/MED/40862764",
+        "linkedIds": [
+          "DQ-001",
+          "DQ-002"
+        ]
+      },
+      {
+        "id": "SRC-009",
+        "usageLabel": "Assay/readout category support",
+        "citeFor": "Solid-tumor immunotherapy potency-assay families, readouts, and assay-planning caveats.",
+        "doNotCiteFor": "Do not cite as an executable TargetBench protocol.",
+        "locator": "PMID:41953034; PMCID:PMC13053282; DOI:10.3389/fimmu.2026.1770222; https://europepmc.org/article/MED/41953034",
+        "linkedIds": [
+          "DQ-001",
+          "DQ-003",
+          "DQ-004"
+        ]
+      },
+      {
+        "id": "SRC-011",
+        "usageLabel": "Clinical/trial context only",
+        "citeFor": "CLDN18.2 / CT041 trial landscape and demo target maturity context.",
+        "doNotCiteFor": "Do not cite as efficacy proof, safety proof, bench-method proof, protocol proof, or patient advice.",
+        "locator": "ClinicalTrials.gov API query: CLDN18.2 gastric cancer CAR-T; https://clinicaltrials.gov/api/v2/studies?query.term=CLDN18.2%20gastric%20cancer%20CAR-T&pageSize=5&format=json",
+        "linkedIds": [
+          "DQ-002",
+          "DQ-005"
+        ]
+      },
+      {
+        "id": "SRC-012",
+        "usageLabel": "Provenance design context",
+        "citeFor": "Scientific workflow retrieval and provenance-oriented product requirements.",
+        "doNotCiteFor": "Do not cite as evidence that TargetBench recommendations are biologically correct.",
+        "locator": "PMID:41206112; PMCID:PMC12596265; DOI:10.1093/bib/bbaf571; https://europepmc.org/article/MED/41206112",
+        "linkedIds": [
+          "DQ-004",
+          "DQ-005"
+        ]
+      },
+      {
+        "id": "SRC-014",
+        "usageLabel": "RAG risk and gap-label motivation",
+        "citeFor": "RAG hallucination risk and multi-evidence refinement motivation.",
+        "doNotCiteFor": "Do not cite as proving TargetBench is hallucination-free.",
+        "locator": "PMID:41132171; PMCID:PMC12540348; DOI:10.3389/fpubh.2025.1635381; https://europepmc.org/article/MED/41132171",
+        "linkedIds": [
+          "DQ-004",
+          "DQ-005"
+        ]
+      },
+      {
+        "id": "SRC-015",
+        "usageLabel": "Optional API feasibility only",
+        "citeFor": "Implementation feasibility for PubMed/NCBI source-adapter and provenance identifiers.",
+        "doNotCiteFor": "Do not cite as biomedical evidence about target validation.",
+        "locator": "NCBI Bookshelf E-utilities documentation: https://www.ncbi.nlm.nih.gov/books/NBK25501/",
+        "linkedIds": [
+          "DQ-005"
+        ]
+      },
+      {
+        "id": "SRC-016",
+        "usageLabel": "Clinical/trial context only",
+        "citeFor": "2025 randomized phase 2 CT041-ST-01 satri-cel maturity anchor for the CLDN18.2 gastric/GEJ demo target.",
+        "doNotCiteFor": "Do not cite as bench-method proof, protocol evidence, clinical advice, safety proof, efficacy proof, or proof that CAR-T validation is solved.",
+        "locator": "PMID:40460847; DOI:10.1016/S0140-6736(25)00860-8; NCT04581473; https://pubmed.ncbi.nlm.nih.gov/40460847/",
+        "linkedIds": [
+          "DQ-002",
+          "DQ-005"
+        ]
+      }
+    ],
+    "contextOnlyClinicalSourceIds": [
+      "SRC-002",
+      "SRC-011",
+      "SRC-016"
+    ],
+    "authorityFiles": [
+      "project-initiation/literature-review/records/dqs.jsonl",
+      "project-initiation/literature-review/records/claims.jsonl",
+      "project-initiation/literature-review/records/sources.jsonl",
+      "project-initiation/literature-review/exports/gate4_inputs.json"
+    ]
+  },
+  "gapLabels": [
+    {
+      "id": "GAP-EXPR-QUANT",
+      "label": "Expression threshold not specified",
+      "detail": "The fixture requires tumor and normal-tissue expression review, but it does not set a quantitative antigen-density threshold.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-003",
+          "role": "support"
+        },
+        {
+          "id": "DQ-003",
+          "role": "support"
+        }
+      ]
+    },
+    {
+      "id": "GAP-MODEL-SPECIFICITY",
+      "label": "Exact model panel requires local expert selection",
+      "detail": "The packet names model-system classes, not validated cell-line or organoid panels.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-002",
+          "role": "support"
+        },
+        {
+          "id": "SRC-009",
+          "role": "support"
+        }
+      ]
+    },
+    {
+      "id": "GAP-CONTROL-PANEL",
+      "label": "Control panel must be finalized by the lab",
+      "detail": "Control categories are listed, but reagent identity, construct details, and acceptance windows remain out of scope.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-003",
+          "role": "support"
+        },
+        {
+          "id": "CLAIM-009",
+          "role": "support"
+        }
+      ]
+    },
+    {
+      "id": "GAP-SAFETY-TRANSLATION",
+      "label": "Bench safety cannot be inferred from clinical context",
+      "detail": "Clinical and registry records are context-only and cannot resolve off-tumor safety for a validation program.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-004",
+          "role": "support"
+        },
+        {
+          "id": "CLAIM-006",
+          "role": "support"
+        },
+        {
+          "id": "SRC-004",
+          "role": "support"
+        }
+      ]
+    },
+    {
+      "id": "GAP-LIVE-RETRIEVAL",
+      "label": "Live retrieval disabled for core demo",
+      "detail": "The judgeable path uses the curated cache so API throttling cannot block export generation.",
+      "evidenceRefs": [
+        {
+          "id": "CLAIM-008",
+          "role": "support"
+        },
+        {
+          "id": "NULL-001",
+          "role": "support"
+        },
+        {
+          "id": "NULL-002",
+          "role": "support"
+        }
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "id": "patient_specific_treatment_advice",
+      "label": "Patient-specific treatment advice",
+      "response": "Block patient-specific treatment selection or eligibility advice."
+    },
+    {
+      "id": "exact_wet_lab_parameters",
+      "label": "Exact wet-lab parameters",
+      "response": "Block precise lab conditions, quantities, timing, recipes, and procedural settings."
+    },
+    {
+      "id": "executable_protocol_steps",
+      "label": "Executable protocol steps",
+      "response": "Block stepwise wet-lab protocols or instructions that could be executed directly."
+    },
+    {
+      "id": "clinical_efficacy_safety_proof_claims",
+      "label": "Clinical efficacy or safety proof claims",
+      "response": "Block proof claims from clinical or trial context."
+    },
+    {
+      "id": "regulatory_advice",
+      "label": "Regulatory advice",
+      "response": "Block regulatory filing, approval, or readiness guidance."
+    },
+    {
+      "id": "biosafety_clearance",
+      "label": "Biosafety clearance",
+      "response": "Block biosafety, containment, or institutional clearance decisions."
+    },
+    {
+      "id": "expert_replacement_claims",
+      "label": "Expert replacement claims",
+      "response": "Block claims that the tool can replace expert scientific review."
+    }
+  ],
+  "evaluationContractRefs": [
+    "TECH-001",
+    "DQ-001",
+    "DQ-003",
+    "DQ-005",
+    "CLAIM-007",
+    "CLAIM-009"
+  ]
+}

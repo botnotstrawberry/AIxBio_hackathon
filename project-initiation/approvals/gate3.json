@@ -1,0 +1,56 @@
+{
+  "gate": "gate3",
+  "title": "Gate 3: multi-agent literature audit",
+  "artifact": "LITERATURE_REVIEW_AUDIT.md",
+  "artifactPath": "/root/.openclaw/workspace/project-initiation/AIxBio_hackathon/LITERATURE_REVIEW_AUDIT.md",
+  "artifactSha256": "0efb6def6f865b4c006733aca4827cc28f5b3324e2f73b9791386ec2139ae3cb",
+  "isTest": false,
+  "approver": "human",
+  "source": "User webchat approval 2026-05-28T02:53Z: I approve gate 3 please continue",
+  "approvedAt": "2026-05-28T02:54:51Z",
+  "gate3_audit_contract_version": 2,
+  "gate4_carry_forward_register": [
+    {
+      "carry_forward_id": "G4CF-001",
+      "source_finding_ref": "CI-002",
+      "requires_gate4_handling": "yes",
+      "gate4_handling_type": "automated_evaluation",
+      "required_gate4_section": "## Automated evaluation criteria",
+      "summary": "Clinical and trial sources must be labeled context-only and must not support bench-protocol, efficacy, safety, or patient-treatment claims.",
+      "gate4_instruction": "Add an automated or mechanically checkable criterion that verifies trial/clinical records including SRC-002, SRC-011, and SRC-016 are displayed as context-only and never used as bench-method proof."
+    },
+    {
+      "carry_forward_id": "G4CF-002",
+      "source_finding_ref": "CI-002",
+      "requires_gate4_handling": "yes",
+      "gate4_handling_type": "falsification_condition",
+      "required_gate4_section": "## Failure or falsification conditions",
+      "summary": "Protocol-like or patient-specific outputs must fail the MVP evaluation.",
+      "gate4_instruction": "Define falsification cases for exact wet-lab parameters, executable protocol steps, patient-specific treatment advice, regulatory advice, biosafety clearance, and claims that TargetBench output is sufficient without expert review."
+    },
+    {
+      "carry_forward_id": "G4CF-003",
+      "source_finding_ref": "CI-003",
+      "requires_gate4_handling": "yes",
+      "gate4_handling_type": "evaluation_approach",
+      "required_gate4_section": "## Evaluation approach",
+      "summary": "The judgeable demo must be deterministic from a curated CLDN18.2 fixture/cache because live retrieval had recorded throttling/null events.",
+      "gate4_instruction": "Make the core evaluation run against the curated fixture/cache, with any live retrieval treated as optional enrichment and failure-tolerant behavior documented."
+    },
+    {
+      "carry_forward_id": "G4CF-004",
+      "source_finding_ref": "CI-003",
+      "requires_gate4_handling": "yes",
+      "gate4_handling_type": "success_condition",
+      "required_gate4_section": "## Success conditions",
+      "summary": "The MVP output must cover all TECH-001 sections and make provenance/gaps visible.",
+      "gate4_instruction": "Require the output to include target rationale, expression/off-tumor screen, model-system suggestions, assay modules, controls, readouts, safety gaps, go/no-go gates, source IDs/citations, caveats, and gap labels."
+    }
+  ],
+  "gate4_required_carry_forward_ids": [
+    "G4CF-001",
+    "G4CF-002",
+    "G4CF-003",
+    "G4CF-004"
+  ]
+}

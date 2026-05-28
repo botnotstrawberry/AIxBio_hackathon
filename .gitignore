@@ -18,3 +18,12 @@ venv/
 *.log
 tmp/
 temp/
+
+# OpenClaw local session/persona files; keep private runtime state out of repo.
+.openclaw/
+AGENTS.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md

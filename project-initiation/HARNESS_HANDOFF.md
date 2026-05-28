@@ -42,6 +42,8 @@
 - Do not produce exact wet-lab parameters, executable protocols, patient-specific treatment advice, regulatory advice, biosafety clearance, or claims that TargetBench replaces expert review.
 - Do not present clinical/trial records as bench-method proof, efficacy proof, safety proof, or evidence that CAR-T validation is solved.
 - Do not expand the MVP into a final CLDN18.2 scientific output corpus, a generic paper-search app, a VC diligence product, a clinical decision-support tool, or a production biomedical retrieval platform.
+- Do not perform live-demo planning or implementation outside `plan/live-demo-3-4-hour` unless the user explicitly names a replacement live-demo branch.
+- Do not merge `plan/live-demo-3-4-hour` into `main`, `master`, a default branch, or a release branch without the user's specific approval for that merge; a pushed branch, open PR, or passing validation is not merge approval.
 - Do not mutate OpenClaw runtime/config/package/service files, run gateway updates/restarts, enable Active Memory, or change the temporary hackathon branch state.
 - Do not deploy publicly, send external messages, spend money, access private keys, or perform destructive cleanup without a separate explicit human approval.
 
@@ -52,6 +54,11 @@
 
 ## Exact safe automation boundary
 After Gate 5 approval and a passing `handoff-guard`, automation may build only the repo-local TargetBench MVP in `/root/projects/AIxBio_hackathon`, grounded in the approved Gate 1-4 artifacts. The safe build target is a deterministic CLDN18.2 gastric/GEJ validation-planning demo with visible evidence provenance, caveats, gap labels, safety refusals/caveats, and Markdown/JSON exports. The handoff does not authorize clinical advice, wet-lab execution, paid-source retrieval, secret access, OpenClaw runtime mutation, or broad project-scope expansion.
+
+This handoff does not authorize merging or landing the live-demo branch. Any
+live-demo work remains isolated to `plan/live-demo-3-4-hour` unless the user
+explicitly names a replacement live-demo branch, and merge requires separate
+specific user approval.
 
 ## Overnight autonomy lane
 After Gate 5 approval and a passing `handoff-guard`, OpenClaw may execute every approved action token end-to-end without further human approval until final completion, true hard stop, or exhaustion of all approved work. Routine implementation choices, ordinary open-source dependency selection, local test fixes, README/demo updates, exact-path commits, and pushes to `botnotstrawberry/AIxBio_hackathon` do not require human check-ins when they stay inside this handoff.

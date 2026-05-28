@@ -182,6 +182,16 @@ The intended MVP path is:
 6. Add negative checks for unsafe or overclaimed output.
 7. Push non-secret finished artifacts to this repo.
 
+## Live-Demo Branch Boundary
+
+The live-demo plan is not part of the approved static MVP build boundary above.
+All live-demo planning and implementation work must stay on
+`plan/live-demo-3-4-hour` unless the user explicitly names a replacement
+live-demo branch. That branch may never be merged into `main`, `master`, a
+default branch, or a release branch without the user's specific approval for
+that merge. A pushed branch, open PR, or passing local validation is not merge
+approval.
+
 ## Overnight Autonomy Plan
 
 After Gate 5 is approved and `handoff-guard` passes, OpenClaw should continue

@@ -5,6 +5,21 @@ Date: 2026-05-28
 Baseline: current static MVP on `main` at `5060bc9`
 Current app: curated CLDN18.2 gastric/GEJ packet remains the judgeable path
 
+## Branch And Merge Lock
+
+This live-demo work is branch-isolated.
+
+- All live-demo planning and implementation work must happen only on
+  `plan/live-demo-3-4-hour` unless the user explicitly names a replacement
+  live-demo branch.
+- This branch may never be merged into `main`, `master`, a default branch, or
+  any release branch without the user's specific approval for that merge.
+- A pushed branch, open PR, or passing local validation is not merge approval.
+- Existing Gate 5 automation and MVP approval do not authorize landing this
+  live-demo branch.
+- If future work needs a different live-demo branch, stop and ask first rather
+  than creating or switching branches by implementation judgment.
+
 ## Executive Summary
 
 The current TargetBench MVP is now a good static demo: it turns the CLDN18.2
@@ -569,13 +584,14 @@ Preferred user-facing safety copy:
 
 ## Branch Recommendation
 
-Recommended implementation branch:
+Authorized live-demo branch:
 
-`feature/live-draft-mode-beta`
+`plan/live-demo-3-4-hour`
 
 Do not resurrect the old `live-draft-mode-plan-20260528` branch unless it is
-needed for historical comparison. The plan should be kept as a committed Markdown
-artifact so the implementation branch can reference it directly.
+needed for historical comparison. Do not create a separate implementation branch
+unless the user explicitly approves that branch name first. This branch remains
+non-mergeable until the user gives specific merge approval.
 
 ## Open Questions
 

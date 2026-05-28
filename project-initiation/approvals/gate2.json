@@ -1,0 +1,172 @@
+{
+  "gate": "gate2",
+  "title": "Gate 2: literature review",
+  "artifact": "LITERATURE_REVIEW.md",
+  "artifactPath": "/root/.openclaw/workspace/project-initiation/AIxBio_hackathon/LITERATURE_REVIEW.md",
+  "artifactSha256": "b1ead38ae482bd0a5d0e0b87e17a9f434c352a166386f1a15aee08254ddd0cc3",
+  "approval_target": "literature-review/MANIFEST.json",
+  "schema_version": "gate2-agent-evidence-pack-v1",
+  "manifest_sha256": "sha256:6e6def9e6eeb39d48719a51bc46ff78f27ace2f5b3927587af880a099c02cfbd",
+  "included_files": [
+    {
+      "path": "LITERATURE_REVIEW.md",
+      "sha256": "sha256:b1ead38ae482bd0a5d0e0b87e17a9f434c352a166386f1a15aee08254ddd0cc3",
+      "role": "narrative",
+      "kind": "primary_markdown"
+    },
+    {
+      "path": "literature-review/FIRST_LOAD.md",
+      "sha256": "sha256:bf2da0050d59aa8cd330e18153f35a0a1e0f1d528f88cf0bf7313399d39328a0",
+      "role": "orientation",
+      "kind": "first_load"
+    },
+    {
+      "path": "literature-review/records/dqs.jsonl",
+      "sha256": "sha256:f819e1acb3035855cbabe235c37f7833538c0abcd045a9452468eb331d8f22d6",
+      "role": "authoritative_record",
+      "kind": "dq"
+    },
+    {
+      "path": "literature-review/records/claims.jsonl",
+      "sha256": "sha256:1b5b3ad96b9e9727e6c32c769b2656171d52d37b8e2b684bab34a90d59667552",
+      "role": "authoritative_record",
+      "kind": "claim"
+    },
+    {
+      "path": "literature-review/records/sources.jsonl",
+      "sha256": "sha256:2aa84e85872e8d4eaa73e41694418619e6169c396a77bb59733482209c888244",
+      "role": "authoritative_record",
+      "kind": "source"
+    },
+    {
+      "path": "literature-review/records/locators.jsonl",
+      "sha256": "sha256:bc63d8cd54011ce039e8abdbce5466fca172acb726adf8c24659fe14bc78002b",
+      "role": "authoritative_record",
+      "kind": "locator"
+    },
+    {
+      "path": "literature-review/records/contradictions.jsonl",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "authoritative_record",
+      "kind": "contradiction"
+    },
+    {
+      "path": "literature-review/records/nulls.jsonl",
+      "sha256": "sha256:b7cc95a5a4e491ef7c8f6e49b870da3056239520a4481cc378f0e987bb460460",
+      "role": "authoritative_record",
+      "kind": "null"
+    },
+    {
+      "path": "literature-review/records/conflicts.jsonl",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "authoritative_record",
+      "kind": "conflict"
+    },
+    {
+      "path": "literature-review/records/events.jsonl",
+      "sha256": "sha256:d1222cb21ce1fc3b0ef017d848f6938e0a1f0cf8eaf5b3dd59ae0355f6332b7e",
+      "role": "authoritative_record",
+      "kind": "event"
+    },
+    {
+      "path": "literature-review/records/invalid_outputs.jsonl",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "authoritative_record",
+      "kind": "invalid_output"
+    },
+    {
+      "path": "literature-review/records/technical_objects.jsonl",
+      "sha256": "sha256:b136f64454b76c58288b911e378bdcc42a090781a097828600ba1e74b82a5c75",
+      "role": "authoritative_record",
+      "kind": "technical_object"
+    },
+    {
+      "path": "literature-review/records/formulas.jsonl",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "authoritative_record",
+      "kind": "formula"
+    },
+    {
+      "path": "literature-review/records/symbols.jsonl",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "authoritative_record",
+      "kind": "symbol"
+    },
+    {
+      "path": "literature-review/records/derivations.jsonl",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "authoritative_record",
+      "kind": "derivation"
+    },
+    {
+      "path": "literature-review/retrieval/retrieval_log.jsonl",
+      "sha256": "sha256:0dcbf0ef59555eb7844d6fc183315442793ec719bf4afa2b5935741ac8bb5290",
+      "role": "retrieval_record",
+      "kind": "retrieval_log"
+    },
+    {
+      "path": "literature-review/retrieval/misses.jsonl",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "retrieval_record",
+      "kind": "miss"
+    },
+    {
+      "path": "literature-review/retrieval/search_surfaces.jsonl",
+      "sha256": "sha256:4cf0239edcb0b045887b5859c7112247985c9a82b5ac388a249249bce7e5e138",
+      "role": "retrieval_record",
+      "kind": "search_surface"
+    },
+    {
+      "path": "literature-review/indexes/by_dq.json",
+      "sha256": "sha256:1057ab25d39e4ceb912f7355aa2ec8c94353babebb30310f5aa9206bb3f3c799",
+      "role": "deterministic_index",
+      "kind": "by_dq"
+    },
+    {
+      "path": "literature-review/indexes/by_source.json",
+      "sha256": "sha256:57eea9f147b2cfd346f9b6fade26b0df5d28fb3a783e52e4426fad8daea2cf1c",
+      "role": "deterministic_index",
+      "kind": "by_source"
+    },
+    {
+      "path": "literature-review/indexes/by_gate4_use_status.json",
+      "sha256": "sha256:30b9259362280c4c98428dc622090af7d7358e4e74d802d7588867d4c0280dd4",
+      "role": "deterministic_index",
+      "kind": "by_gate4_use_status"
+    },
+    {
+      "path": "literature-review/indexes/by_confidentiality.json",
+      "sha256": "sha256:2a818d544be50c7ca440b43ed7b5b8a481d4715b26873d4cbd2c5af252023147",
+      "role": "deterministic_index",
+      "kind": "by_confidentiality"
+    },
+    {
+      "path": "literature-review/indexes/by_technical_object.json",
+      "sha256": "sha256:1a2284786047352358780c989b768f8236de61f2db5c940f79d021f9bc344a45",
+      "role": "deterministic_index",
+      "kind": "by_technical_object"
+    },
+    {
+      "path": "literature-review/exports/gate4_inputs.json",
+      "sha256": "sha256:c50f6fb2bb88472de20c20387584da14b7dfcaa3f848f1f058dce8f774f53f23",
+      "role": "deterministic_export",
+      "kind": "gate4_inputs"
+    },
+    {
+      "path": "literature-review/exports/gate3_audit_targets.json",
+      "sha256": "sha256:ac3319a2fe707815df820e257a066d343981c314ed12cff2e4ac2d4554caac51",
+      "role": "deterministic_export",
+      "kind": "gate3_audit_targets"
+    },
+    {
+      "path": "literature-review/exports/blocked_items.json",
+      "sha256": "sha256:b4c9ebf0d4545efd9ad61c07665462d7169b4d453c127b4b20ecac927a7a5d2b",
+      "role": "deterministic_export",
+      "kind": "blocked_items"
+    }
+  ],
+  "isTest": false,
+  "approver": "human",
+  "source": "User webchat approval 2026-05-28T02:38Z: Ok I approve. Please continue to the next step.",
+  "approvedAt": "2026-05-28T02:39:07Z"
+}

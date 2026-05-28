@@ -202,10 +202,15 @@ Enabled providers:
 
 - Europe PMC REST search for article metadata and abstracts where available.
 - ClinicalTrials.gov API v2 for clinical/trial background only.
+- OpenAlex Works API for no-key scholarly metadata.
+- PubMed / NCBI E-utilities for no-key PMID metadata. Rate limits, HTTP 429s,
+  and timeouts become provider failure cards and retrieval gaps; they do not
+  break the curated packet or the rest of live mode.
 
 Live beta behavior:
 
-- Normalizes records into `LIVE-EPMC-*` and `LIVE-CTG-*` source cards.
+- Normalizes records into `LIVE-EPMC-*`, `LIVE-CTG-*`, `LIVE-OA-*`, and
+  `LIVE-PUBMED-*` source cards.
 - Shows provider statuses, partial failures, source cards, evidence clusters,
   and a deterministic draft scaffold.
 - Uses `live_context_only` output for live context, including unsupported
@@ -221,10 +226,22 @@ Cuts for the 3-4 hour branch:
 - No AI or LLM integration.
 - No local AI server.
 - No browser-exposed LLM/API key.
-- No OpenAlex adapter.
 - No live Markdown export.
 - No claim that live retrieval is complete, curated, or scientifically
   validated.
+
+Future source adds after this branch:
+
+- Crossref for DOI and publisher metadata.
+- PubMed Central / PMC Open Access for open full-text and richer article
+  context.
+- Semantic Scholar for citation/context metadata, subject to rate-limit
+  behavior.
+- Unpaywall for open-access lookup.
+- NIH RePORTER for grant and program context.
+- bioRxiv, medRxiv, and ChemRxiv for preprint discovery with clear preprint
+  caveats.
+- DOAJ for open-journal metadata.
 
 Suggested manual smoke:
 

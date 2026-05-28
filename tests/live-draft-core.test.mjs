@@ -69,6 +69,9 @@ describe("live draft core", () => {
 
       expect(queries.articleQueries).toContain("B7-H3 glioblastoma CAR-T");
       expect(queries.trialQuery).toBe("B7-H3 glioblastoma CAR-T");
+      expect(queries.metadataQueries).toContain(
+        "B7-H3 glioblastoma CAR-T validation expression off-tumor"
+      );
       expect(fetchCalled).toBe(false);
     } finally {
       globalThis.fetch = originalFetch;

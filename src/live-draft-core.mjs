@@ -36,19 +36,35 @@ export async function runLiveDraftContext(input = {}, options = {}) {
   const providers = [
     {
       provider: "Europe PMC",
-      run: () => fetchEuropePmcSources(normalized, { ...providerOptions, limit: options.europePmcLimit ?? 6 })
+      run: () =>
+        fetchEuropePmcSources(normalized, {
+          ...providerOptions,
+          limit: options.europePmcLimit ?? 6
+        })
     },
     {
       provider: "ClinicalTrials.gov",
-      run: () => fetchClinicalTrialsSources(normalized, { ...providerOptions, limit: options.clinicalTrialsLimit ?? 5 })
+      run: () =>
+        fetchClinicalTrialsSources(normalized, {
+          ...providerOptions,
+          limit: options.clinicalTrialsLimit ?? 5
+        })
     },
     {
       provider: "OpenAlex",
-      run: () => fetchOpenAlexSources(normalized, { ...providerOptions, limit: options.openAlexLimit ?? 5 })
+      run: () =>
+        fetchOpenAlexSources(normalized, {
+          ...providerOptions,
+          limit: options.openAlexLimit ?? 5
+        })
     },
     {
       provider: "PubMed",
-      run: () => fetchPubMedSources(normalized, { ...providerOptions, limit: options.pubMedLimit ?? 5 })
+      run: () =>
+        fetchPubMedSources(normalized, {
+          ...providerOptions,
+          limit: options.pubMedLimit ?? 5
+        })
     }
   ];
 

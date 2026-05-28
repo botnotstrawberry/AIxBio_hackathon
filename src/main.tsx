@@ -465,7 +465,10 @@ function LiveDraftView({
           <Search size={24} aria-hidden="true" />
           <div>
             <h2>Fetching public context</h2>
-            <p>Europe PMC and ClinicalTrials.gov are queried only after this explicit action.</p>
+            <p>
+              Europe PMC, ClinicalTrials.gov, OpenAlex, and PubMed are queried only after this
+              explicit action.
+            </p>
           </div>
         </div>
       </div>

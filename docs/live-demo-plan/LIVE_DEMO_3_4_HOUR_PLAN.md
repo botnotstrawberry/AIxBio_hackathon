@@ -1,9 +1,15 @@
 # TargetBench Live Demo 3-4 Hour Plan
 
-Status: planning artifact for a future branch
+Status: branch implementation plan
 Date: 2026-05-28
 Baseline: current static MVP on `main` at `5060bc9`
 Current app: curated CLDN18.2 gastric/GEJ packet remains the judgeable path
+
+Scope amendment, 2026-05-28: the user approved adding OpenAlex and PubMed to
+this same live-demo branch. PubMed must be low-volume, no-key, and
+failure-tolerant: throttling, HTTP 429s, timeouts, malformed responses, or empty
+responses must surface as provider failure/gap cards and must not break the
+curated packet or other live providers. AI remains out of scope.
 
 ## Branch And Merge Lock
 
@@ -100,7 +106,8 @@ generator.
 In scope:
 
 - Mode control: `Curated packet` default, `Live draft beta` optional.
-- Public-source adapters for Europe PMC and ClinicalTrials.gov.
+- Public-source adapters for Europe PMC, ClinicalTrials.gov, OpenAlex, and
+  PubMed.
 - Query builder from target, disease, and modality.
 - Hard timeouts and partial-failure handling.
 - Normalized live source records.
@@ -121,29 +128,27 @@ Out of scope:
   biosafety clearance, or claims of clinical/scientific validation.
 - AI integration in the 3-4 hour branch. Treat AI as a later branch after the
   no-key live source path is working and tested.
-- OpenAlex in the 3-4 hour branch. Keep the first live implementation to Europe
-  PMC plus ClinicalTrials.gov.
 
 ## Public Source Plan
 
 Use no-key public APIs first.
 
-Recommended first two:
+Enabled providers:
 
 - Europe PMC REST search for article metadata and abstracts where available.
   Official docs: <https://europepmc.org/RestfulWebService>
 - ClinicalTrials.gov API v2 for trial-status context only.
   Official docs: <https://clinicaltrials.gov/data-api/about-api>
+- OpenAlex Works API for no-key scholarly metadata.
+  Official docs: <https://docs.openalex.org/api-entities/works>
+- PubMed / NCBI E-utilities for no-key PMID metadata. Keep result limits small
+  and treat throttling, HTTP 429s, timeouts, malformed responses, and empty
+  results as live retrieval gaps, not application failures.
+  Official docs: <https://www.ncbi.nlm.nih.gov/books/NBK25501/>
 
 Explicitly cut from the 3-4 hour branch:
 
-- OpenAlex Works API for broader scholarly metadata.
-  Official docs: <https://docs.openalex.org/api-entities/works>
 - AI drafting.
-
-Do not use PubMed E-utilities in the 3-4 hour branch unless Europe PMC and
-ClinicalTrials.gov are already working. The project already saw NCBI throttling
-during Gate 2, and this branch needs predictable demo behavior.
 
 ClinicalTrials.gov records must always be labeled:
 
@@ -244,7 +249,8 @@ Small limits:
 
 - Europe PMC: 5-8 records per query, deduped.
 - ClinicalTrials.gov: 5 records.
-- OpenAlex: cut by default.
+- OpenAlex: 5 works.
+- PubMed: 5 PMIDs via ESearch plus ESummary metadata only.
 
 Timeouts:
 
@@ -256,6 +262,8 @@ Failure behavior:
 - One provider fails: show partial results plus provider failure card.
 - All providers fail: show `Live context unavailable` and keep curated packet
   usable.
+- PubMed throttles or returns HTTP 429: show `GAP-LIVE-RETRIEVAL`; do not retry
+  aggressively, block the UI, or fail the live draft.
 - Unsupported target: show live context only as draft context; do not claim a
   validated packet exists. Use a distinct output state such as
   `live_context_only`, not `validation_packet`.
@@ -389,12 +397,18 @@ Minimum providers:
 
 - Europe PMC
 - ClinicalTrials.gov
+- OpenAlex
+- PubMed
 
 Acceptance:
 
 - mocked Europe PMC success normalizes to `LIVE-EPMC-*`
 - mocked ClinicalTrials.gov success normalizes to `LIVE-CTG-*`
+- mocked OpenAlex success normalizes to `LIVE-OA-*`
+- mocked PubMed success normalizes to `LIVE-PUBMED-*`
 - timeout returns a provider failure object, not an exception that breaks the UI
+- PubMed throttling or HTTP 429 returns a provider failure object and
+  `GAP-LIVE-RETRIEVAL`
 
 ### 1:15-1:55 - Live Draft Core
 
@@ -485,7 +499,7 @@ Record:
 - which providers are enabled
 - which targets were tried
 - which providers failed or were cut
-- explicit note that AI/OpenAlex/live export were cut from the 3-4 hour branch
+- explicit note that AI/live export were cut from the 3-4 hour branch
 - exact demo commands
 
 ## Cut Line
@@ -493,12 +507,11 @@ Record:
 Cut in this order:
 
 1. AI endpoint and AI UI. These are already out of scope for this branch.
-2. OpenAlex. It is cut by default.
-3. Live Markdown export.
-4. Fancy ranking or scoring.
-5. Provider status polish.
-6. Multiple query variants.
-7. Extra UI polish.
+2. Live Markdown export.
+3. Fancy ranking or scoring.
+4. Provider status polish.
+5. Multiple query variants.
+6. Extra UI polish.
 
 Do not cut:
 
@@ -534,8 +547,11 @@ The branch is acceptable only if:
   outcome, efficacy, safety, or readiness claims.
 - Deterministic live scaffold cannot emit protocol steps, exact parameters,
   patient advice, regulatory/biosafety guidance, safety proof, or efficacy proof.
-- No AI code, OpenAlex adapter, local AI server, live export, or bundled key is
-  required for the 3-4 hour implementation.
+- PubMed throttling, HTTP 429s, timeouts, malformed responses, and empty results
+  are represented as provider failures or zero-record results rather than thrown
+  UI failures.
+- No AI code, local AI server, live export, or bundled key is required for the
+  3-4 hour implementation.
 - The deterministic live scaffold demonstrates the live source organization
   workflow without AI.
 
@@ -599,4 +615,4 @@ non-mergeable until the user gives specific merge approval.
 - Should live beta export be UI-only for the first branch, or should Markdown
   export be revisited in a later branch?
 - After the no-key live beta works, should the next branch prioritize AI draft
-  support, OpenAlex, or export support?
+  support, live export support, or another provider family?

@@ -1,0 +1,4225 @@
+{
+  "items": {
+    "SRC-001": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "Keep values qualitative or configurable unless a source-backed fixture explicitly supports them.",
+          "claim_kind": "decision",
+          "claim_text": "The MVP should generate sectioned planning modules and decision gates, not a step-by-step protocol; model systems, cytotoxicity/activation/potency readouts, controls, and failure signals are the right level of specificity.",
+          "confidence": "medium",
+          "confidence_reason": "Direct target and methodological evidence supports the output structure, but not full protocol generation.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-001",
+            "DQ-003"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not provide detailed experimental parameters as if experimentally validated by this tool.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "Gate 2 only establishes that safety/off-tumor concerns are relevant; it does not quantify clinical risk.",
+          "claim_kind": "observation",
+          "claim_text": "CLDN18.2 demo output must foreground on-target/off-tumor safety and normal-tissue expression caveats rather than presenting the target as cleanly safe.",
+          "confidence": "medium",
+          "confidence_reason": "A dedicated open-access toxicity-modeling paper makes the safety caveat central, but details require rereading before implementation.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-004"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim CLDN18.2 targeting is safe, unsafe, approved, or appropriate for any patient.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-001",
+            "LOC-002"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-001",
+            "SRC-002"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "This is a build-feasibility comparison, not a scientific dismissal of B7-H3.",
+          "claim_kind": "inference",
+          "claim_text": "B7-H3 glioblastoma remains scientifically plausible and sponsor-relevant, but the retrieved evidence is less mature for the immediate MVP demo than CLDN18.2 gastric cancer.",
+          "confidence": "medium",
+          "confidence_reason": "B7-H3 has trial activity and recent papers, but fewer mature demo anchors surfaced under the allowed-source budget.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "indirect_empirical",
+          "forbidden_overclaim": "Do not claim B7-H3 is inferior biologically or clinically.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-005",
+          "locator_ids": [
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-001",
+            "LOC-011"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-001",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "A credible TargetBench packet should contain the life-science-native elements in TECH-001: target rationale, expression/off-tumor checks, model systems, assay modules, controls, readouts, safety gaps, and go/no-go gates. This is enough for a prototype planning artifact, not a protocol.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The elements are supported by target/safety and assay-method sources, but exact lab-level details remain out of scope.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "complete protocol",
+            "validated experimental design",
+            "regulatory-ready packet"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether TECH-001 overstates bench specificity or omits essential off-tumor/control sections.",
+          "gate4_implication": "Gate 4 should require all TECH-001 sections and visible caveats/gap labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-009"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Evidence categories transfer to a planner; protocol parameters do not."
+        },
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        },
+        {
+          "answer": "The MVP can support a sectioned validation-planning packet, source-backed assay/readout/control suggestions, safety gaps, and go/no-go gates. It should not output a complete executable protocol, exact wet-lab parameters, or clinical/regulatory decisions.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The product boundary is strongly supported by assay-method and safety/RAG-risk sources, but exact UI acceptance belongs to Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "protocol generator",
+            "lab-ready protocol",
+            "clinical decision support"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit all output sections for protocol-like language or missing caveats.",
+          "gate4_implication": "Gate 4 should define deterministic section-completeness checks and forbidden-output tests.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-009",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Moving from literature categories to software sections is an implementation inference."
+        },
+        {
+          "answer": "TargetBench needs explicit expert-review, safety, uncertainty, source-traceability, and non-clinical-use language. CLDN18.2 off-tumor safety is a central demo caveat, and AI/RAG sources justify visible provenance and gap labeling.",
+          "claim_ids": [
+            "CLAIM-004",
+            "CLAIM-007",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The safety and AI-reliability rationale is clear, but specific wording must be checked in Gate 4/UI.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "hallucination-free",
+            "expert replacement",
+            "clinical advice",
+            "biosafety clearance"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+          "gate4_implication": "Gate 4 must require disclaimers, source traceability, gap labels, and no clinical/protocol output.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Adjacent RAG literature supports guardrails but not domain truth."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-003",
+            "CLAIM-004",
+            "CLAIM-005"
+          ],
+          "confidence": "medium",
+          "id": "LOC-001",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:35534566; PMCID:PMC9205778; DOI:10.1038/s41591-022-01800-8; https://europepmc.org/article/MED/35534566",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-001",
+          "support_snippet": "Phase 1 interim CT041 paper in gastrointestinal cancers; open-access PubMed Central record; high citation count relative to other retrieved demo-target sources.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003; broad_academic / exact_title_lookup",
+        "cite_for": "CT041 / CLDN18.2 CAR-T clinical evidence in gastrointestinal cancers and demo-target maturity.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as proof that TargetBench can design or validate a complete wet-lab protocol.",
+        "evidence_directness": "direct_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-001",
+        "key_observations": "Phase 1 interim CT041 paper in gastrointestinal cancers; open-access PubMed Central record; high citation count relative to other retrieved demo-target sources.",
+        "limitations": "Abstract was not returned in the Europe PMC exact lookup output; detailed trial interpretation needs reread from open full text during implementation.",
+        "linked_dq_ids": [
+          "DQ-001",
+          "DQ-002",
+          "DQ-003",
+          "DQ-004"
+        ],
+        "locator": "PMID:35534566; PMCID:PMC9205778; DOI:10.1038/s41591-022-01800-8; https://europepmc.org/article/MED/35534566",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before using any efficacy, safety, dose, or protocol-like detail in the MVP.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2022",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Clinical trial evidence supports translational maturity, not bench assay design by itself."
+      }
+    },
+    "SRC-002": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "Gate 2 only establishes that safety/off-tumor concerns are relevant; it does not quantify clinical risk.",
+          "claim_kind": "observation",
+          "claim_text": "CLDN18.2 demo output must foreground on-target/off-tumor safety and normal-tissue expression caveats rather than presenting the target as cleanly safe.",
+          "confidence": "medium",
+          "confidence_reason": "A dedicated open-access toxicity-modeling paper makes the safety caveat central, but details require rereading before implementation.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-004"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim CLDN18.2 targeting is safe, unsafe, approved, or appropriate for any patient.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-001",
+            "LOC-002"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-001",
+            "SRC-002"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "Trial status is time-sensitive and must be displayed as context-only.",
+          "claim_kind": "inference",
+          "claim_text": "ClinicalTrials.gov records can be used in TargetBench as translational-status context and source provenance, but not as efficacy or safety proof.",
+          "confidence": "high",
+          "confidence_reason": "Official registry records clearly support status context but not outcomes.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002",
+            "DQ-005"
+          ],
+          "evidence_directness": "official_spec",
+          "forbidden_overclaim": "Do not infer clinical benefit from registry presence or phase labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-006",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-002"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-002"
+          ],
+          "source_quality": "official_docs",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        },
+        {
+          "answer": "TargetBench needs explicit expert-review, safety, uncertainty, source-traceability, and non-clinical-use language. CLDN18.2 off-tumor safety is a central demo caveat, and AI/RAG sources justify visible provenance and gap labeling.",
+          "claim_ids": [
+            "CLAIM-004",
+            "CLAIM-007",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The safety and AI-reliability rationale is clear, but specific wording must be checked in Gate 4/UI.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "hallucination-free",
+            "expert replacement",
+            "clinical advice",
+            "biosafety clearance"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+          "gate4_implication": "Gate 4 must require disclaimers, source traceability, gap labels, and no clinical/protocol output.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Adjacent RAG literature supports guardrails but not domain truth."
+        },
+        {
+          "answer": "Judgeability should be proven by output completeness for TECH-001, citation/record-ID traceability, explicit gap labels, target-selection rationale, deterministic demo fixture behavior, and boundaries against protocol or clinical claims.",
+          "claim_ids": [
+            "CLAIM-006",
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The checks follow from source policy, API reality, and RAG-risk evidence; exact thresholds must be defined in Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "comprehensive literature review",
+            "fully automated scientist",
+            "complete evidence base"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-005",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-012",
+            "SRC-015"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "low",
+          "transfer_risk_reason": "Completeness/provenance checks are directly implementable software criteria."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-004",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "id": "LOC-002",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:38830992; DOI:10.1038/s41591-024-03037-z; https://europepmc.org/article/MED/38830992",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-002",
+          "support_snippet": "Final-results Nature Medicine record for CLDN18.2-specific CAR T cells; not open access in Europe PMC metadata; high citation count for a recent article.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003; exact_title_lookup",
+        "cite_for": "Final-results metadata for CLDN18.2-specific CAR T cells in gastrointestinal cancers.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite paywalled full text or infer details not visible in free metadata/abstract.",
+        "evidence_directness": "direct_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-002",
+        "key_observations": "Final-results Nature Medicine record for CLDN18.2-specific CAR T cells; not open access in Europe PMC metadata; high citation count for a recent article.",
+        "limitations": "Europe PMC metadata marked open access N; use metadata only unless an authorized open version is found.",
+        "linked_dq_ids": [
+          "DQ-002",
+          "DQ-004"
+        ],
+        "locator": "PMID:38830992; DOI:10.1038/s41591-024-03037-z; https://europepmc.org/article/MED/38830992",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "If final-result details become load-bearing for Gate 4 or the demo narrative.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2024",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Important maturity signal, but full interpretation is limited by access policy."
+      }
+    },
+    "SRC-003": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001"
+          ],
+          "confidence": "medium",
+          "id": "LOC-003",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:38316518; PMCID:PMC10860094; DOI:10.1136/jitc-2023-007927; https://europepmc.org/article/MED/38316518",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-003",
+          "support_snippet": "Open-access case report for metastatic gastric cancer target-lesion response with Claudin18.2-CAR T cells, useful as context but not as primary demo-selection evidence.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003; exact_title_lookup",
+        "cite_for": "Case-level CLDN18.2-CAR T translational context in metastatic gastric cancer.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not generalize a case report to broad efficacy claims.",
+        "evidence_directness": "direct_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-003",
+        "key_observations": "Open-access case report for metastatic gastric cancer target-lesion response with Claudin18.2-CAR T cells, useful as context but not as primary demo-selection evidence.",
+        "limitations": "Case-level evidence has high transfer risk for product requirements.",
+        "linked_dq_ids": [
+          "DQ-002"
+        ],
+        "locator": "PMID:38316518; PMCID:PMC10860094; DOI:10.1136/jitc-2023-007927; https://europepmc.org/article/MED/38316518",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "If used in any public demo text beyond contextual citation.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2024",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "high",
+        "transfer_risk_reason": "Single-case context should not drive broad target-validation decisions."
+      }
+    },
+    "SRC-004": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "The packet can suggest modules and evidence requirements, not exact wet-lab conditions.",
+          "claim_kind": "inference",
+          "claim_text": "A credible cell therapy target-validation packet needs at least target-expression rationale, off-tumor/safety checks, model-system choice, assay/readout modules, controls, and explicit go/no-go gaps.",
+          "confidence": "medium",
+          "confidence_reason": "Assay and safety categories are supported, but source-to-product translation requires expert review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-001",
+            "DQ-003"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not output a complete executable protocol or imply lab-ready validation without expert review.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-002",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "Keep values qualitative or configurable unless a source-backed fixture explicitly supports them.",
+          "claim_kind": "decision",
+          "claim_text": "The MVP should generate sectioned planning modules and decision gates, not a step-by-step protocol; model systems, cytotoxicity/activation/potency readouts, controls, and failure signals are the right level of specificity.",
+          "confidence": "medium",
+          "confidence_reason": "Direct target and methodological evidence supports the output structure, but not full protocol generation.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-001",
+            "DQ-003"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not provide detailed experimental parameters as if experimentally validated by this tool.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "Gate 2 only establishes that safety/off-tumor concerns are relevant; it does not quantify clinical risk.",
+          "claim_kind": "observation",
+          "claim_text": "CLDN18.2 demo output must foreground on-target/off-tumor safety and normal-tissue expression caveats rather than presenting the target as cleanly safe.",
+          "confidence": "medium",
+          "confidence_reason": "A dedicated open-access toxicity-modeling paper makes the safety caveat central, but details require rereading before implementation.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-004"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim CLDN18.2 targeting is safe, unsafe, approved, or appropriate for any patient.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-001",
+            "LOC-002"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-001",
+            "SRC-002"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "The product can still be useful if it produces structured planning prompts, checks, and gaps.",
+          "claim_kind": "decision",
+          "claim_text": "TargetBench should frame recommendations as expert-review inputs for translational scientists, not clinical advice, regulatory advice, biosafety clearance, or complete lab instructions.",
+          "confidence": "medium",
+          "confidence_reason": "Safety and RAG-risk sources both support strict boundary language.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-003",
+            "DQ-004"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not present output as approved, sufficient, patient-specific, or executable.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-009",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "A credible TargetBench packet should contain the life-science-native elements in TECH-001: target rationale, expression/off-tumor checks, model systems, assay modules, controls, readouts, safety gaps, and go/no-go gates. This is enough for a prototype planning artifact, not a protocol.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The elements are supported by target/safety and assay-method sources, but exact lab-level details remain out of scope.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "complete protocol",
+            "validated experimental design",
+            "regulatory-ready packet"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether TECH-001 overstates bench specificity or omits essential off-tumor/control sections.",
+          "gate4_implication": "Gate 4 should require all TECH-001 sections and visible caveats/gap labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-009"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Evidence categories transfer to a planner; protocol parameters do not."
+        },
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        },
+        {
+          "answer": "The MVP can support a sectioned validation-planning packet, source-backed assay/readout/control suggestions, safety gaps, and go/no-go gates. It should not output a complete executable protocol, exact wet-lab parameters, or clinical/regulatory decisions.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The product boundary is strongly supported by assay-method and safety/RAG-risk sources, but exact UI acceptance belongs to Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "protocol generator",
+            "lab-ready protocol",
+            "clinical decision support"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit all output sections for protocol-like language or missing caveats.",
+          "gate4_implication": "Gate 4 should define deterministic section-completeness checks and forbidden-output tests.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-009",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Moving from literature categories to software sections is an implementation inference."
+        },
+        {
+          "answer": "TargetBench needs explicit expert-review, safety, uncertainty, source-traceability, and non-clinical-use language. CLDN18.2 off-tumor safety is a central demo caveat, and AI/RAG sources justify visible provenance and gap labeling.",
+          "claim_ids": [
+            "CLAIM-004",
+            "CLAIM-007",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The safety and AI-reliability rationale is clear, but specific wording must be checked in Gate 4/UI.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "hallucination-free",
+            "expert replacement",
+            "clinical advice",
+            "biosafety clearance"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+          "gate4_implication": "Gate 4 must require disclaimers, source traceability, gap labels, and no clinical/protocol output.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Adjacent RAG literature supports guardrails but not domain truth."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-004",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "id": "LOC-004",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41176582; PMCID:PMC12579598; DOI:10.1038/s41467-025-65148-6; https://europepmc.org/article/MED/41176582",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-004",
+          "support_snippet": "Open-access Nature Communications paper specifically modeling and addressing on-target/off-tumor toxicity for CLDN18.2 targeted immunotherapies.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003; VSTEP-004",
+        "cite_for": "CLDN18.2 on-target/off-tumor toxicity concern and need for safety/off-tumor gates.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as showing that CLDN18.2 targeting is always unsafe or always safe.",
+        "evidence_directness": "direct_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-004",
+        "key_observations": "Open-access Nature Communications paper specifically modeling and addressing on-target/off-tumor toxicity for CLDN18.2 targeted immunotherapies.",
+        "limitations": "The Gate 2 pass used metadata and title-level relevance; implementation should reread methods/results before detailed safety language.",
+        "linked_dq_ids": [
+          "DQ-001",
+          "DQ-002",
+          "DQ-003",
+          "DQ-004"
+        ],
+        "locator": "PMID:41176582; PMCID:PMC12579598; DOI:10.1038/s41467-025-65148-6; https://europepmc.org/article/MED/41176582",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before coding detailed off-tumor checklist text.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2025",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Safety-model evidence must be translated cautiously into generic validation planning."
+      }
+    },
+    "SRC-005": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "A credible TargetBench packet should contain the life-science-native elements in TECH-001: target rationale, expression/off-tumor checks, model systems, assay modules, controls, readouts, safety gaps, and go/no-go gates. This is enough for a prototype planning artifact, not a protocol.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The elements are supported by target/safety and assay-method sources, but exact lab-level details remain out of scope.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "complete protocol",
+            "validated experimental design",
+            "regulatory-ready packet"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether TECH-001 overstates bench specificity or omits essential off-tumor/control sections.",
+          "gate4_implication": "Gate 4 should require all TECH-001 sections and visible caveats/gap labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-009"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Evidence categories transfer to a planner; protocol parameters do not."
+        },
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001"
+          ],
+          "confidence": "medium",
+          "id": "LOC-005",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41517852; PMCID:PMC12802060; DOI:10.5230/jgc.2026.26.e10; https://europepmc.org/article/MED/41517852",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-005",
+          "support_snippet": "Open-access 2026 review on CLDN18.2 in gastric cancer and therapeutic landscape, useful for target-rationale context.",
+          "support_type": "indirect_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003; broad_academic",
+        "cite_for": "Current therapeutic landscape and target context for CLDN18.2 in gastric cancer.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as direct bench assay validation evidence.",
+        "evidence_directness": "indirect_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "current",
+        "freshness_status": "current_enough",
+        "id": "SRC-005",
+        "key_observations": "Open-access 2026 review on CLDN18.2 in gastric cancer and therapeutic landscape, useful for target-rationale context.",
+        "limitations": "Review evidence is secondary and should not override direct trial or toxicity/model evidence.",
+        "linked_dq_ids": [
+          "DQ-001",
+          "DQ-002"
+        ],
+        "locator": "PMID:41517852; PMCID:PMC12802060; DOI:10.5230/jgc.2026.26.e10; https://europepmc.org/article/MED/41517852",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before generating target-rationale copy.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2026",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Review articles compress heterogeneous studies."
+      }
+    },
+    "SRC-006": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "The packet can suggest modules and evidence requirements, not exact wet-lab conditions.",
+          "claim_kind": "inference",
+          "claim_text": "A credible cell therapy target-validation packet needs at least target-expression rationale, off-tumor/safety checks, model-system choice, assay/readout modules, controls, and explicit go/no-go gaps.",
+          "confidence": "medium",
+          "confidence_reason": "Assay and safety categories are supported, but source-to-product translation requires expert review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-001",
+            "DQ-003"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not output a complete executable protocol or imply lab-ready validation without expert review.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-002",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "A credible TargetBench packet should contain the life-science-native elements in TECH-001: target rationale, expression/off-tumor checks, model systems, assay modules, controls, readouts, safety gaps, and go/no-go gates. This is enough for a prototype planning artifact, not a protocol.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The elements are supported by target/safety and assay-method sources, but exact lab-level details remain out of scope.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "complete protocol",
+            "validated experimental design",
+            "regulatory-ready packet"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether TECH-001 overstates bench specificity or omits essential off-tumor/control sections.",
+          "gate4_implication": "Gate 4 should require all TECH-001 sections and visible caveats/gap labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-009"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Evidence categories transfer to a planner; protocol parameters do not."
+        },
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        },
+        {
+          "answer": "The MVP can support a sectioned validation-planning packet, source-backed assay/readout/control suggestions, safety gaps, and go/no-go gates. It should not output a complete executable protocol, exact wet-lab parameters, or clinical/regulatory decisions.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The product boundary is strongly supported by assay-method and safety/RAG-risk sources, but exact UI acceptance belongs to Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "protocol generator",
+            "lab-ready protocol",
+            "clinical decision support"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit all output sections for protocol-like language or missing caveats.",
+          "gate4_implication": "Gate 4 should define deterministic section-completeness checks and forbidden-output tests.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-009",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Moving from literature categories to software sections is an implementation inference."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-002"
+          ],
+          "confidence": "medium",
+          "id": "LOC-006",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:40862764; PMCID:PMC12384651; DOI:10.3390/cells14161285; https://europepmc.org/article/MED/40862764",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-006",
+          "support_snippet": "Open-access review article describing CLDN18.2 as a therapeutic target in gastric cancer.",
+          "support_type": "indirect_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003; broad_academic",
+        "cite_for": "CLDN18.2 target rationale and gastric-cancer context.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as a primary clinical efficacy trial or as direct assay protocol support.",
+        "evidence_directness": "indirect_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-006",
+        "key_observations": "Open-access review article describing CLDN18.2 as a therapeutic target in gastric cancer.",
+        "limitations": "Secondary-source target rationale; use alongside primary/clinical and safety-model evidence.",
+        "linked_dq_ids": [
+          "DQ-001",
+          "DQ-002"
+        ],
+        "locator": "PMID:40862764; PMCID:PMC12384651; DOI:10.3390/cells14161285; https://europepmc.org/article/MED/40862764",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before using detailed expression/off-tumor statements.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2025",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Review conclusions may be broader than TargetBench demo needs."
+      }
+    },
+    "SRC-007": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "This is a build-feasibility comparison, not a scientific dismissal of B7-H3.",
+          "claim_kind": "inference",
+          "claim_text": "B7-H3 glioblastoma remains scientifically plausible and sponsor-relevant, but the retrieved evidence is less mature for the immediate MVP demo than CLDN18.2 gastric cancer.",
+          "confidence": "medium",
+          "confidence_reason": "B7-H3 has trial activity and recent papers, but fewer mature demo anchors surfaced under the allowed-source budget.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "indirect_empirical",
+          "forbidden_overclaim": "Do not claim B7-H3 is inferior biologically or clinically.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-005",
+          "locator_ids": [
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-001",
+            "LOC-011"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-001",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005"
+          ],
+          "confidence": "medium",
+          "id": "LOC-007",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41832583; PMCID:PMC13104396; DOI:10.1186/s12967-026-07994-6; https://europepmc.org/article/MED/41832583",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-007",
+          "support_snippet": "Open-access 2026 translational article on B7-H3-targeting CAR therapy using gamma-delta T cells in glioblastoma.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-003; VSTEP-003; broad_academic",
+        "cite_for": "B7-H3 glioblastoma CAR-therapy relevance and comparison against CLDN18.2 demo maturity.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as mature human clinical evidence.",
+        "evidence_directness": "direct_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "current",
+        "freshness_status": "current_enough",
+        "id": "SRC-007",
+        "key_observations": "Open-access 2026 translational article on B7-H3-targeting CAR therapy using gamma-delta T cells in glioblastoma.",
+        "limitations": "Very recent article with no citation count in retrieved metadata; Gate 2 did not inspect full methods.",
+        "linked_dq_ids": [
+          "DQ-002"
+        ],
+        "locator": "PMID:41832583; PMCID:PMC13104396; DOI:10.1186/s12967-026-07994-6; https://europepmc.org/article/MED/41832583",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "If B7-H3 is reconsidered as MVP target.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2026",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "high",
+        "transfer_risk_reason": "Evidence may be preclinical/translational and less demo-stable than CLDN18.2 CT041 evidence."
+      }
+    },
+    "SRC-008": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "This is a build-feasibility comparison, not a scientific dismissal of B7-H3.",
+          "claim_kind": "inference",
+          "claim_text": "B7-H3 glioblastoma remains scientifically plausible and sponsor-relevant, but the retrieved evidence is less mature for the immediate MVP demo than CLDN18.2 gastric cancer.",
+          "confidence": "medium",
+          "confidence_reason": "B7-H3 has trial activity and recent papers, but fewer mature demo anchors surfaced under the allowed-source budget.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "indirect_empirical",
+          "forbidden_overclaim": "Do not claim B7-H3 is inferior biologically or clinically.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-005",
+          "locator_ids": [
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-001",
+            "LOC-011"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-001",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005"
+          ],
+          "confidence": "medium",
+          "id": "LOC-008",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41171577; PMCID:PMC12579063; DOI:10.1007/s12672-025-03328-y; https://europepmc.org/article/MED/41171577",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-008",
+          "support_snippet": "Open-access review describing B7-H3 as an immunotherapy target in glioma.",
+          "support_type": "indirect_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-003; VSTEP-003; broad_academic",
+        "cite_for": "B7-H3 glioma immunotherapy target context.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as direct evidence that B7-H3 is the best 12-hour demo target.",
+        "evidence_directness": "indirect_empirical",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-008",
+        "key_observations": "Open-access review describing B7-H3 as an immunotherapy target in glioma.",
+        "limitations": "Review-level context; less decisive for MVP target choice than direct clinical/trial evidence.",
+        "linked_dq_ids": [
+          "DQ-002"
+        ],
+        "locator": "PMID:41171577; PMCID:PMC12579063; DOI:10.1007/s12672-025-03328-y; https://europepmc.org/article/MED/41171577",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "If B7-H3 appears in optional demo comparison.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2025",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Secondary source and disease setting are harder to convert into a compact validation-planner demo."
+      }
+    },
+    "SRC-009": {
+      "claims": [
+        {
+          "caveat": "The packet can suggest modules and evidence requirements, not exact wet-lab conditions.",
+          "claim_kind": "inference",
+          "claim_text": "A credible cell therapy target-validation packet needs at least target-expression rationale, off-tumor/safety checks, model-system choice, assay/readout modules, controls, and explicit go/no-go gaps.",
+          "confidence": "medium",
+          "confidence_reason": "Assay and safety categories are supported, but source-to-product translation requires expert review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-001",
+            "DQ-003"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not output a complete executable protocol or imply lab-ready validation without expert review.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-002",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "Keep values qualitative or configurable unless a source-backed fixture explicitly supports them.",
+          "claim_kind": "decision",
+          "claim_text": "The MVP should generate sectioned planning modules and decision gates, not a step-by-step protocol; model systems, cytotoxicity/activation/potency readouts, controls, and failure signals are the right level of specificity.",
+          "confidence": "medium",
+          "confidence_reason": "Direct target and methodological evidence supports the output structure, but not full protocol generation.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-001",
+            "DQ-003"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not provide detailed experimental parameters as if experimentally validated by this tool.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "The product can still be useful if it produces structured planning prompts, checks, and gaps.",
+          "claim_kind": "decision",
+          "claim_text": "TargetBench should frame recommendations as expert-review inputs for translational scientists, not clinical advice, regulatory advice, biosafety clearance, or complete lab instructions.",
+          "confidence": "medium",
+          "confidence_reason": "Safety and RAG-risk sources both support strict boundary language.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-003",
+            "DQ-004"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not present output as approved, sufficient, patient-specific, or executable.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-009",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "A credible TargetBench packet should contain the life-science-native elements in TECH-001: target rationale, expression/off-tumor checks, model systems, assay modules, controls, readouts, safety gaps, and go/no-go gates. This is enough for a prototype planning artifact, not a protocol.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The elements are supported by target/safety and assay-method sources, but exact lab-level details remain out of scope.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "complete protocol",
+            "validated experimental design",
+            "regulatory-ready packet"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether TECH-001 overstates bench specificity or omits essential off-tumor/control sections.",
+          "gate4_implication": "Gate 4 should require all TECH-001 sections and visible caveats/gap labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-006",
+            "LOC-009"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-009"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-006",
+            "SRC-009"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Evidence categories transfer to a planner; protocol parameters do not."
+        },
+        {
+          "answer": "The MVP can support a sectioned validation-planning packet, source-backed assay/readout/control suggestions, safety gaps, and go/no-go gates. It should not output a complete executable protocol, exact wet-lab parameters, or clinical/regulatory decisions.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The product boundary is strongly supported by assay-method and safety/RAG-risk sources, but exact UI acceptance belongs to Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "protocol generator",
+            "lab-ready protocol",
+            "clinical decision support"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit all output sections for protocol-like language or missing caveats.",
+          "gate4_implication": "Gate 4 should define deterministic section-completeness checks and forbidden-output tests.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-009",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Moving from literature categories to software sections is an implementation inference."
+        },
+        {
+          "answer": "TargetBench needs explicit expert-review, safety, uncertainty, source-traceability, and non-clinical-use language. CLDN18.2 off-tumor safety is a central demo caveat, and AI/RAG sources justify visible provenance and gap labeling.",
+          "claim_ids": [
+            "CLAIM-004",
+            "CLAIM-007",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The safety and AI-reliability rationale is clear, but specific wording must be checked in Gate 4/UI.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "hallucination-free",
+            "expert replacement",
+            "clinical advice",
+            "biosafety clearance"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+          "gate4_implication": "Gate 4 must require disclaimers, source traceability, gap labels, and no clinical/protocol output.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Adjacent RAG literature supports guardrails but not domain truth."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "id": "LOC-009",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41953034; PMCID:PMC13053282; DOI:10.3389/fimmu.2026.1770222; https://europepmc.org/article/MED/41953034",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-009",
+          "support_snippet": "Open-access Frontiers in Immunology review on potency assays for solid-tumor immunotherapy, useful for assay-module and readout categories.",
+          "support_type": "indirect_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-002; VSTEP-002; broad_academic",
+        "cite_for": "Solid-tumor immunotherapy potency-assay families, readouts, and assay-planning caveats.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as an executable TargetBench protocol.",
+        "evidence_directness": "methodological",
+        "external_upload_allowed": true,
+        "freshness_requirement": "current",
+        "freshness_status": "current_enough",
+        "id": "SRC-009",
+        "key_observations": "Open-access Frontiers in Immunology review on potency assays for solid-tumor immunotherapy, useful for assay-module and readout categories.",
+        "limitations": "Methodological review; it supports categories and guardrails, not precise protocol parameters.",
+        "linked_dq_ids": [
+          "DQ-001",
+          "DQ-003",
+          "DQ-004"
+        ],
+        "locator": "PMID:41953034; PMCID:PMC13053282; DOI:10.3389/fimmu.2026.1770222; https://europepmc.org/article/MED/41953034",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before coding default assay-module descriptions.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2026",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Assay category guidance must be tailored to target and lab context by experts."
+      }
+    },
+    "SRC-010": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "This is a build-feasibility comparison, not a scientific dismissal of B7-H3.",
+          "claim_kind": "inference",
+          "claim_text": "B7-H3 glioblastoma remains scientifically plausible and sponsor-relevant, but the retrieved evidence is less mature for the immediate MVP demo than CLDN18.2 gastric cancer.",
+          "confidence": "medium",
+          "confidence_reason": "B7-H3 has trial activity and recent papers, but fewer mature demo anchors surfaced under the allowed-source budget.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "indirect_empirical",
+          "forbidden_overclaim": "Do not claim B7-H3 is inferior biologically or clinically.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-005",
+          "locator_ids": [
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-001",
+            "LOC-011"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-001",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "Trial status is time-sensitive and must be displayed as context-only.",
+          "claim_kind": "inference",
+          "claim_text": "ClinicalTrials.gov records can be used in TargetBench as translational-status context and source provenance, but not as efficacy or safety proof.",
+          "confidence": "high",
+          "confidence_reason": "Official registry records clearly support status context but not outcomes.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002",
+            "DQ-005"
+          ],
+          "evidence_directness": "official_spec",
+          "forbidden_overclaim": "Do not infer clinical benefit from registry presence or phase labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-006",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-002"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-002"
+          ],
+          "source_quality": "official_docs",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        },
+        {
+          "answer": "Judgeability should be proven by output completeness for TECH-001, citation/record-ID traceability, explicit gap labels, target-selection rationale, deterministic demo fixture behavior, and boundaries against protocol or clinical claims.",
+          "claim_ids": [
+            "CLAIM-006",
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The checks follow from source policy, API reality, and RAG-risk evidence; exact thresholds must be defined in Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "comprehensive literature review",
+            "fully automated scientist",
+            "complete evidence base"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-005",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-012",
+            "SRC-015"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "low",
+          "transfer_risk_reason": "Completeness/provenance checks are directly implementable software criteria."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "id": "LOC-010",
+          "locator_type": "url_fragment",
+          "locator_value": "ClinicalTrials.gov API query: B7-H3 glioblastoma CAR-T; NCT05241392, NCT04077866, NCT05474378, NCT05366179, NCT05835687; https://clinicaltrials.gov/api/v2/studies?query.term=B7-H3%20glioblastoma%20CAR-T&pageSize=5&format=json",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-010",
+          "support_snippet": "Official trial records showed multiple B7-H3 glioblastoma CAR-T studies, mostly early phase or recruiting/unknown/active-not-recruiting.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-003; VSTEP-003",
+        "cite_for": "B7-H3 glioblastoma trial landscape and translational-status context.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as proof of safety, efficacy, or bench protocol validity.",
+        "evidence_directness": "official_spec",
+        "external_upload_allowed": true,
+        "freshness_requirement": "current",
+        "freshness_status": "current_enough",
+        "id": "SRC-010",
+        "key_observations": "Official trial records showed multiple B7-H3 glioblastoma CAR-T studies, mostly early phase or recruiting/unknown/active-not-recruiting.",
+        "limitations": "Trial registry status is contextual and can change; no efficacy inference should be drawn.",
+        "linked_dq_ids": [
+          "DQ-002",
+          "DQ-005"
+        ],
+        "locator": "ClinicalTrials.gov API query: B7-H3 glioblastoma CAR-T; NCT05241392, NCT04077866, NCT05474378, NCT05366179, NCT05835687; https://clinicaltrials.gov/api/v2/studies?query.term=B7-H3%20glioblastoma%20CAR-T&pageSize=5&format=json",
+        "provenance": "ClinicalTrials.gov official API v2 query on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before demo if trial status text is shown live.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "official_docs",
+        "source_date": "2026-05-28",
+        "source_quality": "official_docs",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Registry data indicates translational activity but not clinical outcome quality."
+      }
+    },
+    "SRC-011": {
+      "claims": [
+        {
+          "caveat": "This is a hackathon demo target decision, not a claim that CLDN18.2 is clinically superior to B7-H3.",
+          "claim_kind": "decision",
+          "claim_text": "Select CLDN18.2 in gastric or gastroesophageal cancer as the MVP demo target because the retrieved free evidence has stronger clinical/translational maturity, an explicit on-target/off-tumor safety literature hook, and richer trial context than B7-H3 glioblastoma for a 12-hour build.",
+          "confidence": "medium",
+          "confidence_reason": "Multiple source families point in the same direction, but this is a bounded review, not a systematic review.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "direct_empirical",
+          "forbidden_overclaim": "Do not claim clinical superiority, safety, efficacy, or completeness of the target-validation evidence.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-001",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "This is a build-feasibility comparison, not a scientific dismissal of B7-H3.",
+          "claim_kind": "inference",
+          "claim_text": "B7-H3 glioblastoma remains scientifically plausible and sponsor-relevant, but the retrieved evidence is less mature for the immediate MVP demo than CLDN18.2 gastric cancer.",
+          "confidence": "medium",
+          "confidence_reason": "B7-H3 has trial activity and recent papers, but fewer mature demo anchors surfaced under the allowed-source budget.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002"
+          ],
+          "evidence_directness": "indirect_empirical",
+          "forbidden_overclaim": "Do not claim B7-H3 is inferior biologically or clinically.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-005",
+          "locator_ids": [
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-001",
+            "LOC-011"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-001",
+            "SRC-011"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": []
+        },
+        {
+          "caveat": "Trial status is time-sensitive and must be displayed as context-only.",
+          "claim_kind": "inference",
+          "claim_text": "ClinicalTrials.gov records can be used in TargetBench as translational-status context and source provenance, but not as efficacy or safety proof.",
+          "confidence": "high",
+          "confidence_reason": "Official registry records clearly support status context but not outcomes.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-002",
+            "DQ-005"
+          ],
+          "evidence_directness": "official_spec",
+          "forbidden_overclaim": "Do not infer clinical benefit from registry presence or phase labels.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-006",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-002"
+          ],
+          "materiality": "important",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-002"
+          ],
+          "source_quality": "official_docs",
+          "status": "supported",
+          "technical_object_ids": []
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "Use CLDN18.2 in gastric/GEJ cancer as the demo target. It has CT041 clinical evidence and trial context, plus a strong safety/off-tumor modeling hook; B7-H3 glioblastoma remains credible but was less mature for a 12-hour judgeable demo.",
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "Evidence favors CLDN18.2 for demo maturity, but this is not a systematic target-ranking exercise.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-004",
+            "SRC-007"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "best biological target",
+            "clinically superior target",
+            "safe or effective therapy"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+          "gate4_implication": "Gate 4 should lock CLDN18.2 gastric/GEJ as the fixture target while labeling B7-H3 as future/alternate.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-002",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-002",
+            "LOC-003",
+            "LOC-004",
+            "LOC-005",
+            "LOC-006",
+            "LOC-007",
+            "LOC-008",
+            "LOC-010",
+            "LOC-011"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-011"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-002",
+            "SRC-003",
+            "SRC-004",
+            "SRC-005",
+            "SRC-006",
+            "SRC-007",
+            "SRC-008",
+            "SRC-010",
+            "SRC-011"
+          ],
+          "status": "supported",
+          "technical_object_ids": [],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Target selection is for demo usefulness, not therapeutic recommendation."
+        },
+        {
+          "answer": "Judgeability should be proven by output completeness for TECH-001, citation/record-ID traceability, explicit gap labels, target-selection rationale, deterministic demo fixture behavior, and boundaries against protocol or clinical claims.",
+          "claim_ids": [
+            "CLAIM-006",
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The checks follow from source policy, API reality, and RAG-risk evidence; exact thresholds must be defined in Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "comprehensive literature review",
+            "fully automated scientist",
+            "complete evidence base"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-005",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-012",
+            "SRC-015"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "low",
+          "transfer_risk_reason": "Completeness/provenance checks are directly implementable software criteria."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-001",
+            "CLAIM-005",
+            "CLAIM-006"
+          ],
+          "confidence": "medium",
+          "id": "LOC-011",
+          "locator_type": "url_fragment",
+          "locator_value": "ClinicalTrials.gov API queries: CLDN18.2 gastric cancer CAR-T and CT041 gastric cancer; NCT05539430, NCT06857786, NCT07103668, NCT04581473, NCT04404595; https://clinicaltrials.gov/api/v2/studies?query.term=CLDN18.2%20gastric%20cancer%20CAR-T&pageSize=5&format=json",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-011",
+          "support_snippet": "Official records included CLDN18.2 CAR-T and CT041 studies across phase 1, phase 1/2, and a phase 3 CLDN18.2-positive gastric-cancer study.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-004; VSTEP-003",
+        "cite_for": "CLDN18.2 / CT041 trial landscape and demo target maturity context.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as direct efficacy evidence or patient-facing medical advice.",
+        "evidence_directness": "official_spec",
+        "external_upload_allowed": true,
+        "freshness_requirement": "current",
+        "freshness_status": "current_enough",
+        "id": "SRC-011",
+        "key_observations": "Official records included CLDN18.2 CAR-T and CT041 studies across phase 1, phase 1/2, and a phase 3 CLDN18.2-positive gastric-cancer study.",
+        "limitations": "Registry records are not peer-reviewed outcome evidence and may change.",
+        "linked_dq_ids": [
+          "DQ-002",
+          "DQ-005"
+        ],
+        "locator": "ClinicalTrials.gov API queries: CLDN18.2 gastric cancer CAR-T and CT041 gastric cancer; NCT05539430, NCT06857786, NCT07103668, NCT04581473, NCT04404595; https://clinicaltrials.gov/api/v2/studies?query.term=CLDN18.2%20gastric%20cancer%20CAR-T&pageSize=5&format=json",
+        "provenance": "ClinicalTrials.gov official API v2 queries on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before showing current trial status in the UI.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "official_docs",
+        "source_date": "2026-05-28",
+        "source_quality": "official_docs",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Useful for context, not for definitive target validation."
+      }
+    },
+    "SRC-012": {
+      "claims": [
+        {
+          "caveat": "These sources motivate provenance controls; they do not validate this implementation.",
+          "claim_kind": "decision",
+          "claim_text": "The prototype must expose citations, record IDs, and gap labels because AI-assisted biomedical retrieval can otherwise turn adjacent evidence into overconfident generated recommendations.",
+          "confidence": "medium",
+          "confidence_reason": "The methodological literature supports provenance design, but product-specific evaluation remains Gate 4 work.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-004",
+            "DQ-005"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not claim the MVP prevents hallucinations or replaces expert review.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-007",
+          "locator_ids": [
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "The fixture must be labeled as demo evidence, not comprehensive literature coverage.",
+          "claim_kind": "decision",
+          "claim_text": "For judging reliability, the MVP should use a small curated fixture/cache plus transparent source-ledger rendering, with live API retrieval treated as optional enrichment rather than the core demo path.",
+          "confidence": "medium",
+          "confidence_reason": "API throttles plus RAG reliability sources make deterministic provenance more important for a hackathon demo.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-005"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not hide retrieval gaps or imply cache completeness.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-008",
+          "locator_ids": [
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "important",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "TargetBench needs explicit expert-review, safety, uncertainty, source-traceability, and non-clinical-use language. CLDN18.2 off-tumor safety is a central demo caveat, and AI/RAG sources justify visible provenance and gap labeling.",
+          "claim_ids": [
+            "CLAIM-004",
+            "CLAIM-007",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The safety and AI-reliability rationale is clear, but specific wording must be checked in Gate 4/UI.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "hallucination-free",
+            "expert replacement",
+            "clinical advice",
+            "biosafety clearance"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+          "gate4_implication": "Gate 4 must require disclaimers, source traceability, gap labels, and no clinical/protocol output.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Adjacent RAG literature supports guardrails but not domain truth."
+        },
+        {
+          "answer": "Judgeability should be proven by output completeness for TECH-001, citation/record-ID traceability, explicit gap labels, target-selection rationale, deterministic demo fixture behavior, and boundaries against protocol or clinical claims.",
+          "claim_ids": [
+            "CLAIM-006",
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The checks follow from source policy, API reality, and RAG-risk evidence; exact thresholds must be defined in Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "comprehensive literature review",
+            "fully automated scientist",
+            "complete evidence base"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-005",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-012",
+            "SRC-015"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "low",
+          "transfer_risk_reason": "Completeness/provenance checks are directly implementable software criteria."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-007",
+            "CLAIM-008"
+          ],
+          "confidence": "medium",
+          "id": "LOC-012",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41206112; PMCID:PMC12596265; DOI:10.1093/bib/bbaf571; https://europepmc.org/article/MED/41206112",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-012",
+          "support_snippet": "Open-access Briefings in Bioinformatics paper on retrieving comprehensive bioinformatics workflows from publications; useful as methodological precedent for structured extraction.",
+          "support_type": "indirect_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-006; VSTEP-004",
+        "cite_for": "Scientific workflow retrieval and provenance-oriented product requirements.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as evidence that TargetBench recommendations are biologically correct.",
+        "evidence_directness": "methodological",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-012",
+        "key_observations": "Open-access Briefings in Bioinformatics paper on retrieving comprehensive bioinformatics workflows from publications; useful as methodological precedent for structured extraction.",
+        "limitations": "Bioinformatics workflows are not the same as wet-lab validation planning.",
+        "linked_dq_ids": [
+          "DQ-004",
+          "DQ-005"
+        ],
+        "locator": "PMID:41206112; PMCID:PMC12596265; DOI:10.1093/bib/bbaf571; https://europepmc.org/article/MED/41206112",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before implementing any extraction/ranking language.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2025",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Workflow retrieval ideas transfer only at the artifact/provenance layer."
+      }
+    },
+    "SRC-013": {
+      "claims": [
+        {
+          "caveat": "These sources motivate provenance controls; they do not validate this implementation.",
+          "claim_kind": "decision",
+          "claim_text": "The prototype must expose citations, record IDs, and gap labels because AI-assisted biomedical retrieval can otherwise turn adjacent evidence into overconfident generated recommendations.",
+          "confidence": "medium",
+          "confidence_reason": "The methodological literature supports provenance design, but product-specific evaluation remains Gate 4 work.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-004",
+            "DQ-005"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not claim the MVP prevents hallucinations or replaces expert review.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-007",
+          "locator_ids": [
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "TargetBench needs explicit expert-review, safety, uncertainty, source-traceability, and non-clinical-use language. CLDN18.2 off-tumor safety is a central demo caveat, and AI/RAG sources justify visible provenance and gap labeling.",
+          "claim_ids": [
+            "CLAIM-004",
+            "CLAIM-007",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The safety and AI-reliability rationale is clear, but specific wording must be checked in Gate 4/UI.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "hallucination-free",
+            "expert replacement",
+            "clinical advice",
+            "biosafety clearance"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+          "gate4_implication": "Gate 4 must require disclaimers, source traceability, gap labels, and no clinical/protocol output.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Adjacent RAG literature supports guardrails but not domain truth."
+        },
+        {
+          "answer": "Judgeability should be proven by output completeness for TECH-001, citation/record-ID traceability, explicit gap labels, target-selection rationale, deterministic demo fixture behavior, and boundaries against protocol or clinical claims.",
+          "claim_ids": [
+            "CLAIM-006",
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The checks follow from source policy, API reality, and RAG-risk evidence; exact thresholds must be defined in Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "comprehensive literature review",
+            "fully automated scientist",
+            "complete evidence base"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-005",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-012",
+            "SRC-015"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "low",
+          "transfer_risk_reason": "Completeness/provenance checks are directly implementable software criteria."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-007"
+          ],
+          "confidence": "medium",
+          "id": "LOC-013",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41744224; PMCID:PMC12936789; DOI:10.1093/bib/bbag075; https://europepmc.org/article/MED/41744224",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-013",
+          "support_snippet": "Open-access survey on AI agents for biological research, useful for positioning TargetBench as assistive and review-gated.",
+          "support_type": "indirect_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-006; VSTEP-004",
+        "cite_for": "AI agents in biological research context and need for bounded claims.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as validating autonomous wet-lab protocol generation.",
+        "evidence_directness": "methodological",
+        "external_upload_allowed": true,
+        "freshness_requirement": "current",
+        "freshness_status": "current_enough",
+        "id": "SRC-013",
+        "key_observations": "Open-access survey on AI agents for biological research, useful for positioning TargetBench as assistive and review-gated.",
+        "limitations": "Survey-level source; not a validation study for this MVP.",
+        "linked_dq_ids": [
+          "DQ-004",
+          "DQ-005"
+        ],
+        "locator": "PMID:41744224; PMCID:PMC12936789; DOI:10.1093/bib/bbag075; https://europepmc.org/article/MED/41744224",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before writing AI-agent capability claims.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2026",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Agent survey claims need product-specific evaluation."
+      }
+    },
+    "SRC-014": {
+      "claims": [
+        {
+          "caveat": "These sources motivate provenance controls; they do not validate this implementation.",
+          "claim_kind": "decision",
+          "claim_text": "The prototype must expose citations, record IDs, and gap labels because AI-assisted biomedical retrieval can otherwise turn adjacent evidence into overconfident generated recommendations.",
+          "confidence": "medium",
+          "confidence_reason": "The methodological literature supports provenance design, but product-specific evaluation remains Gate 4 work.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-004",
+            "DQ-005"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not claim the MVP prevents hallucinations or replaces expert review.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-007",
+          "locator_ids": [
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "The fixture must be labeled as demo evidence, not comprehensive literature coverage.",
+          "claim_kind": "decision",
+          "claim_text": "For judging reliability, the MVP should use a small curated fixture/cache plus transparent source-ledger rendering, with live API retrieval treated as optional enrichment rather than the core demo path.",
+          "confidence": "medium",
+          "confidence_reason": "API throttles plus RAG reliability sources make deterministic provenance more important for a hackathon demo.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-005"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not hide retrieval gaps or imply cache completeness.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-008",
+          "locator_ids": [
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "important",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        },
+        {
+          "caveat": "The product can still be useful if it produces structured planning prompts, checks, and gaps.",
+          "claim_kind": "decision",
+          "claim_text": "TargetBench should frame recommendations as expert-review inputs for translational scientists, not clinical advice, regulatory advice, biosafety clearance, or complete lab instructions.",
+          "confidence": "medium",
+          "confidence_reason": "Safety and RAG-risk sources both support strict boundary language.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-003",
+            "DQ-004"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not present output as approved, sufficient, patient-specific, or executable.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-009",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "TargetBench needs explicit expert-review, safety, uncertainty, source-traceability, and non-clinical-use language. CLDN18.2 off-tumor safety is a central demo caveat, and AI/RAG sources justify visible provenance and gap labeling.",
+          "claim_ids": [
+            "CLAIM-004",
+            "CLAIM-007",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The safety and AI-reliability rationale is clear, but specific wording must be checked in Gate 4/UI.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [
+            "SRC-004"
+          ],
+          "evidence_directness_ceiling": "direct_empirical",
+          "forbidden_overclaims": [
+            "hallucination-free",
+            "expert replacement",
+            "clinical advice",
+            "biosafety clearance"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+          "gate4_implication": "Gate 4 must require disclaimers, source traceability, gap labels, and no clinical/protocol output.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-004",
+          "locator_ids": [
+            "LOC-004",
+            "LOC-009",
+            "LOC-012",
+            "LOC-013",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-004",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-004",
+            "SRC-009",
+            "SRC-012",
+            "SRC-013",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Adjacent RAG literature supports guardrails but not domain truth."
+        },
+        {
+          "answer": "Judgeability should be proven by output completeness for TECH-001, citation/record-ID traceability, explicit gap labels, target-selection rationale, deterministic demo fixture behavior, and boundaries against protocol or clinical claims.",
+          "claim_ids": [
+            "CLAIM-006",
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The checks follow from source policy, API reality, and RAG-risk evidence; exact thresholds must be defined in Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "comprehensive literature review",
+            "fully automated scientist",
+            "complete evidence base"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-005",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-012",
+            "SRC-015"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "low",
+          "transfer_risk_reason": "Completeness/provenance checks are directly implementable software criteria."
+        },
+        {
+          "answer": "The MVP can support a sectioned validation-planning packet, source-backed assay/readout/control suggestions, safety gaps, and go/no-go gates. It should not output a complete executable protocol, exact wet-lab parameters, or clinical/regulatory decisions.",
+          "claim_ids": [
+            "CLAIM-002",
+            "CLAIM-003",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The product boundary is strongly supported by assay-method and safety/RAG-risk sources, but exact UI acceptance belongs to Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "protocol generator",
+            "lab-ready protocol",
+            "clinical decision support"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit all output sections for protocol-like language or missing caveats.",
+          "gate4_implication": "Gate 4 should define deterministic section-completeness checks and forbidden-output tests.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-003",
+          "locator_ids": [
+            "LOC-001",
+            "LOC-004",
+            "LOC-009",
+            "LOC-014"
+          ],
+          "materiality": "central",
+          "null_ids": [],
+          "read_next_source_ids": [
+            "SRC-009",
+            "SRC-014"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "high",
+          "source_ids": [
+            "SRC-001",
+            "SRC-004",
+            "SRC-009",
+            "SRC-014"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "medium",
+          "transfer_risk_reason": "Moving from literature categories to software sections is an implementation inference."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "id": "LOC-014",
+          "locator_type": "url_fragment",
+          "locator_value": "PMID:41132171; PMCID:PMC12540348; DOI:10.3389/fpubh.2025.1635381; https://europepmc.org/article/MED/41132171",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-014",
+          "support_snippet": "Open-access public-health RAG article explicitly focused on mitigating LLM hallucinations through multi-evidence guided answer refinement.",
+          "support_type": "indirect_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-006; VSTEP-004",
+        "cite_for": "RAG hallucination risk and multi-evidence refinement motivation.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as proving TargetBench is hallucination-free.",
+        "evidence_directness": "methodological",
+        "external_upload_allowed": true,
+        "freshness_requirement": "historical",
+        "freshness_status": "current_enough",
+        "id": "SRC-014",
+        "key_observations": "Open-access public-health RAG article explicitly focused on mitigating LLM hallucinations through multi-evidence guided answer refinement.",
+        "limitations": "Public-health QA is adjacent, not target-validation planning.",
+        "linked_dq_ids": [
+          "DQ-004",
+          "DQ-005"
+        ],
+        "locator": "PMID:41132171; PMCID:PMC12540348; DOI:10.3389/fpubh.2025.1635381; https://europepmc.org/article/MED/41132171",
+        "provenance": "Europe PMC official API exact PMID lookup on 2026-05-28 after Semantic Scholar partial hit.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before making any RAG reliability statement.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "academic_search",
+        "source_date": "2025",
+        "source_quality": "peer_reviewed",
+        "transfer_risk_level": "medium",
+        "transfer_risk_reason": "Supports conservative source-ledger design, not domain correctness."
+      }
+    },
+    "SRC-015": {
+      "claims": [
+        {
+          "caveat": "The fixture must be labeled as demo evidence, not comprehensive literature coverage.",
+          "claim_kind": "decision",
+          "claim_text": "For judging reliability, the MVP should use a small curated fixture/cache plus transparent source-ledger rendering, with live API retrieval treated as optional enrichment rather than the core demo path.",
+          "confidence": "medium",
+          "confidence_reason": "API throttles plus RAG reliability sources make deterministic provenance more important for a hackathon demo.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "dq_ids": [
+            "DQ-005"
+          ],
+          "evidence_directness": "methodological",
+          "forbidden_overclaim": "Do not hide retrieval gaps or imply cache completeness.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "CLAIM-008",
+          "locator_ids": [
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "important",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "polarity": "supports",
+          "record_kind": "claim",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "source_quality": "peer_reviewed",
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ]
+        }
+      ],
+      "dqs": [
+        {
+          "answer": "Judgeability should be proven by output completeness for TECH-001, citation/record-ID traceability, explicit gap labels, target-selection rationale, deterministic demo fixture behavior, and boundaries against protocol or clinical claims.",
+          "claim_ids": [
+            "CLAIM-006",
+            "CLAIM-007",
+            "CLAIM-008",
+            "CLAIM-009"
+          ],
+          "confidence": "medium",
+          "confidence_reason": "The checks follow from source policy, API reality, and RAG-risk evidence; exact thresholds must be defined in Gate 4.",
+          "conflict_ids": [],
+          "contradiction_ids": [],
+          "derivation_ids": [],
+          "direct_empirical_evidence_used": [],
+          "evidence_directness_ceiling": "methodological",
+          "forbidden_overclaims": [
+            "comprehensive literature review",
+            "fully automated scientist",
+            "complete evidence base"
+          ],
+          "formula_ids": [],
+          "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+          "gate4_implication": "Gate 4 should encode completeness, citation, gap-label, and forbidden-output checks.",
+          "gate4_use_status": "allowed_with_caveat",
+          "id": "DQ-005",
+          "locator_ids": [
+            "LOC-010",
+            "LOC-011",
+            "LOC-012",
+            "LOC-014",
+            "LOC-015"
+          ],
+          "materiality": "central",
+          "null_ids": [
+            "NULL-001",
+            "NULL-002"
+          ],
+          "read_next_source_ids": [
+            "SRC-012",
+            "SRC-015"
+          ],
+          "record_kind": "dq",
+          "risk_if_wrong": "medium",
+          "source_ids": [
+            "SRC-010",
+            "SRC-011",
+            "SRC-012",
+            "SRC-014",
+            "SRC-015"
+          ],
+          "status": "supported",
+          "technical_object_ids": [
+            "TECH-001"
+          ],
+          "transfer_risk_level": "low",
+          "transfer_risk_reason": "Completeness/provenance checks are directly implementable software criteria."
+        }
+      ],
+      "locators": [
+        {
+          "claim_ids": [
+            "CLAIM-008"
+          ],
+          "confidence": "medium",
+          "id": "LOC-015",
+          "locator_type": "url_fragment",
+          "locator_value": "NCBI Bookshelf E-utilities documentation: https://www.ncbi.nlm.nih.gov/books/NBK25501/",
+          "quote_mode": "paraphrase",
+          "record_kind": "locator",
+          "source_id": "SRC-015",
+          "support_snippet": "Official NCBI E-utilities documentation supports the feasibility of structured PubMed retrieval when rate limits permit.",
+          "support_type": "direct_support"
+        }
+      ],
+      "source": {
+        "authorized_by_plan_item": "COMMIT-005; VSTEP-005",
+        "cite_for": "Implementation feasibility for PubMed/NCBI source-adapter and provenance identifiers.",
+        "confidentiality": "public",
+        "do_not_cite_for": "Do not cite as biomedical evidence about target validation.",
+        "evidence_directness": "official_spec",
+        "external_upload_allowed": true,
+        "freshness_requirement": "stable",
+        "freshness_status": "current_enough",
+        "id": "SRC-015",
+        "key_observations": "Official NCBI E-utilities documentation supports the feasibility of structured PubMed retrieval when rate limits permit.",
+        "limitations": "This is API documentation, not scientific evidence.",
+        "linked_dq_ids": [
+          "DQ-005"
+        ],
+        "locator": "NCBI Bookshelf E-utilities documentation: https://www.ncbi.nlm.nih.gov/books/NBK25501/",
+        "provenance": "Gate 2 plan seed COMMIT-005; official NCBI documentation page.",
+        "quote_policy": "may_quote",
+        "record_kind": "source",
+        "reread_trigger": "Before implementing live PubMed adapter behavior.",
+        "retrieval_status": "retrieved",
+        "retrieval_surface": "official_docs",
+        "source_date": "stable documentation",
+        "source_quality": "official_docs",
+        "transfer_risk_level": "low",
+        "transfer_risk_reason": "Used only for implementation/source-policy feasibility."
+      }
+    }
+  },
+  "schema_version": "gate2-agent-evidence-pack-v1"
+}

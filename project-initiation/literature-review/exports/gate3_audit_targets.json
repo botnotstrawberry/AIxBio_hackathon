@@ -1,0 +1,39 @@
+{
+  "conflicts": [],
+  "contradictions": [],
+  "dq_audit_targets": [
+    {
+      "dq_id": "DQ-001",
+      "gate3_audit_target": "Audit whether TECH-001 overstates bench specificity or omits essential off-tumor/control sections.",
+      "materiality": "central",
+      "risk_if_wrong": "high"
+    },
+    {
+      "dq_id": "DQ-002",
+      "gate3_audit_target": "Audit whether CLDN18.2 selection relies too much on clinical/trial context and too little on bench-translatable evidence.",
+      "materiality": "central",
+      "risk_if_wrong": "high"
+    },
+    {
+      "dq_id": "DQ-003",
+      "gate3_audit_target": "Audit all output sections for protocol-like language or missing caveats.",
+      "materiality": "central",
+      "risk_if_wrong": "high"
+    },
+    {
+      "dq_id": "DQ-004",
+      "gate3_audit_target": "Audit for any clinical, regulatory, biosafety, or autonomous-science overclaim.",
+      "materiality": "central",
+      "risk_if_wrong": "high"
+    },
+    {
+      "dq_id": "DQ-005",
+      "gate3_audit_target": "Audit that Gate 4 criteria are measurable and do not rely on subjective wow-factor alone.",
+      "materiality": "central",
+      "risk_if_wrong": "medium"
+    }
+  ],
+  "invalid_outputs": [],
+  "misses": [],
+  "schema_version": "gate2-agent-evidence-pack-v1"
+}

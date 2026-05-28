@@ -122,11 +122,15 @@ The Gate 5 handoff currently authorizes these action tokens after Gate 5 human
 approval:
 
 - `scaffold_project`
+- `install_project_dependencies`
 - `build_targetbench_mvp`
 - `implement_curated_cldn18_2_fixture`
 - `implement_source_ledger_and_exports`
 - `implement_safety_guardrails`
+- `run_local_dev_server_and_checks`
 - `run_gate4_evaluation_checks`
+- `run_autonomous_rework_until_gate4_pass`
+- `operate_overnight_continuity_watchdog`
 - `commit_and_push_project_artifacts`
 
 The intended MVP path is:
@@ -138,6 +142,40 @@ The intended MVP path is:
 5. Include Markdown and JSON export.
 6. Add negative checks for unsafe or overclaimed output.
 7. Push non-secret finished artifacts to this repo.
+
+## Overnight Autonomy Plan
+
+After Gate 5 is approved and `handoff-guard` passes, OpenClaw should continue
+the approved build lane without per-step human approval. Routine implementation
+choices, ordinary open-source dependency setup, local test fixes, README/demo
+updates, exact-path commits, and pushes are part of the approved repo-local
+build path.
+
+The continuity mechanism should be a cron job, TaskFlow job, heartbeat wake, or
+equivalent watchdog. It should periodically check whether the build is idle or
+incomplete, verify Gate 5 approval and `handoff-guard`, avoid duplicate active
+build sessions, and resume the next approved action token until the MVP passes
+Gate 4 or a true hard stop remains.
+
+OpenClaw should not stop for ordinary implementation friction. It should first
+try an approved workaround or another build slice:
+
+- If a live API fails or needs a key, use the curated fixture/cache, another
+  approved free source, or a transparent gap label.
+- If optional enrichment needs a paid source, private data, or a secret, omit
+  that enrichment and keep building the deterministic demo.
+- If a dependency blocks progress, choose a simpler ordinary open-source
+  dependency or implement the minimum local feature directly.
+- If UI/dev-server work blocks, continue fixture, data model, exports,
+  guardrails, tests, README, or demo artifact work.
+- If evidence is too thin for scientific specificity, show caveats and gap
+  labels rather than inventing details.
+
+Hard stops remain: missing Gate 5 approval, failing `handoff-guard`,
+unavailable shell/exec, inaccessible repo with no local workaround, required
+secrets/private keys/private data, public deployment, external posting, paid or
+proprietary source requirements, destructive cleanup, OpenClaw runtime
+mutation, or expansion beyond the TargetBench MVP.
 
 ## Evaluation Contract
 

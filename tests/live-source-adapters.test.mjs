@@ -3,8 +3,11 @@ import {
   CLINICAL_CONTEXT_ONLY_LABEL,
   fetchClinicalTrialsSources,
   fetchEuropePmcSources,
+  fetchPubMedSources,
   normalizeClinicalTrialsResults,
-  normalizeEuropePmcResults
+  normalizeEuropePmcResults,
+  normalizeOpenAlexResults,
+  normalizePubMedSummaryResults
 } from "../src/live-source-adapters.mjs";
 
 describe("live source adapters", () => {
@@ -70,6 +73,66 @@ describe("live source adapters", () => {
     expect(records[0].doNotCiteFor).toMatch(/patient advice/i);
   });
 
+  it("normalizes OpenAlex works to LIVE-OA sources", () => {
+    const records = normalizeOpenAlexResults(
+      {
+        results: [
+          {
+            id: "https://openalex.org/W123",
+            display_name: "B7-H3 CAR-T target context",
+            publication_year: 2026,
+            doi: "https://doi.org/10.1000/openalex",
+            ids: {
+              openalex: "https://openalex.org/W123",
+              doi: "https://doi.org/10.1000/openalex",
+              pmid: "https://pubmed.ncbi.nlm.nih.gov/12345678"
+            },
+            primary_location: { landing_page_url: "https://doi.org/10.1000/openalex" },
+            abstract_inverted_index: { Target: [0], context: [1] },
+            concepts: [{ display_name: "Oncology" }]
+          }
+        ]
+      },
+      { retrievedAt: "2026-05-28T14:00:00Z", url: "https://example.test/openalex" }
+    );
+
+    expect(records).toHaveLength(1);
+    expect(records[0].liveSourceId).toBe("LIVE-OA-001");
+    expect(records[0].provider).toBe("OpenAlex");
+    expect(records[0].identifiers.openAlexId).toBe("https://openalex.org/W123");
+    expect(records[0].identifiers.pmid).toBe("12345678");
+    expect(records[0].identifiers.doi).toBe("10.1000/openalex");
+    expect(records[0].abstractText).toBe("Target context");
+  });
+
+  it("normalizes PubMed summaries to LIVE-PUBMED sources", () => {
+    const records = normalizePubMedSummaryResults(
+      {
+        result: {
+          uids: ["12345678"],
+          "12345678": {
+            title: "B7-H3 glioblastoma CAR-T metadata",
+            pubdate: "2025 Jan",
+            fulljournalname: "Example Journal",
+            articleids: [
+              { idtype: "doi", value: "10.1000/pubmed" },
+              { idtype: "pmc", value: "PMC123456" }
+            ]
+          }
+        }
+      },
+      { retrievedAt: "2026-05-28T14:00:00Z", url: "https://example.test/pubmed" }
+    );
+
+    expect(records).toHaveLength(1);
+    expect(records[0].liveSourceId).toBe("LIVE-PUBMED-001");
+    expect(records[0].provider).toBe("PubMed");
+    expect(records[0].identifiers.pmid).toBe("12345678");
+    expect(records[0].identifiers.pmcid).toBe("PMC123456");
+    expect(records[0].identifiers.doi).toBe("10.1000/pubmed");
+    expect(records[0].locator).toContain("pubmed.ncbi.nlm.nih.gov/12345678");
+  });
+
   it("returns provider failure objects on timeout", async () => {
     const fetchImpl = (_url, init) =>
       new Promise((_resolve, reject) => {
@@ -115,5 +178,24 @@ describe("live source adapters", () => {
     expect(result.status).toBe("ok");
     expect(result.records[0].liveSourceId).toBe("LIVE-CTG-001");
     expect(result.records[0].usageLabel).toBe(CLINICAL_CONTEXT_ONLY_LABEL);
+  });
+
+  it("keeps PubMed throttling as a provider failure", async () => {
+    const fetchImpl = async () => ({
+      ok: false,
+      status: 429,
+      json: async () => ({})
+    });
+
+    const result = await fetchPubMedSources(
+      { target: "B7-H3", disease: "glioblastoma", modality: "CAR-T" },
+      { fetchImpl, retrievedAt: "2026-05-28T14:00:00Z" }
+    );
+
+    expect(result.status).toBe("failed");
+    expect(result.records).toEqual([]);
+    expect(result.failure.errorCode).toBe("HTTP_ERROR");
+    expect(result.failure.message).toMatch(/HTTP 429/);
+    expect(result.failure.gapLabels).toContain("GAP-LIVE-RETRIEVAL");
   });
 });

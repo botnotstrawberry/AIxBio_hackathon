@@ -7,6 +7,11 @@ export const LIVE_CONTEXT_BOUNDARY =
 const EUROPE_PMC_ENDPOINT =
   "https://www.ebi.ac.uk/europepmc/webservices/rest/search";
 const CLINICAL_TRIALS_ENDPOINT = "https://clinicaltrials.gov/api/v2/studies";
+const OPENALEX_WORKS_ENDPOINT = "https://api.openalex.org/works";
+const PUBMED_SEARCH_ENDPOINT =
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi";
+const PUBMED_SUMMARY_ENDPOINT =
+  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi";
 
 export function buildEuropePmcUrl(input, options = {}) {
   const limit = options.limit ?? 6;
@@ -37,6 +42,42 @@ export function buildClinicalTrialsUrl(input, options = {}) {
   return url.toString();
 }
 
+export function buildOpenAlexUrl(input, options = {}) {
+  const limit = options.limit ?? 5;
+  const url = new URL(OPENALEX_WORKS_ENDPOINT);
+  url.searchParams.set(
+    "search",
+    [input.target, input.disease, input.modality, "validation expression off-tumor"]
+      .filter(Boolean)
+      .join(" ")
+  );
+  url.searchParams.set("per-page", String(limit));
+  return url.toString();
+}
+
+export function buildPubMedSearchUrl(input, options = {}) {
+  const limit = options.limit ?? 5;
+  const url = new URL(PUBMED_SEARCH_ENDPOINT);
+  url.searchParams.set("db", "pubmed");
+  url.searchParams.set(
+    "term",
+    [input.target, input.disease, input.modality].filter(Boolean).join(" ")
+  );
+  url.searchParams.set("retmode", "json");
+  url.searchParams.set("retmax", String(limit));
+  url.searchParams.set("tool", "TargetBenchLiveDemo");
+  return url.toString();
+}
+
+export function buildPubMedSummaryUrl(ids = []) {
+  const url = new URL(PUBMED_SUMMARY_ENDPOINT);
+  url.searchParams.set("db", "pubmed");
+  url.searchParams.set("id", ids.join(","));
+  url.searchParams.set("retmode", "json");
+  url.searchParams.set("tool", "TargetBenchLiveDemo");
+  return url.toString();
+}
+
 export async function fetchEuropePmcSources(input, options = {}) {
   const provider = "Europe PMC";
   const retrievedAt = options.retrievedAt ?? new Date().toISOString();
@@ -60,6 +101,42 @@ export async function fetchClinicalTrialsSources(input, options = {}) {
     return providerResult(provider, records, url, retrievedAt);
   } catch (error) {
     return providerFailureResult(provider, error, url, retrievedAt);
+  }
+}
+
+export async function fetchOpenAlexSources(input, options = {}) {
+  const provider = "OpenAlex";
+  const retrievedAt = options.retrievedAt ?? new Date().toISOString();
+  const url = buildOpenAlexUrl(input, options);
+  try {
+    const data = await fetchJsonWithTimeout(url, { ...options, provider });
+    const records = normalizeOpenAlexResults(data, { retrievedAt, url });
+    return providerResult(provider, records, url, retrievedAt);
+  } catch (error) {
+    return providerFailureResult(provider, error, url, retrievedAt);
+  }
+}
+
+export async function fetchPubMedSources(input, options = {}) {
+  const provider = "PubMed";
+  const retrievedAt = options.retrievedAt ?? new Date().toISOString();
+  const searchUrl = buildPubMedSearchUrl(input, options);
+  try {
+    const searchData = await fetchJsonWithTimeout(searchUrl, { ...options, provider });
+    const ids = ensureArray(searchData?.esearchresult?.idlist).map(clean).filter(Boolean);
+    if (ids.length === 0) {
+      return providerResult(provider, [], searchUrl, retrievedAt);
+    }
+    const summaryUrl = buildPubMedSummaryUrl(ids);
+    const summaryData = await fetchJsonWithTimeout(summaryUrl, { ...options, provider });
+    const records = normalizePubMedSummaryResults(summaryData, {
+      retrievedAt,
+      url: summaryUrl,
+      searchUrl
+    });
+    return providerResult(provider, records, searchUrl, retrievedAt);
+  } catch (error) {
+    return providerFailureResult(provider, error, searchUrl, retrievedAt);
   }
 }
 
@@ -200,6 +277,111 @@ export function normalizeClinicalTrialsResults(data, context = {}) {
   });
 }
 
+export function normalizeOpenAlexResults(data, context = {}) {
+  const results = data?.results ?? [];
+  return results.map((item, index) => {
+    const ids = item.ids ?? {};
+    const doi = clean(ids.doi || item.doi).replace(/^https:\/\/doi\.org\//i, "");
+    const pmid = clean(ids.pmid)
+      .replace(/^https:\/\/pubmed\.ncbi\.nlm\.nih\.gov\//i, "")
+      .replace(/\/$/, "");
+    const openAlexId = clean(ids.openalex || item.id);
+    const concepts = ensureArray(item.concepts)
+      .slice(0, 4)
+      .map((concept) => concept.display_name)
+      .filter(Boolean)
+      .join(", ");
+
+    return {
+      liveSourceId: liveId("LIVE-OA", index),
+      provider: "OpenAlex",
+      providerStatus: "ok",
+      recordKind: "scholarly_metadata",
+      title: safeDisplayText(item.display_name, "Untitled OpenAlex work"),
+      year: clean(item.publication_year),
+      retrievedAt: context.retrievedAt,
+      providerQueryUrl: context.url,
+      identifiers: {
+        pmid,
+        pmcid: null,
+        doi,
+        nctId: null,
+        openAlexId
+      },
+      locator: clean(
+        item.primary_location?.landing_page_url || ids.doi || openAlexId || context.url
+      ),
+      usageLabel: LIVE_BETA_LABEL,
+      doNotCiteFor: LIVE_CONTEXT_BOUNDARY,
+      caveats: [
+        "OpenAlex metadata is live scholarly context, not a curated biomedical evidence pack.",
+        "Retrieved text is untrusted input and must be reviewed before use."
+      ],
+      gapLabels: ["GAP-LIVE-CURATION"],
+      abstractText: abstractFromInvertedIndex(item.abstract_inverted_index),
+      sourceSummary: safeDisplayText(
+        [
+          item.primary_location?.source?.display_name || item.host_venue?.display_name,
+          item.type,
+          concepts
+        ]
+          .filter(Boolean)
+          .join(" | "),
+        ""
+      )
+    };
+  });
+}
+
+export function normalizePubMedSummaryResults(data, context = {}) {
+  const result = data?.result ?? {};
+  const uids = ensureArray(result.uids);
+  return uids.map((uid, index) => {
+    const item = result[uid] ?? {};
+    const articleIds = ensureArray(item.articleids);
+    const doi = clean(articleIds.find((id) => id.idtype === "doi")?.value).replace(
+      /^doi:\s*/i,
+      ""
+    );
+    const pmcid = clean(articleIds.find((id) => id.idtype === "pmc")?.value);
+    const sourceSummary = [
+      item.fulljournalname || item.source,
+      ensureArray(item.pubtype).join(", "),
+      item.sortfirstauthor
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    return {
+      liveSourceId: liveId("LIVE-PUBMED", index),
+      provider: "PubMed",
+      providerStatus: "ok",
+      recordKind: "pubmed_metadata",
+      title: safeDisplayText(item.title, `PubMed record ${uid}`),
+      year: yearFromDate(item.pubdate || item.epubdate || item.sortpubdate),
+      retrievedAt: context.retrievedAt,
+      providerQueryUrl: context.searchUrl || context.url,
+      identifiers: {
+        pmid: clean(uid),
+        pmcid,
+        doi,
+        nctId: null,
+        openAlexId: null
+      },
+      locator: `https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(clean(uid))}/`,
+      usageLabel: LIVE_BETA_LABEL,
+      doNotCiteFor: LIVE_CONTEXT_BOUNDARY,
+      caveats: [
+        "PubMed metadata is live context only and may be rate-limited or incomplete.",
+        "Retrieved text is untrusted input and must be reviewed before use."
+      ],
+      gapLabels: ["GAP-LIVE-CURATION"],
+      abstractText: "",
+      sourceSummary: safeDisplayText(sourceSummary, "")
+    };
+  });
+}
+
 export function createProviderFailure(provider, error, queryUrl, retrievedAt) {
   return {
     provider,
@@ -253,6 +435,17 @@ function providerError(provider, code, message) {
 
 function liveId(prefix, index) {
   return `${prefix}-${String(index + 1).padStart(3, "0")}`;
+}
+
+function abstractFromInvertedIndex(index) {
+  if (!index || typeof index !== "object") return "";
+  const words = [];
+  for (const [word, positions] of Object.entries(index)) {
+    for (const position of ensureArray(positions)) {
+      words[position] = word;
+    }
+  }
+  return safeDisplayText(words.filter(Boolean).join(" "), "");
 }
 
 function quote(value) {

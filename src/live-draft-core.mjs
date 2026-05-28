@@ -4,7 +4,9 @@ import {
   LIVE_CONTEXT_BOUNDARY,
   createProviderFailure,
   fetchClinicalTrialsSources,
-  fetchEuropePmcSources
+  fetchEuropePmcSources,
+  fetchOpenAlexSources,
+  fetchPubMedSources
 } from "./live-source-adapters.mjs";
 
 export function buildLiveQueries(input = {}) {
@@ -15,7 +17,10 @@ export function buildLiveQueries(input = {}) {
       `${normalized.target} ${normalized.disease} expression off-tumor`,
       `${normalized.target} ${normalized.disease} CAR-T`
     ],
-    trialQuery: `${normalized.target} ${normalized.disease} ${normalized.modality}`
+    trialQuery: `${normalized.target} ${normalized.disease} ${normalized.modality}`,
+    metadataQueries: [
+      `${normalized.target} ${normalized.disease} ${normalized.modality} validation expression off-tumor`
+    ]
   };
 }
 
@@ -36,6 +41,14 @@ export async function runLiveDraftContext(input = {}, options = {}) {
     {
       provider: "ClinicalTrials.gov",
       run: () => fetchClinicalTrialsSources(normalized, { ...providerOptions, limit: options.clinicalTrialsLimit ?? 5 })
+    },
+    {
+      provider: "OpenAlex",
+      run: () => fetchOpenAlexSources(normalized, { ...providerOptions, limit: options.openAlexLimit ?? 5 })
+    },
+    {
+      provider: "PubMed",
+      run: () => fetchPubMedSources(normalized, { ...providerOptions, limit: options.pubMedLimit ?? 5 })
     }
   ];
 
@@ -231,6 +244,7 @@ function recordKey(record) {
     identifiers.nctId && `nct:${identifiers.nctId}`,
     identifiers.pmid && `pmid:${identifiers.pmid}`,
     identifiers.pmcid && `pmcid:${identifiers.pmcid}`,
+    identifiers.openAlexId && `openalex:${identifiers.openAlexId.toLowerCase()}`,
     identifiers.doi && `doi:${identifiers.doi.toLowerCase()}`,
     record.locator && `url:${record.locator.toLowerCase()}`
   ].find(Boolean);

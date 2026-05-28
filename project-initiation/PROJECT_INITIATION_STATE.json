@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "projectKey": "AIxBio_hackathon",
+  "title": "AIxBio Hackathon",
+  "isTest": false,
+  "mode": "live",
+  "createdAt": "2026-05-28T00:19:29Z",
+  "updatedAt": "2026-05-28T00:19:29Z",
+  "gateOrder": [
+    "gate1",
+    "gate2-plan",
+    "gate2",
+    "gate3",
+    "gate4",
+    "gate5"
+  ]
+}

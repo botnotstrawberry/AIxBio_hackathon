@@ -1,0 +1,26 @@
+{
+  "gate": "gate1",
+  "title": "Gate 1: project intake",
+  "artifact": "PROJECT_BRIEF.md",
+  "artifactPath": "/root/.openclaw/workspace/project-initiation/AIxBio_hackathon/PROJECT_BRIEF.md",
+  "artifactSha256": "80a0463676bd07e3f94726e158cfb4ff13f0a540db7629aa11d06cc9473b6c8c",
+  "isTest": false,
+  "approver": "human",
+  "source": "User approved Gate 1 on 2026-05-28 conditional on main-session belief it can be built in 12 hours; approval accepted for a narrow TargetBench MVP with 2-3 source adapters, one polished demo query, structured evidence-to-validation-plan templates, explicit expert-review wording, and no claim of complete wet-lab protocol automation.",
+  "approvedAt": "2026-05-28T01:08:31Z",
+  "gate1_contract_version": 2,
+  "build_target_id": "BUILD-001",
+  "required_search_ids": [
+    "SEARCH-001",
+    "SEARCH-002",
+    "SEARCH-003",
+    "SEARCH-004",
+    "SEARCH-005"
+  ],
+  "open_question_ids": [
+    "OQ-001",
+    "OQ-002",
+    "OQ-003",
+    "OQ-004"
+  ]
+}

@@ -4,8 +4,16 @@
   "title": "AIxBio Hackathon",
   "isTest": false,
   "mode": "live",
+  "status": "complete",
   "createdAt": "2026-05-28T00:19:29Z",
-  "updatedAt": "2026-05-28T00:19:29Z",
+  "updatedAt": "2026-05-29T11:33:46Z",
+  "completedAt": "2026-05-29T11:33:46Z",
+  "completion": {
+    "summary": "Hackathon build closed with static MVP, branch-isolated live draft beta, and white paper artifacts preserved.",
+    "localDevServersExpected": false,
+    "canonicalBranch": "plan/live-demo-3-4-hour",
+    "staticMvpBranch": "main"
+  },
   "gateOrder": [
     "gate1",
     "gate2-plan",

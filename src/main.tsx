@@ -779,7 +779,7 @@ function LiveAiDraftPanel({
         <div>
           <h3>AI draft beta</h3>
           <p>
-            Optional local Kimi draft. It uses retrieved LIVE-* cards only and is rejected if local
+            Optional local AI draft. It uses retrieved LIVE-* cards only and is rejected if local
             citation and safety checks fail.
           </p>
         </div>

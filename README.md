@@ -9,6 +9,10 @@ junction cancer.
 
 ## Current Status
 
+Status: complete as of 2026-05-29. The hackathon build is closed, the local
+dev servers and AI sidecar are not expected to remain running, and future demo
+use should start the needed local commands explicitly.
+
 This repository contains a runnable local TargetBench MVP plus the approved
 project-initiation package and Gate 5 handoff. The judgeable path is a
 deterministic CLDN18.2 gastric/GEJ fixture that works without live API
@@ -234,7 +238,8 @@ Cuts for the 3-4 hour branch:
 Optional AI draft beta:
 
 1. Copy `.env.example` to `.env.local` and fill `NEBIUS_API_KEY`.
-2. Keep `NEBIUS_MODEL=moonshotai/Kimi-K2.6`.
+2. Keep the checked-in DeepSeek Token Factory endpoint and model defaults unless
+   testing another locally approved Nebius model.
 3. Run `npm run live:ai`.
 4. Run `npm run dev`.
 5. Fetch live context, then click `Generate AI draft`.
@@ -269,7 +274,7 @@ Suggested manual smoke:
 7. Confirm provider statuses, live source cards, clusters, and deterministic
    scaffold appear, or that provider failures are shown as retrieval gaps.
 8. Optional: start `npm run live:ai` and click `Generate AI draft` to show a
-   short Kimi-generated source-cited planning note.
+   short source-cited AI planning note.
 
 ## Overnight Autonomy Plan
 

@@ -12,7 +12,8 @@ responses must surface as provider failure/gap cards and must not break the
 curated packet or other live providers.
 
 Scope amendment, 2026-05-28 15:17 UTC: the user approved a local-only AI draft
-sidecar using Nebius Token Factory and `moonshotai/Kimi-K2.6`. This does not
+sidecar using Nebius Token Factory. Final live smoke used
+`deepseek-ai/DeepSeek-V4-Pro` on the UK Token Factory endpoint. This does not
 authorize exposing keys in browser code, committing `.env.local`, routing
 through OpenClaw runtime config, or making AI required for the curated packet or
 deterministic live scaffold.
@@ -324,8 +325,8 @@ The local AI sidecar uses:
 - local endpoint: `POST /api/live-draft`
 - bound to `127.0.0.1`
 - reads `NEBIUS_API_KEY` from server process env or ignored `.env.local`
-- `NEBIUS_BASE_URL=https://api.tokenfactory.nebius.com/v1/`
-- `NEBIUS_MODEL=moonshotai/Kimi-K2.6`
+- `NEBIUS_BASE_URL=https://api.tokenfactory.uk-south1.nebius.com/v1/`
+- `NEBIUS_MODEL=deepseek-ai/DeepSeek-V4-Pro`
 - browser calls local endpoint only
 - UI reports AI unavailable when the local endpoint or key is unavailable
 - explicit package scripts or run instructions

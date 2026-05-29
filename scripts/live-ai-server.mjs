@@ -9,8 +9,8 @@ import {
   validateAiDraftText
 } from "../src/live-ai-core.mjs";
 
-const DEFAULT_BASE_URL = "https://api.tokenfactory.nebius.com/v1/";
-const DEFAULT_MODEL = "moonshotai/Kimi-K2.6";
+const DEFAULT_BASE_URL = "https://api.tokenfactory.uk-south1.nebius.com/v1/";
+const DEFAULT_MODEL = "deepseek-ai/DeepSeek-V4-Pro";
 const DEFAULT_PORT = 8787;
 const ALLOWED_ORIGINS = new Set([
   "http://127.0.0.1:5173",

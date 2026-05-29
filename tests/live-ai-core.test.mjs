@@ -32,7 +32,7 @@ describe("live AI core", () => {
     expect(sanitized[0].gapLabels).toContain("GAP-LIVE-CURATION");
   });
 
-  it("builds OpenAI-compatible Kimi messages from live context", () => {
+  it("builds OpenAI-compatible messages from live context", () => {
     const messages = buildLiveAiMessages({
       input: { target: "B7-H3", disease: "glioblastoma", modality: "CAR-T" },
       records,
@@ -40,12 +40,12 @@ describe("live AI core", () => {
       topGaps: [{ id: "GAP-LIVE-CURATION", summary: "Needs expert curation." }]
     });
     const request = buildOpenAiCompatibleRequest({
-      model: "moonshotai/Kimi-K2.6",
+      model: "deepseek-ai/DeepSeek-V4-Pro",
       messages,
       maxTokens: 700
     });
 
-    expect(request.model).toBe("moonshotai/Kimi-K2.6");
+    expect(request.model).toBe("deepseek-ai/DeepSeek-V4-Pro");
     expect(request.messages[0].role).toBe("system");
     expect(JSON.stringify(request.messages)).toContain("LIVE-EPMC-001");
     expect(JSON.stringify(request.messages)).toContain("do not write protocols");
